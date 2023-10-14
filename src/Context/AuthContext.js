@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const contextData = {
     userId: userId,
+    setuserId: setuserId,
   };
 
   useEffect(() => {
