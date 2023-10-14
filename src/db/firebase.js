@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import firebaseConfig from "../Config/firebaseConfig";
 
 const app = initializeApp(firebaseConfig);
@@ -13,5 +13,15 @@ const db = getFirestore(app);
 
 const auth = getAuth(app);
 
+const googleProvider = new GoogleAuthProvider();
+const signInWithGoogle = () => {
+  signInWithPopup(auth,googleProvider)
+    .then((res) => {
+      console.log(res.user);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
 
-export { db, analytics, auth };
+export { db, analytics, auth, signInWithGoogle };

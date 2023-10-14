@@ -1,40 +1,33 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import ArrowLeft from '../Icons/ArrowLeft';
+import ArrowRight from '../Icons/ArrowRight';
+import EmailSignUpSection from './EmailSignUpSection';
+import GoogleSignUp from './GoogleSignUp';
+import { useAuth } from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../../db/firebase';
 
 const Signup = () => {
 
+    const { userId } = useAuth();
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-       
-    const onLogin = (e) => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            navigate("/")
-            console.log(user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
-        });
-       
-    }
+
+
+    useEffect(()=>{
+        if(userId) {
+            navigate("/");
+        }
+    })
 
   return (
-    <div className='flex flex-col justify-center w-full h-screen items-center'>
-        <div>
-            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+    <div className='flex flex-col items-center w-full h-screen pt-[8vh]'> 
+        <div className='flex text-white items-center text-4xl font-bold pb-12 font-head mt-12'>
+            <ArrowRight />
+            Join Us /
+            <ArrowLeft />
         </div>
-        <div>
-            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <div>
-            <button onClick={onLogin}>Signup</button>
+        <div className='flex w-10/12 justify-evenly items-center'>
+            <EmailSignUpSection />
+            <GoogleSignUp />
         </div>
     </div>
   )
