@@ -1,10 +1,23 @@
 import React from 'react'
 import GoogleIcon from '../Icons/GoogleIcon'
-import { signInWithGoogle } from '../../db/firebase'
 import { useNavigate } from 'react-router-dom';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../db/firebase';
 
 const GoogleSignUp = () => {
     const navigate = useNavigate();
+    const googleProvider = new GoogleAuthProvider();
+
+    const signInWithGoogle = () => {
+        signInWithPopup(auth,googleProvider)
+        .then((res) => {
+            navigate("/");
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+    };
+
   return (
     <div className='flex w-2/5 h-full flex-col justify-center border-2 border-outline rounded-xl'>
         <div className='w-10/12 mx-auto mb-6'>

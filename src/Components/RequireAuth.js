@@ -1,19 +1,26 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Hooks/useAuth.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../db/firebase.js";
 
 const RequireAuth = () => {
-  const { userId } = useAuth();
+  const { setuserId } = useAuth();
+  const navigate = useNavigate();
 
-  if (!userId) {
-    return (
-      <div>
-        <h1>you are not logged in</h1>
-      </div>
-    );
-  } else {
-    return <Outlet />;
-  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setuserId(user.uid);
+        console.log("uid", user.uid);
+      } else {
+        navigate('/signup')
+      }
+    });
+  }, []);
+
+
+  return <Outlet />;
 };
 
 export default RequireAuth;

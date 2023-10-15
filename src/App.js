@@ -5,6 +5,7 @@ import Login from './Components/Login/Login';
 import Signup from './Components/SignUp/Signup';
 import Protected from './Components/Protected';
 import RequireAuth from './Components/RequireAuth';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         {/* private route */}
         <Route element={<RequireAuth />}>
           <Route path="/protected" element={<Protected />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </>
