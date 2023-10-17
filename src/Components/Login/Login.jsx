@@ -8,6 +8,7 @@ import Input from '../SignUp/Input';
 import GoogleIcon from '../Icons/GoogleIcon';
 import Navbar from '../Navbar/Navbar';
 import { useAuth } from '../../Hooks/useAuth';
+import Alert from '../Alert/Alert';
 
 const Login = () => {
 
@@ -15,6 +16,8 @@ const Login = () => {
     const { userId } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+    const [message, setMessage] = useState('');
 
     useEffect(()=>{
         if(userId) {
@@ -33,7 +36,8 @@ const Login = () => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            setMessage(errorMessage);
+            setShowAlert(true);
         });
        
     }
@@ -79,6 +83,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        {showAlert && <Alert message={message} setShowAlert={setShowAlert}/>}
     </div>
   )
 }
