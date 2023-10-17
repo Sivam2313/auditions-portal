@@ -67,19 +67,19 @@ const Login = () => {
                 <div>
                     <Input type="text" placeholder="Email" setState={setEmail}/>
                     <Input type="password" placeholder="Password" setState={setPassword}/>
-                    <div className='w-full'>
+                    <div className='w-full pb-12'>
                         <button className='w-5/6 bg-primary h-[6vh] font-head text-onPrimary font-semibold text-lg mb-3' onClick={onLogin}>
                             Login
                         </button>
                     </div>
-                    <div className='w-10/12 mx-auto'>
+                    {/* <div className='w-10/12 mx-auto'>
                         <button className='w-full flex items-center justify-center bg-primary h-[6vh] text-onPrimary font-head font-semibold pt-3 pb-3 mb-12' > 
                             <GoogleIcon />
                             <div className='pl-3' onClick={signInWithGoogle}>
                                 Login with Google
                             </div>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
