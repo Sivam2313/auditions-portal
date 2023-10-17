@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import CandidateCard from './CandidateCard'
 import { onValue, ref } from 'firebase/database';
-import { db } from '../../../db/firebase';
+import { realTimeDB } from '../../../db/firebase';
 
 const CandidateList = () => {
 
     const [candidates, setCandidates] = useState([])
 
     useEffect(() => {
-        const query = ref(db, "candidates");
+        const query = ref(realTimeDB, "candidates");
         return onValue(query, (snapshot) => {
             const data = snapshot.val();
-
             if (snapshot.exists()) {
                 var list = []
-                Object.values(data).map((project) => {
+                Object.values(data).map((project,idx) => {
+                    project.id = Object.keys(data)[idx]
                     list.push(project)
                 });
+                console.log(list);
                 setCandidates(list);
             }
         });

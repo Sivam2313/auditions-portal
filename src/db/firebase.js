@@ -4,13 +4,18 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import firebaseConfig from "../Config/firebaseConfig";
 import { getDatabase } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
+
 
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-const db = getDatabase(app);
+const  realTimeDB = getDatabase(app);
 
 const auth = getAuth(app);
 
-export { db, analytics, auth };
+const db = getFirestore(app);
+
+
+export { db, analytics, auth, realTimeDB };

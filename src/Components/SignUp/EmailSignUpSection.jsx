@@ -5,8 +5,9 @@ import ArrowLeft from '../Icons/ArrowLeft';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../db/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { set } from 'lodash';
 
-const EmailSignUpSection = () => {
+const EmailSignUpSection = ({setShowAlert,setMessage}) => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +15,8 @@ const EmailSignUpSection = () => {
        
     const onLogin = (e) => {
         if(password !== confirmPassword) {
+            setMessage("Passwords did not match");
+            setShowAlert(true);
             return;
         }
         createUserWithEmailAndPassword(auth, email, password)
@@ -26,7 +29,8 @@ const EmailSignUpSection = () => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            setMessage(errorMessage);
+            setShowAlert(true);
         });
        
     }

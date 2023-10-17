@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const CandidateCard = ({candidate,index}) => {
+    const navigate = useNavigate();
   return (
     <div className='w-3/4 bg-surface p-6 mb-6 flex font-head items-center text-onSurface text-xl font-semibold rounded-xl'>
         <div className='pl-3'>
@@ -22,7 +24,7 @@ const CandidateCard = ({candidate,index}) => {
                 </div>
             </div>
             <div className='w-2/12 flex justify-end'>
-                <button className='bg-primary text-onPrimary p-3 rounded-xl text-sm w-6/12'>
+                <button className='bg-primary text-onPrimary p-3 rounded-xl min-w-[100px] text-sm w-6/12' onClick={(e)=>{navigate('/candidate/'+candidate.id)}}>
                     Details
                 </button>
             </div>

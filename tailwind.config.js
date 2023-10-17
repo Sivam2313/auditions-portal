@@ -14,6 +14,8 @@ module.exports = {
         outline: "#899295",
         secondary: "#191C1D",
         surfaceOutline: "#3f484b",
+        error: "#8C1D18",
+        onError: "#F9DEDC",
       },
     },
     screens: {
