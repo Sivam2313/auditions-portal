@@ -8,7 +8,7 @@ import useAutosizeTextArea from '../../Hooks/useAutosizeTextArea';
 const CreateReview = ({active,candidateId,setShow}) => {
 
     const {round} = useRound();
-    const { userId } = useAuth();
+    const { email } = useAuth();
     const [review, setReview] = useState('')
     const submitBtn = useRef(null)
     const textAreaRef = useRef(null);
@@ -25,7 +25,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
         const newPostKey = push(child(ref(realTimeDB), "Reviews/"+active+"/"+round[active]+"/"+candidateId+"/")).key;
 
         set(ref(realTimeDB, "Reviews/"+active+"/"+round[active]+"/"+candidateId+"/"+newPostKey), {
-            userId: userId,
+            email: email,
             review: data,
         });
         setShow(false)
