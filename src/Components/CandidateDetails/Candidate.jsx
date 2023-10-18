@@ -17,7 +17,7 @@ const Candidate = () => {
     const query = ref(realTimeDB, "candidates/"+candidateId);
         return onValue(query, (snapshot) => {
             const data = snapshot.val();
-            console.log(data);
+            // console.log(data);
             if (snapshot.exists()) {
                 setCandidate(data);
             }

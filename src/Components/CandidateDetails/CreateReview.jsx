@@ -20,7 +20,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
         console.log(review);
         var data = review
         if(review===''){
-            data = null
+            return;
         }
         const newPostKey = push(child(ref(realTimeDB), "Reviews/"+active+"/"+round[active]+"/"+candidateId+"/")).key;
 
@@ -47,7 +47,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
 
 
   return (
-    <div className='flex min-h-[150px] justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg'>
+    <div className='flex min-h-[150px] justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg mb-6'>
         <div className='h-full mb-0 h-auto'>
             <textarea placeholder='write your review here' className='bg-transparent text-white font-head w-full p-4 focus:outline-none h-auto whitespace-pre-line' 
             onChange={(e)=>{setReview(e.target.value)}}

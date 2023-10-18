@@ -7,7 +7,11 @@ const Tab = ({active,setActive}) => {
         {
             appliedFor.map((role,idx) => {
                 return(
-                    <div className='rounded-t-xl bg-secondary p-5'>
+                    <div key={idx} className='p-5 cursor-pointer text-white border-r-2 border-outline' onClick={(e)=>{setActive(idx)}}
+                    style={{
+                        borderStartStartRadius: (idx==0)? "8px":"0px",
+                        backgroundColor : (active==idx)? "#334A50":"transparent",
+                    }}>
                         {role}
                     </div>
                 )

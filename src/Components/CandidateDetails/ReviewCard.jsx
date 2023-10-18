@@ -3,7 +3,7 @@ import { useAuth } from '../../Hooks/useAuth'
 
 const ReviewCard = ({review,idx}) => {
   return (
-    <div key={idx} className='flex min-h-[70px] h-auto justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg mb-6'>
+    <div className='flex min-h-[70px] h-auto justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg mb-6'>
         <div className='h-full w-full mb-0 text-white font-head text-left p-3 h-auto whitespace-pre-line'>
             {review.review}
         </div>

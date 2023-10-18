@@ -18,6 +18,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
 
 
     useEffect(() => {
+        console.log(active);
         const query = ref(realTimeDB, "Reviews/"+active+"/"+round[active]+"/"+candidateId);
         return onValue(query, (snapshot) => {
             const data = snapshot.val();
@@ -26,8 +27,11 @@ const CandidateDoc = ({candidate, candidateId}) => {
                 Object.values(data).map((project,idx) => {
                     list.push(project)
                 });
-                console.log(list);
+                // console.log(list);
                 setReviews(list);
+            }
+            else{
+                setReviews([])
             }
         });
     }, [active,userId])
@@ -52,7 +56,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
                     {
                         reviews?.map((review,idx)=>{
                             return (
-                                <ReviewCard review={review} idx={idx}/>
+                                <ReviewCard key={idx} review={review} idx={idx}/>
                             )
                         })
                     }
