@@ -6,10 +6,12 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [userId, setuserId] = useState(null);
+  const [email, setEmail] = useState(null)
 
   const contextData = {
     userId: userId,
     setuserId: setuserId,
+    email:email
   };
 
   useEffect(() => {
@@ -18,6 +20,7 @@ export const AuthProvider = ({ children }) => {
       if (user) {
         const uid = user.uid;
         setuserId(uid);
+        setEmail(user.email);
       } else {
         setuserId(null);
       }

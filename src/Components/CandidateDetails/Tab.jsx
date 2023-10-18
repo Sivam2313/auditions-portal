@@ -1,12 +1,13 @@
 import React from 'react'
 
-const Tab = ({candidate}) => {
+const Tab = ({active,setActive}) => {
+    const appliedFor = ['Problem Setting and Teaching', 'Graphics Design', 'Web Development']
   return (
     <div className='flex w-full border-b-2 border-outline'>
         {
-            candidate?.appliedFor?.map((role,idx) => {
+            appliedFor.map((role,idx) => {
                 return(
-                    <div className='w-2/12 rounded-t-xl bg-secondary p-5'>
+                    <div className='rounded-t-xl bg-secondary p-5'>
                         {role}
                     </div>
                 )

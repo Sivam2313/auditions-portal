@@ -1,6 +1,6 @@
 import { onValue, ref } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { realTimeDB } from '../../db/firebase';
 import BackArrow from '../Icons/BackArrow';
 import Header from './Header';
@@ -25,11 +25,11 @@ const Candidate = () => {
   }, [])
 
   return (
-    <div className='w-full mid-h-screen h-fit pt-6'>
+    <div className='w-full mid-h-screen h-fit pt-6 pb-12'>
       <Header />
       <div className='mt-10 w-full'>
-        <DisplayCard candidate={candidate} />
-        <CandidateDoc candidate={candidate} />
+        <DisplayCard candidate={candidate} candidateId={candidateId}/>
+        <CandidateDoc candidate={candidate} candidateId={candidateId}/>
       </div>
     </div>
   )
