@@ -13,12 +13,13 @@ const Logout = () => {
             signOut(auth).then(() => {
                 setuserId(null);
                 console.log("Signed out successfully")
+                navigate('/login')
             }).catch((error) => {
                 console.log(error);
             });
         }
         else{
-            navigate('/signup')
+            navigate('/login')
         }
         
     }
