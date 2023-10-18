@@ -18,7 +18,7 @@ const Signup = () => {
 
     useEffect(()=>{
         if(userId) {
-            navigate("/");
+            navigate("/dashboard");
         }
     })
 

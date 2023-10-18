@@ -22,7 +22,7 @@ const Login = () => {
 
     useEffect(()=>{
         if(userId) {
-            navigate("/login");
+            navigate("/dashboard");
         }
     })
        
