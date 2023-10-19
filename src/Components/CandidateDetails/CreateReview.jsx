@@ -4,6 +4,7 @@ import { child, onValue, push, ref, set } from 'firebase/database';
 import { realTimeDB } from '../../db/firebase';
 import { useRound } from '../../Hooks/useRound';
 import useAutosizeTextArea from '../../Hooks/useAutosizeTextArea';
+import { motion } from 'framer-motion';
 
 const CreateReview = ({active,candidateId,setShow}) => {
 
@@ -47,7 +48,10 @@ const CreateReview = ({active,candidateId,setShow}) => {
 
 
   return (
-    <div className='flex min-h-[150px] justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg mb-6'>
+    <motion.div layout className='flex min-h-[150px] justify-between mx-auto flex-col w-11/12 border-error border-2 rounded-lg mb-6'
+    initial={{scale:0}}
+    animate={{scale:1}}
+    transition={{duration:0.4,delay:0.1}}>
         <div className='h-full mb-0 h-auto'>
             <textarea placeholder='write your review here' className='bg-transparent text-white font-head w-full p-4 focus:outline-none h-auto whitespace-pre-line' 
             onChange={(e)=>{setReview(e.target.value)}}
@@ -58,7 +62,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
                 Send
             </button>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

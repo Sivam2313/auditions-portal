@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { useAuth } from '../../Hooks/useAuth';
 import Plus from '../Icons/Plus';
 import Tab from './Tab';
@@ -52,7 +53,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
             </div>
             <div className='mt-6'>
                 {show && <CreateReview candidateId={candidateId} active={active} setShow={setShow}/>}
-                <div className='pb-12'>
+                <motion.div layout className='pb-12'>
                     {
                         reviews?.map((review,idx)=>{
                             return (
@@ -60,7 +61,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
                             )
                         })
                     }
-                </div>
+                </motion.div>
             </div>
         </div>
     </div>

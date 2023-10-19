@@ -24,7 +24,7 @@ const CandidateCard = ({candidate,index}) => {
                 </div>
             </div>
             <div className='w-2/12 flex justify-end'>
-                <button className='bg-primary text-onPrimary p-3 rounded-xl min-w-[100px] text-sm w-6/12' onClick={(e)=>{navigate('/candidate/'+candidate.id)}}>
+                <button className='bg-primary text-onPrimary p-3 rounded-xl min-w-[100px] text-sm w-6/12 hover:bg-onPrimary hover:text-white' onClick={(e)=>{navigate('/candidate/'+candidate.id)}}>
                     Details
                 </button>
             </div>
