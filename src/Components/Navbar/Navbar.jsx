@@ -14,12 +14,13 @@ const Navbar = () => {
             signOut(auth).then(() => {
                 setuserId(null);
                 console.log("Signed out successfully")
+                navigate('/login')
             }).catch((error) => {
                 console.log(error);
             });
         }
         else{
-            navigate('/signup')
+            navigate('/login')
         }
         
     }
@@ -44,7 +45,7 @@ const Navbar = () => {
             </div>
             <div className=''>
                 <button className='p-3 border-outline rounded-full px-8 text-onSecondary border-2 font-head font-bold text-xl' onClick={handleLogout}>
-                    {userId? "Logout" : "Sign Up"}
+                    {userId? "Logout" : "Admin Login"}
                 </button>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../db/firebase';
 import ArrowRight from '../Icons/ArrowRight';
@@ -18,10 +18,11 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [message, setMessage] = useState('');
+    const loginBtn = useRef(null)
 
     useEffect(()=>{
         if(userId) {
-            navigate("/");
+            navigate("/dashboard");
         }
     })
        
@@ -30,7 +31,7 @@ const Login = () => {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            navigate("/")
+            navigate("/dashboard")
             console.log(user);
         })
         .catch((error) => {
@@ -54,6 +55,20 @@ const Login = () => {
         });
     };
 
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+            if(event.key === 'Enter' && !event.shiftKey){
+                event.preventDefault();
+                loginBtn.current.click();
+            }
+        };
+        document.addEventListener('keydown', keyDownHandler);
+        return () => {
+            document.removeEventListener('keydown', keyDownHandler);
+        };
+    }, []);
+
   return (
     <div>
         <Navbar />
@@ -61,14 +76,14 @@ const Login = () => {
             <div className='flex w-3/12 flex-col justify-center border-2 border-outline rounded-xl'>
                 <div className='flex text-white justify-center items-center text-4xl font-bold mb-12 font-head mt-20'>
                     <ArrowRight />
-                    Login /
+                    Admin Login /
                     <ArrowLeft />
                 </div>
                 <div>
                     <Input type="text" placeholder="Email" setState={setEmail}/>
                     <Input type="password" placeholder="Password" setState={setPassword}/>
                     <div className='w-full pb-12'>
-                        <button className='w-5/6 bg-primary h-[6vh] font-head text-onPrimary font-semibold text-lg mb-3' onClick={onLogin}>
+                        <button ref={loginBtn} className='w-5/6 bg-primary h-[6vh] font-head text-onPrimary font-semibold text-lg mb-3' onClick={onLogin}>
                             Login
                         </button>
                     </div>
