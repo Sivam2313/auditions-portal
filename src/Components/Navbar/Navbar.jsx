@@ -45,7 +45,7 @@ const Navbar = () => {
             </div>
             <div className=''>
                 <button className='p-3 border-outline rounded-full px-8 text-onSecondary border-2 font-head font-bold text-xl' onClick={handleLogout}>
-                    {userId? "Logout" : "Admin Sign Up"}
+                    {userId? "Logout" : "Admin Login"}
                 </button>
             </div>
         </div>
