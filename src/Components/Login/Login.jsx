@@ -84,7 +84,7 @@ const Login = () => {
                     <Input type="password" placeholder="Password" setState={setPassword}/>
                     <div className='w-full pb-12'>
                         <button ref={loginBtn} className='w-5/6 bg-primary h-[6vh] font-head text-onPrimary font-semibold text-lg mb-3' onClick={onLogin}>
-                            Login
+                            Admin Login
                         </button>
                     </div>
                     {/* <div className='w-10/12 mx-auto'>

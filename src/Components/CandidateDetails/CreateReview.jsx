@@ -21,6 +21,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
         console.log(review);
         var data = review
         if(review===''){
+            setShow(false)
             return;
         }
         const newPostKey = push(child(ref(realTimeDB), "Reviews/"+active+"/"+round[active]+"/"+candidateId+"/")).key;
