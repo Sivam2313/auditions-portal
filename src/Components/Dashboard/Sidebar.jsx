@@ -7,10 +7,11 @@ const Sidebar = ({links,selected,setSelected}) => {
             {
                 links.map((link, index) => {
                     return(
-                        <div key={index} className='pl-6 w-full h-[10vh] flex items-center border-surfaceOutline border-b-2 font-head font-semibold text-onSurface text-xl'
+                        <div key={index} className='pl-6 w-full h-[10vh] flex items-center border-surfaceOutline border-b-2 font-head font-semibold text-onSurface text-xl cursor-pointer'
                         style={{
                             borderTop: (index === 0) ? '2px solid #3f484b' : 'none',
                         }}
+                        onClick={()=>{setSelected(index)}}
                         >
                             {link.name}
                         </div>

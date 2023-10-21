@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import CandidateCard from "./CandidateCard";
+import DomainCard from "./DomainCard";
 import {
   onValue,
   ref,
   query,
   orderByChild,
   equalTo,
+  limitToLast,
 } from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 
-const CandidateList = () => {
+const DomainList = ({domains,selected}) => {
   const [candidates, setCandidates] = useState([]);
   const [searchQuery, setSearchQuery] = useState(null);
 
@@ -21,14 +22,20 @@ const CandidateList = () => {
       if (snapshot.exists()) {
         var list = [];
         Object.values(data).map((project, idx) => {
-          project.id = Object.keys(data)[idx];
-          list.push(project);
+        if(selected===3 && (project.appliedFor.includes("Teaching") || project.appliedFor.includes("Problem Setting"))){
+            project.id = Object.keys(data)[idx];
+            list.push(project);
+        }
+        else if(project.appliedFor.includes(domains[selected])){
+            project.id = Object.keys(data)[idx];
+            list.push(project);
+        }
         });
         console.log(list);
         setCandidates(list);
       }
     });
-  }, []);
+  }, [selected]);
 
   const isInteger = (str) => {
     const num = parseInt(str);
@@ -107,13 +114,13 @@ const CandidateList = () => {
   return (
     <div className="w-full h-full pl-32">
       <div className="font-head font-semibold text-5xl text-onSurface flex justify-start">
-        Candidate List
+        {domains[selected]}
       </div>
       <SearchBar setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
       <div className="w-full mt-16">
         {candidates.map((candidate, index) => {
           return (
-            <CandidateCard
+            <DomainCard
               candidate={candidate}
               index={index + 1}
               key={index}
@@ -125,4 +132,4 @@ const CandidateList = () => {
   );
 };
 
-export default CandidateList;
+export default DomainList;

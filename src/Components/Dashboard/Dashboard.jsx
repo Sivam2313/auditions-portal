@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 import Logout from './Logout'
 import CandidateList from './CandidateList/CandidateList';
+import DomainList from './DomainList/DomainList';
 
 const Dashboard = () => {
     const [selected, setSelected] = useState(0);
+    const domains=[ "","Web Developement","Design","Teaching and PS"];
     const links = [
     {
         name:'Candidate List',
@@ -12,15 +14,15 @@ const Dashboard = () => {
     },
     {
         name:'Web Development',
-        component: <CandidateList />
+        component: <DomainList domains={domains} selected={selected} />
     },
     {
         name:'Design',
-        component: <CandidateList />
+        component: <DomainList domains={domains} selected={selected} />
     },
     {
         name:'Teaching and PS',
-        component: <CandidateList />
+        component: <DomainList domains={domains} selected={selected} />
     }]
   return (
     <div className='flex'>
