@@ -7,13 +7,15 @@ import Protected from './Components/Protected';
 import RequireAuth from './Components/RequireAuth';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Candidate from './Components/CandidateDetails/Candidate';
+import Form from './Components/Form/Form';
 
 function App() {
   return (
     <>
       <Routes>
         {/* publc route */}
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         {/* private route */}

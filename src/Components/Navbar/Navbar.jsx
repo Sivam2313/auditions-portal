@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <div className='w-full flex justify-center'>
-        <div className='w-[80vw] h-[10vh] flex justify-center items-center pt-12 X'>
+        <div className='w-[80vw] h-[10vh] flex justify-center items-center pt-12 X py-10'>
             <div className='text-onSecondary flex items-center font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/')}}>
                 <img src={logo} alt="logo" className='h-12 mr-2 inline-block' />
                 RECursion
