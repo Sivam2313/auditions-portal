@@ -11,7 +11,7 @@ import {
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 
-const DomainList = ({domains,selected}) => {
+const DomainList = ({ domains, selected }) => {
   const [candidates, setCandidates] = useState([]);
   const [searchQuery, setSearchQuery] = useState(null);
 
@@ -22,14 +22,17 @@ const DomainList = ({domains,selected}) => {
       if (snapshot.exists()) {
         var list = [];
         Object.values(data).map((project, idx) => {
-        if(selected===3 && (project.appliedFor.includes("Teaching") || project.appliedFor.includes("Problem Setting"))){
+          if (
+            selected === 3 &&
+            (project.appliedFor.includes("Teaching") ||
+              project.appliedFor.includes("Problem Setting"))
+          ) {
             project.id = Object.keys(data)[idx];
             list.push(project);
-        }
-        else if(project.appliedFor.includes(domains[selected])){
+          } else if (project.appliedFor.includes(domains[selected])) {
             project.id = Object.keys(data)[idx];
             list.push(project);
-        }
+          }
         });
         console.log(list);
         setCandidates(list);
@@ -42,7 +45,7 @@ const DomainList = ({domains,selected}) => {
     return !isNaN(num) && Number.isInteger(num);
   };
 
-  const handleSearch = () => {
+  function handleSearch() {
     const candidatesRef = ref(realTimeDB, "candidates");
     const queryName = query(
       candidatesRef,
@@ -109,7 +112,7 @@ const DomainList = ({domains,selected}) => {
     }
 
     if (!queryFound) setCandidates([]);
-  };
+  }
 
   return (
     <div className="w-full h-full pl-32">
@@ -120,11 +123,7 @@ const DomainList = ({domains,selected}) => {
       <div className="w-full mt-16">
         {candidates.map((candidate, index) => {
           return (
-            <DomainCard
-              candidate={candidate}
-              index={index + 1}
-              key={index}
-            />
+            <DomainCard candidate={candidate} index={index + 1} key={index} />
           );
         })}
       </div>
