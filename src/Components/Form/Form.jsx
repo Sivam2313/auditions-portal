@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "../Navbar/Navbar";
 import ArrowRight from "../Icons/ArrowRight";
 import ArrowLeft from "../Icons/ArrowLeft";
 import Input from "./Input";
-import Alert from "../Alert/Alert";
+// import Alert from "../Alert/Alert";
 import Select from "./Select";
 import Option from "./Option";
 // import { db } from "../../db/firebase";
 // import { collection, addDoc } from "firebase/firestore";
 import "../../App.css";
-import { db } from "../../db/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import validator from "validator";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -31,8 +30,21 @@ const Form = () => {
   ];
   const [rangeof, setRangeof] = useState(new Array(4).fill(1));
   const [total, setTotal] = useState(0);
-  const [showAlert, setShowAlert] = useState(false);
-  const [message, setMessage] = useState("");
+  // const [showAlert, setShowAlert] = useState(false);
+  // const [message, setMessage] = useState("");
+  const [isValidname, setIsValidname] = useState(true);
+  const [isValidroll, setIsValidroll] = useState(true);
+  const [isValidbranch, setIsValidbranch] = useState(true);
+  const [isValidpmail, setIsValidpmail] = useState(true);
+  const [isValidimail, setIsValidimail] = useState(true);
+  const [isValidphone, setIsValidphone] = useState(true);
+  const [isValidcc, setIsValidcc] = useState(true);
+  const [isValidcf, setIsValidcf] = useState(true);
+  const [isValidgit, setIsValidgit] = useState(true);
+  const [isValidcheck, setIsValidcheck] = useState(true);
+  const [isValidrank, setIsValidrank] = useState(true);
+  const [isValid, setIsValid] = useState(true);
+  const errorRef = useRef(null);
 
   const handleSliderChange = (index, value) => {
     const newSliderValues = [...rangeof];
@@ -56,58 +68,158 @@ const Form = () => {
   };
 
   const onSubmit = async (e) => {
-    console.log("ok");
-    // e.preventDefault();
-    if (
-      name === "" ||
-      roll === "" ||
-      branch === "" ||
-      pmail === "" ||
-      imail === "" ||
-      phone === "" ||
-      cc === "" ||
-      cf === ""
-    ) {
-      setMessage("All the fields are mandatory");
-      setShowAlert(true);
-    } else if (check[2] && git === "") {
-      setMessage("Github Handle cannot be empty");
-      setShowAlert(true);
-    }
-    else {
-      const data = {
-        name: name,
-        roll: roll,
-        branch: branch,
-        pmail: pmail,
-        imail: imail,
-        phone: phone,
-        cc: cc,
-        cf: cf,
-        check: check,
-        git: git,
-        rangeof: rangeof,
-        total: total,
-      };
-      try {
-        await addDoc(collection(db,"candidates"),{
-          name: name,
-          roll: roll,
-          branch: branch,
-          pmail: pmail,
-          imail: imail,
-          phone: phone,
-          cc: cc,
-          cf: cf,
-          check: check,
-          git: git,
-          rangeof: rangeof,
-          total: total,
-        });
-        console.log("Data added to Firestore.");
-      } catch (error) {
-        console.error("Error adding data to Firestore:", error);
+    e.preventDefault();
+    if (name === "") {
+      setIsValidname(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
+      return;
+    }
+    setIsValidname(true);
+
+    if (roll === "") {
+      setIsValidroll(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidroll(true);
+
+    if (branch === "") {
+      setIsValidbranch(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidbranch(true);
+
+    if (!validator.isEmail(pmail)) {
+      setIsValidpmail(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidpmail(true);
+
+    const [, domain] = imail.split("@");
+    const isValidDomain = domain === "btech.nitdgp.ac.in";
+    const isValidEmail = validator.isEmail(imail);
+    if (!isValidDomain || !isValidEmail) {
+      setIsValidimail(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView();
+      }
+      return;
+    }
+    setIsValidimail(true);
+
+    if (!validator.isMobilePhone(phone)) {
+      setIsValidphone(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidphone(true);
+
+    if (!validator.isURL(cc)) {
+      setIsValidcc(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidcc(true);
+
+    if (!validator.isURL(cf)) {
+      setIsValidcf(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidcf(true);
+
+    if (check[2] && !validator.isURL(git)) {
+      setIsValidgit(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidgit(true);
+
+    if (total === 0) {
+      setIsValidcheck(false);
+      if (errorRef.current) {
+        errorRef.current.scrollIntoView({ behaviour: "smooth" });
+      }
+      return;
+    }
+    setIsValidcheck(true);
+
+    if (total > 1) {
+      const uniqueValues = [...new Set(rangeof)];
+      if (uniqueValues.length !== total) {
+        setIsValidrank(false);
+        if (errorRef.current) {
+          errorRef.current.scrollIntoView({ behaviour: "smooth" });
+        }
+        return;
+      }
+    }
+    setIsValidrank(true);
+
+    const isFormValid =
+      isValidname &&
+      isValidroll &&
+      isValidbranch &&
+      isValidpmail &&
+      isValidimail &&
+      isValidphone &&
+      isValidcc &&
+      isValidcf &&
+      isValidgit;
+    setIsValid(isFormValid);
+
+    if (isValid) {
+      // const data = {
+      //   name: name,
+      //   roll: roll,
+      //   branch: branch,
+      //   pmail: pmail,
+      //   imail: imail,
+      //   phone: phone,
+      //   cc: cc,
+      //   cf: cf,
+      //   check: check,
+      //   git: git,
+      //   rangeof: rangeof,
+      //   total: total,
+      // };
+      // try {
+      //   await addDoc(collection(db,"data"),{
+      //     name: name,
+      //     roll: roll,
+      //     branch: branch,
+      //     pmail: pmail,
+      //     imail: imail,
+      //     phone: phone,
+      //     cc: cc,
+      //     cf: cf,
+      //     check: check,
+      //     git: git,
+      //     rangeof: rangeof,
+      //     total: total,
+      //   });
+      //   console.log("Data added to Firestore.");
+      // } catch (error) {
+      //   console.error("Error adding data to Firestore:", error);
+      // }
     }
   };
 
@@ -124,7 +236,13 @@ const Form = () => {
           </div>
           <div>
             <Input type="text" placeholder="Name" setState={setName} />
+            {!isValidname && (
+              <p className="text-red-500 pl-6 mb-6">Field cannot be empty</p>
+            )}
             <Input type="text" placeholder="Roll Number" setState={setRoll} />
+            {!isValidroll && (
+              <p className="text-red-500 pl-6 mb-6">Field cannot be empty</p>
+            )}
             <Select value={branch} setState={setBranch}>
               <Option value="Select Branch">Select Branch</Option>
               <Option value="Biotechnology">Biotechnology</Option>
@@ -143,25 +261,49 @@ const Form = () => {
                 Metallurgical & Materials Engineering
               </Option>
             </Select>
+            {!isValidbranch && (
+              <p className="text-red-500 pl-6 mb-6">Please select a branch</p>
+            )}
             <Input
               type="text"
               placeholder="Personal Email"
               setState={setPmail}
             />
+            {!isValidpmail && (
+              <p className="text-red-500 pl-6 mb-6">
+                Please enter a valid email address
+              </p>
+            )}
             <Input
               type="text"
               placeholder="Institute Email"
               setState={setImail}
             />
+            {!isValidimail && (
+              <p className="text-red-500 pl-6 mb-6">
+                Please enter your instititute email id
+              </p>
+            )}
             <Input type="text" placeholder="Phone Number" setState={setPhone} />
+            {!isValidphone && (
+              <p className="text-red-500 pl-6 mb-6">
+                Please enter a valid phone number
+              </p>
+            )}
             <Input type="text" placeholder="Codechef Handle" setState={setCC} />
+            {!isValidcc && (
+              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
+            )}
             <Input
               type="text"
               placeholder="Codeforces Handle"
               setState={setCF}
             />
+            {!isValidcf && (
+              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
+            )}
             <div className="flex w-6/6 h-[35vh] flex-col justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
-              <h4 className="text-white">
+              <h4 className="text-teal-200">
                 Select the domains you are applying for:
               </h4>
               <ul className="flex-col">
@@ -169,7 +311,7 @@ const Form = () => {
                   return (
                     <li key={index}>
                       <div className="flex text-white font-head mt-2">
-                        <div className="pr-3">
+                        <div className="custom-checkbox pr-3">
                           <input
                             type="checkbox"
                             id={`custom-checkbox-${index}`}
@@ -181,7 +323,7 @@ const Form = () => {
                         </div>
                         <label
                           htmlFor={`custom-checkbox-${index}`}
-                          className="text-white"
+                          
                         >
                           {name}
                         </label>
@@ -191,6 +333,11 @@ const Form = () => {
                 })}
               </ul>
             </div>
+            {!isValidcheck && (
+              <p className="text-red-500 pl-6 mb-6">
+                Please choose atleast 1 option
+              </p>
+            )}
             <br></br>
             {check[2] && (
               <Input
@@ -198,6 +345,9 @@ const Form = () => {
                 placeholder="Github Handle"
                 setState={setgit}
               />
+            )}
+            {!isValidgit && (
+              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
             )}
             {total > 1 && (
               <div className="flex w-6/6 h-[45vh] flex-col justify-center border-teal-200 border-2 border-outline rounded-xl ">
@@ -230,7 +380,7 @@ const Form = () => {
                                 handleSliderChange(index, event.target.value)
                               }
                               list={`values-${index}`}
-                              className="slider custom-slider cursor-pointer bg-teal-200 hover:bg-blue-700"
+                              className="slider custom-slider"
                             />
                             <datalist id={`values-${index}`}>
                               <option value="1" label="1"></option>
@@ -246,6 +396,9 @@ const Form = () => {
                 </ul>
               </div>
             )}
+            {!isValidrank && (
+                <p className="text-red-500 pl-6 mb-6">Please rank your domains distinctively</p>
+              )}
             <br></br>
             <div className="w-full pb-12">
               <button
@@ -258,7 +411,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-      {showAlert && <Alert message={message} setShowAlert={setShowAlert} />}
+      {/* {showAlert && <Alert message={message} setShowAlert={setShowAlert} />} */}
     </div>
   );
 };
