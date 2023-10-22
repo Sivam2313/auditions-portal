@@ -10,6 +10,7 @@ import { db } from "../../db/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import "../../App.css";
 import validator from "validator";
+import homepageGif from "../../Assets/homepage_gif.gif";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -196,7 +197,7 @@ const Form = () => {
     setIsValidrank(true);
 
     try {
-      await addDoc(collection(db,"candidates"),{
+      await addDoc(collection(db, "candidates"), {
         name: name,
         roll: roll,
         branch: branch,
@@ -220,7 +221,10 @@ const Form = () => {
     <div>
       <Navbar />
       <br></br>
-      <div className="flex justify-center w-full h-full items-center">
+      <div
+        className="flex justify-center w-full h-full items-center bg-cover bg-opacity-40"
+        style={{ backgroundImage: `url(${homepageGif})` }}
+      >
         <div className="flex w-4/12 flex-col justify-center border-2 border-outline rounded-xl px-10">
           <div className="flex text-white justify-center items-center text-4xl font-bold mb-12 font-head mt-10">
             <ArrowRight />
@@ -314,10 +318,7 @@ const Form = () => {
                             onChange={() => handleOnChange(index)}
                           />
                         </div>
-                        <label
-                          htmlFor={`custom-checkbox-${index}`}
-                          
-                        >
+                        <label htmlFor={`custom-checkbox-${index}`}>
                           {name}
                         </label>
                       </div>
@@ -390,8 +391,10 @@ const Form = () => {
               </div>
             )}
             {!isValidrank && (
-                <p className="text-red-500 pl-6 mb-6">Please rank your domains distinctively</p>
-              )}
+              <p className="text-red-500 pl-6 mb-6">
+                Please rank your domains distinctively
+              </p>
+            )}
             <br></br>
             <div className="w-full pb-12">
               <button
