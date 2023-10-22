@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {ref,update} from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const PenPaperUpdate = ({candidate,index}) => {
 
@@ -8,8 +10,26 @@ const PenPaperUpdate = ({candidate,index}) => {
     const [designMarks, setDesignMarks] = useState(candidate.PenPaperMarks["Design"]);
     const [teachingMarks, setTeachingMarks] = useState(candidate.PenPaperMarks["Teaching and PS"]);
 
-    const handleUpdateMarks=()=>{
 
+    const showUpdateMessage = (status) => {
+      if(status){
+          toast.success(`Marks updated for ${candidate.rollNumber}`, {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1000,
+            theme: "colored",
+        });
+      }
+      else{
+        toast.error('Error updating marks !', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1000,
+          theme: "colored",
+      });
+      }
+    }
+
+    const handleUpdateMarks=()=>{
+        let updated=false;
         const updatedMarks = {
             'Design':Number(designMarks),
             'Teaching and PS':Number(teachingMarks),
@@ -20,9 +40,13 @@ const PenPaperUpdate = ({candidate,index}) => {
         update(candidateRef, { PenPaperMarks: updatedMarks })
         .then(() => {
             console.log('PenPaperMarks updated successfully');
+            updated=true;
+            showUpdateMessage(updated);
         })
         .catch((error) => {
             console.error('Error updating PenPaperMarks:', error);
+            updated=false;
+            showUpdateMessage(updated);
         });
         setShowModal(false);
     }
