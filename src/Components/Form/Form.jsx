@@ -9,6 +9,8 @@ import Option from "./Option";
 // import { db } from "../../db/firebase";
 // import { collection, addDoc } from "firebase/firestore";
 import "../../App.css";
+import { db } from "../../db/firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -54,7 +56,8 @@ const Form = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    console.log("ok");
+    // e.preventDefault();
     if (
       name === "" ||
       roll === "" ||
@@ -72,39 +75,39 @@ const Form = () => {
       setShowAlert(true);
     }
     else {
-      // const data = {
-      //   name: name,
-      //   roll: roll,
-      //   branch: branch,
-      //   pmail: pmail,
-      //   imail: imail,
-      //   phone: phone,
-      //   cc: cc,
-      //   cf: cf,
-      //   check: check,
-      //   git: git,
-      //   rangeof: rangeof,
-      //   total: total,
-      // };
-      // try {
-      //   await addDoc(collection(db,"data"),{
-      //     name: name,
-      //     roll: roll,
-      //     branch: branch,
-      //     pmail: pmail,
-      //     imail: imail,
-      //     phone: phone,
-      //     cc: cc,
-      //     cf: cf,
-      //     check: check,
-      //     git: git,
-      //     rangeof: rangeof,
-      //     total: total,
-      //   });
-      //   console.log("Data added to Firestore.");
-      // } catch (error) {
-      //   console.error("Error adding data to Firestore:", error);
-      // }
+      const data = {
+        name: name,
+        roll: roll,
+        branch: branch,
+        pmail: pmail,
+        imail: imail,
+        phone: phone,
+        cc: cc,
+        cf: cf,
+        check: check,
+        git: git,
+        rangeof: rangeof,
+        total: total,
+      };
+      try {
+        await addDoc(collection(db,"candidates"),{
+          name: name,
+          roll: roll,
+          branch: branch,
+          pmail: pmail,
+          imail: imail,
+          phone: phone,
+          cc: cc,
+          cf: cf,
+          check: check,
+          git: git,
+          rangeof: rangeof,
+          total: total,
+        });
+        console.log("Data added to Firestore.");
+      } catch (error) {
+        console.error("Error adding data to Firestore:", error);
+      }
     }
   };
 

@@ -42,7 +42,8 @@ const DomainList = ({domains,selected}) => {
     return !isNaN(num) && Number.isInteger(num);
   };
 
-  const handleSearch = () => {
+  function handleSearch(){
+    
     const candidatesRef = ref(realTimeDB, "candidates");
     const queryName = query(
       candidatesRef,
@@ -110,6 +111,10 @@ const DomainList = ({domains,selected}) => {
 
     if (!queryFound) setCandidates([]);
   };
+
+
+
+
 
   return (
     <div className="w-full h-full pl-32">
