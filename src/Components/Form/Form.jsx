@@ -3,13 +3,14 @@ import Navbar from "../Navbar/Navbar";
 import ArrowRight from "../Icons/ArrowRight";
 import ArrowLeft from "../Icons/ArrowLeft";
 import Input from "./Input";
-// import Alert from "../Alert/Alert";
+import Alert from "../Alert/Alert";
 import Select from "./Select";
 import Option from "./Option";
-// import { db } from "../../db/firebase";
-// import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../db/firebase";
+import { collection, addDoc } from "firebase/firestore";
 import "../../App.css";
 import validator from "validator";
+import homepageGif from "../../Assets/homepage_gif.gif";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -30,8 +31,8 @@ const Form = () => {
   ];
   const [rangeof, setRangeof] = useState(new Array(4).fill(1));
   const [total, setTotal] = useState(0);
-  // const [showAlert, setShowAlert] = useState(false);
-  // const [message, setMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState("");
   const [isValidname, setIsValidname] = useState(true);
   const [isValidroll, setIsValidroll] = useState(true);
   const [isValidbranch, setIsValidbranch] = useState(true);
@@ -43,7 +44,6 @@ const Form = () => {
   const [isValidgit, setIsValidgit] = useState(true);
   const [isValidcheck, setIsValidcheck] = useState(true);
   const [isValidrank, setIsValidrank] = useState(true);
-  const [isValid, setIsValid] = useState(true);
   const errorRef = useRef(null);
 
   const handleSliderChange = (index, value) => {
@@ -71,6 +71,8 @@ const Form = () => {
     e.preventDefault();
     if (name === "") {
       setIsValidname(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -80,6 +82,8 @@ const Form = () => {
 
     if (roll === "") {
       setIsValidroll(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -89,6 +93,8 @@ const Form = () => {
 
     if (branch === "") {
       setIsValidbranch(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -98,6 +104,8 @@ const Form = () => {
 
     if (!validator.isEmail(pmail)) {
       setIsValidpmail(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -110,6 +118,8 @@ const Form = () => {
     const isValidEmail = validator.isEmail(imail);
     if (!isValidDomain || !isValidEmail) {
       setIsValidimail(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView();
       }
@@ -119,6 +129,8 @@ const Form = () => {
 
     if (!validator.isMobilePhone(phone)) {
       setIsValidphone(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -128,6 +140,8 @@ const Form = () => {
 
     if (!validator.isURL(cc)) {
       setIsValidcc(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -137,6 +151,8 @@ const Form = () => {
 
     if (!validator.isURL(cf)) {
       setIsValidcf(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -146,6 +162,8 @@ const Form = () => {
 
     if (check[2] && !validator.isURL(git)) {
       setIsValidgit(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -155,6 +173,8 @@ const Form = () => {
 
     if (total === 0) {
       setIsValidcheck(false);
+      setMessage("Please fill the form correctly");
+      setShowAlert(true);
       if (errorRef.current) {
         errorRef.current.scrollIntoView({ behaviour: "smooth" });
       }
@@ -166,6 +186,8 @@ const Form = () => {
       const uniqueValues = [...new Set(rangeof)];
       if (uniqueValues.length !== total) {
         setIsValidrank(false);
+        setMessage("Please fill the form correctly");
+        setShowAlert(true);
         if (errorRef.current) {
           errorRef.current.scrollIntoView({ behaviour: "smooth" });
         }
@@ -174,52 +196,24 @@ const Form = () => {
     }
     setIsValidrank(true);
 
-    const isFormValid =
-      isValidname &&
-      isValidroll &&
-      isValidbranch &&
-      isValidpmail &&
-      isValidimail &&
-      isValidphone &&
-      isValidcc &&
-      isValidcf &&
-      isValidgit;
-    setIsValid(isFormValid);
-
-    if (isValid) {
-      // const data = {
-      //   name: name,
-      //   roll: roll,
-      //   branch: branch,
-      //   pmail: pmail,
-      //   imail: imail,
-      //   phone: phone,
-      //   cc: cc,
-      //   cf: cf,
-      //   check: check,
-      //   git: git,
-      //   rangeof: rangeof,
-      //   total: total,
-      // };
-      // try {
-      //   await addDoc(collection(db,"data"),{
-      //     name: name,
-      //     roll: roll,
-      //     branch: branch,
-      //     pmail: pmail,
-      //     imail: imail,
-      //     phone: phone,
-      //     cc: cc,
-      //     cf: cf,
-      //     check: check,
-      //     git: git,
-      //     rangeof: rangeof,
-      //     total: total,
-      //   });
-      //   console.log("Data added to Firestore.");
-      // } catch (error) {
-      //   console.error("Error adding data to Firestore:", error);
-      // }
+    try {
+      await addDoc(collection(db, "candidates"), {
+        name: name,
+        roll: roll,
+        branch: branch,
+        pmail: pmail,
+        imail: imail,
+        phone: phone,
+        cc: cc,
+        cf: cf,
+        check: check,
+        git: git,
+        rangeof: rangeof,
+        total: total,
+      });
+      console.log("Data added to Firestore.");
+    } catch (error) {
+      console.error("Error adding data to Firestore:", error);
     }
   };
 
@@ -227,7 +221,10 @@ const Form = () => {
     <div>
       <Navbar />
       <br></br>
-      <div className="flex justify-center w-full h-full items-center">
+      <div
+        className="flex justify-center w-full h-full items-center bg-cover bg-opacity-40"
+        style={{ backgroundImage: `url(${homepageGif})` }}
+      >
         <div className="flex w-4/12 flex-col justify-center border-2 border-outline rounded-xl px-10">
           <div className="flex text-white justify-center items-center text-4xl font-bold mb-12 font-head mt-10">
             <ArrowRight />
@@ -321,10 +318,7 @@ const Form = () => {
                             onChange={() => handleOnChange(index)}
                           />
                         </div>
-                        <label
-                          htmlFor={`custom-checkbox-${index}`}
-                          
-                        >
+                        <label htmlFor={`custom-checkbox-${index}`}>
                           {name}
                         </label>
                       </div>
@@ -397,8 +391,10 @@ const Form = () => {
               </div>
             )}
             {!isValidrank && (
-                <p className="text-red-500 pl-6 mb-6">Please rank your domains distinctively</p>
-              )}
+              <p className="text-red-500 pl-6 mb-6">
+                Please rank your domains distinctively
+              </p>
+            )}
             <br></br>
             <div className="w-full pb-12">
               <button
@@ -411,7 +407,7 @@ const Form = () => {
           </div>
         </div>
       </div>
-      {/* {showAlert && <Alert message={message} setShowAlert={setShowAlert} />} */}
+      {showAlert && <Alert message={message} setShowAlert={setShowAlert} />}
     </div>
   );
 };
