@@ -69,11 +69,9 @@ const Form = () => {
     setCheck(updatedCheckedState);
     if (check[2]) {
       setIsValidgit(true);
-      setgit("");
     }
     if (check[3]) {
       setIsValiddrive(true);
-      setDrive("");
     }
     setIsValidrank(true);
     const totalc = updatedCheckedState.reduce((c, currentState) => {
@@ -405,12 +403,9 @@ const Form = () => {
                     Provide the link to your Github profile:
                   </h4>
                   <Input
-                    // className="h-[6vh] w-5/6 fomt-bold font-head bg-black font-head font-semibold pl-6 mb-6 text-white border-2 border-teal-200 border-outline rounded-2xl"
                     type="text"
                     placeholder="Github Handle"
                     setState={setgit}
-                    // onChange={(event) =>
-                    //   handleongit(event.target.value)}
                   />
                 </div>
                 {!isValidgit && (
