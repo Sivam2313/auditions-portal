@@ -6,6 +6,9 @@ import {
   query,
   orderByChild,
   equalTo,
+  startAt,
+  endAt,
+  once,
 } from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
@@ -37,10 +40,12 @@ const CandidateList = () => {
 
   const handleSearch = () => {
     const candidatesRef = ref(realTimeDB, "candidates");
+    console.log();
     const queryName = query(
       candidatesRef,
       orderByChild("name"),
-      equalTo(searchQuery)
+      startAt(searchQuery),
+      endAt(searchQuery+"\uf8ff"),
     );
     let queryFound = false;
     onValue(queryName, (snapshot) => {

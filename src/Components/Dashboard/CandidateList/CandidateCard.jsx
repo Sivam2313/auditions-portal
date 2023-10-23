@@ -14,7 +14,7 @@ const CandidateCard = ({ candidate, index }) => {
           <div className="font-head text-onSecondary  text-sm pl-3 w-full flex justify-start">
             {candidate.appliedFor.map((role, idx) => {
               return (
-                <span className="mr-1" key={idx}>
+                <span className="" key={idx}>
                   {role}
                   {idx === candidate.appliedFor.length - 1 ? "." : ","}
                 </span>
