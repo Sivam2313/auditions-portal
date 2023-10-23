@@ -2,6 +2,8 @@ import React from "react";
 import lodash from "lodash";
 
 const SearchBar = ({ query, setSearchQuery, handleSearch }) => {
+
+ 
   const debouncedApiCall = React.useCallback(
     lodash.debounce(handleSearch, 250),
     []
@@ -10,7 +12,7 @@ const SearchBar = ({ query, setSearchQuery, handleSearch }) => {
   const searchQuery = (e) => {
     setSearchQuery(e.target.value);
     console.log("searching.......");
-    //debouncedApiCall()
+    debouncedApiCall()
   };
 
   return (
