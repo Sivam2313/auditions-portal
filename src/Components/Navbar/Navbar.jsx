@@ -13,8 +13,8 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const variants = {
-        closed: { height: "0px", overflow: "hidden" },
-        open: { height: "90vh"},
+        closed: { height: "0px", overflow: "hidden",display:'flex !important' },
+        open: { height: "90vh",display:'flex !important'},
     }
 
     const handleLogout = () => {
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <Hamburger />
             </button>
         </div>
-        <motion.div className='bg-background flex lg:hidden w-full flex flex-col justify-between '
+        <motion.div className='bg-background flex lg:hidden w-full flex-col justify-between '
         animate={(showMenu)? "open" : "closed"}
         variants={variants}
         >
