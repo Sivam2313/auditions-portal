@@ -220,9 +220,8 @@ const Form = () => {
   return (
     <div>
       <Navbar />
-      <br></br>
       <div
-        className="flex justify-center w-full h-full items-center bg-cover bg-opacity-40"
+        className="flex pt-48 justify-center w-full h-full items-center bg-cover bg-opacity-40"
         style={{ backgroundImage: `url(${homepageGif})` }}
       >
         <div className="flex w-4/12 flex-col justify-center border-2 border-outline rounded-xl px-10">
