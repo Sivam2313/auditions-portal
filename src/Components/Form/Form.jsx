@@ -13,6 +13,7 @@ import validator from "validator";
 import homepageGif from "../../Assets/homepage_gif.gif";
 
 const Form = () => {
+  const errorRef = useRef(null);
   const [name, setName] = useState("");
   const [roll, setRoll] = useState("");
   const [branch, setBranch] = useState("");
@@ -33,6 +34,9 @@ const Form = () => {
   const [total, setTotal] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState("");
+  const [drive, setDrive] = useState("");
+  const values = [1, 2, 3, 4];
+
   const [isValidname, setIsValidname] = useState(true);
   const [isValidroll, setIsValidroll] = useState(true);
   const [isValidbranch, setIsValidbranch] = useState(true);
@@ -44,7 +48,13 @@ const Form = () => {
   const [isValidgit, setIsValidgit] = useState(true);
   const [isValidcheck, setIsValidcheck] = useState(true);
   const [isValidrank, setIsValidrank] = useState(true);
-  const errorRef = useRef(null);
+  const [isValiddrive, setIsValiddrive] = useState(true);
+
+  const scrollToError = () => {
+    if (errorRef.current) {
+      errorRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
 
   const handleSliderChange = (index, value) => {
     const newSliderValues = [...rangeof];
@@ -57,13 +67,21 @@ const Form = () => {
       index === position ? !item : item
     );
     setCheck(updatedCheckedState);
+    if (check[2]) {
+      setIsValidgit(true);
+      setgit("");
+    }
+    if (check[3]) {
+      setIsValiddrive(true);
+      setDrive("");
+    }
+    setIsValidrank(true);
     const totalc = updatedCheckedState.reduce((c, currentState) => {
       if (currentState === true) {
         return c + 1;
       }
       return c;
     }, 0);
-
     setTotal(totalc);
   };
 
@@ -73,9 +91,9 @@ const Form = () => {
       setIsValidname(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidname(true);
@@ -84,9 +102,9 @@ const Form = () => {
       setIsValidroll(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidroll(true);
@@ -95,9 +113,9 @@ const Form = () => {
       setIsValidbranch(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidbranch(true);
@@ -106,9 +124,9 @@ const Form = () => {
       setIsValidpmail(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidpmail(true);
@@ -120,9 +138,9 @@ const Form = () => {
       setIsValidimail(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView();
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidimail(true);
@@ -131,9 +149,9 @@ const Form = () => {
       setIsValidphone(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidphone(true);
@@ -142,9 +160,9 @@ const Form = () => {
       setIsValidcc(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidcc(true);
@@ -153,50 +171,71 @@ const Form = () => {
       setIsValidcf(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidcf(true);
-
-    if (check[2] && !validator.isURL(git)) {
-      setIsValidgit(false);
-      setMessage("Please fill the form correctly");
-      setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
-      return;
-    }
-    setIsValidgit(true);
 
     if (total === 0) {
       setIsValidcheck(false);
       setMessage("Please fill the form correctly");
       setShowAlert(true);
-      if (errorRef.current) {
-        errorRef.current.scrollIntoView({ behaviour: "smooth" });
-      }
+      setTimeout(()=>{
+        scrollToError();
+      },0);
       return;
     }
     setIsValidcheck(true);
+    const totalc = check.reduce((c, currentState) => {
+      if (currentState === true) {
+        return c + 1;
+      }
+      return c;
+    }, 0);
+    setTotal(totalc);
 
+    if (check[2]) {
+      if (git === "" || !validator.isURL(git)) {
+        setIsValidgit(false);
+        setMessage("Please fill the form correctly");
+        setShowAlert(true);
+        setTimeout(()=>{
+          scrollToError();
+        },0);
+        return;
+      }
+      setIsValidgit(true);
+    }
+    if (check[3]) {
+      if (drive === "" || !validator.isURL(drive)) {
+        setIsValiddrive(false);
+        setMessage("Please fill the form correctly");
+        setShowAlert(true);
+        setTimeout(()=>{
+          scrollToError();
+        },0);
+        return;
+      }
+      setIsValiddrive(true);
+    }
     if (total > 1) {
       const uniqueValues = [...new Set(rangeof)];
       if (uniqueValues.length !== total) {
         setIsValidrank(false);
         setMessage("Please fill the form correctly");
         setShowAlert(true);
-        if (errorRef.current) {
-          errorRef.current.scrollIntoView({ behaviour: "smooth" });
-        }
+        setTimeout(()=>{
+          scrollToError();
+        },0);
         return;
       }
     }
     setIsValidrank(true);
 
     try {
+      setShowAlert(false);
       await addDoc(collection(db, "candidates"), {
         name: name,
         roll: roll,
@@ -208,6 +247,7 @@ const Form = () => {
         cf: cf,
         check: check,
         git: git,
+        drive: drive,
         rangeof: rangeof,
         total: total,
       });
@@ -224,7 +264,7 @@ const Form = () => {
         className="flex pt-48 justify-center w-full h-full items-center bg-cover bg-opacity-40"
         style={{ backgroundImage: `url(${homepageGif})` }}
       >
-        <div className="flex w-4/12 flex-col justify-center border-2 border-outline rounded-xl px-10">
+        <div className="flex w-4/12 flex-col justify-center border-2 border-outline rounded-xl px-10 backdrop-filter backdrop-blur-lg">
           <div className="flex text-white justify-center items-center text-4xl font-bold mb-12 font-head mt-10">
             <ArrowRight />
             Form /
@@ -233,11 +273,13 @@ const Form = () => {
           <div>
             <Input type="text" placeholder="Name" setState={setName} />
             {!isValidname && (
-              <p className="text-red-500 pl-6 mb-6">Field cannot be empty</p>
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">
+                Field cannot be empty
+              </p>
             )}
             <Input type="text" placeholder="Roll Number" setState={setRoll} />
             {!isValidroll && (
-              <p className="text-red-500 pl-6 mb-6">Field cannot be empty</p>
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">Field cannot be empty</p>
             )}
             <Select value={branch} setState={setBranch}>
               <Option value="Select Branch">Select Branch</Option>
@@ -258,7 +300,7 @@ const Form = () => {
               </Option>
             </Select>
             {!isValidbranch && (
-              <p className="text-red-500 pl-6 mb-6">Please select a branch</p>
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">Please select a branch</p>
             )}
             <Input
               type="text"
@@ -266,7 +308,7 @@ const Form = () => {
               setState={setPmail}
             />
             {!isValidpmail && (
-              <p className="text-red-500 pl-6 mb-6">
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">
                 Please enter a valid email address
               </p>
             )}
@@ -276,30 +318,54 @@ const Form = () => {
               setState={setImail}
             />
             {!isValidimail && (
-              <p className="text-red-500 pl-6 mb-6">
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">
                 Please enter your instititute email id
               </p>
             )}
             <Input type="text" placeholder="Phone Number" setState={setPhone} />
             {!isValidphone && (
-              <p className="text-red-500 pl-6 mb-6">
+              <p ref={errorRef} className="text-red-500 pl-6 mb-6">
                 Please enter a valid phone number
               </p>
             )}
-            <Input type="text" placeholder="Codechef Handle" setState={setCC} />
+            <div className="flex w-6/6 h-[30vh] flex-col bg-black justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
+              <h4 className="text-teal-200 mb-4">
+                To set up your Codechef Account log on to{" "}
+                <a href="https://www.codechef.com/">
+                  https://www.codechef.com/
+                </a>
+                :
+              </h4>
+              <Input
+                type="text"
+                placeholder="Codechef Handle"
+                setState={setCC}
+              />
+            </div>
             {!isValidcc && (
-              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
+              <p ref={errorRef} className="text-red-500 pl-6 mt-2">Please enter a valid URL</p>
             )}
-            <Input
-              type="text"
-              placeholder="Codeforces Handle"
-              setState={setCF}
-            />
+            <br></br>
+            <div className="flex w-6/6 h-[30vh] flex-col bg-black justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
+              <h4 className="text-teal-200 mb-4">
+                To set up your Codeforces Account log on to{" "}
+                <a href="https://codeforces.com/register">
+                  https://codeforces.com/register
+                </a>
+                :
+              </h4>
+              <Input
+                type="text"
+                placeholder="Codeforces Handle"
+                setState={setCF}
+              />
+            </div>
             {!isValidcf && (
-              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
+              <p ref={errorRef} className="text-red-500 pl-6 mt-2">Please enter a valid URL</p>
             )}
-            <div className="flex w-6/6 h-[35vh] flex-col justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
-              <h4 className="text-teal-200">
+            <br></br>
+            <div className="flex w-6/6 h-[35vh] bg-black flex-col justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
+              <h4 className="text-teal-200 ">
                 Select the domains you are applying for:
               </h4>
               <ul className="flex-col">
@@ -327,72 +393,106 @@ const Form = () => {
               </ul>
             </div>
             {!isValidcheck && (
-              <p className="text-red-500 pl-6 mb-6">
+              <p ref={errorRef} className="text-red-500 pl-6 mt-2">
                 Please choose atleast 1 option
               </p>
             )}
             <br></br>
             {check[2] && (
-              <Input
-                type="text"
-                placeholder="Github Handle"
-                setState={setgit}
-              />
-            )}
-            {!isValidgit && (
-              <p className="text-red-500 pl-6 mb-6">Please enter a valid URL</p>
-            )}
-            {total > 1 && (
-              <div className="flex w-6/6 h-[45vh] flex-col justify-center border-teal-200 border-2 border-outline rounded-xl ">
-                <h4 className="text-teal-200">
-                  Rank the domains <strong>distinctively</strong> you are
-                  applying for, according to your priority :
-                </h4>
+              <div>
+                <div className="flex w-6/6 h-[25vh] bg-black flex-col justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
+                  <h4 className="text-teal-200 mt-4 mb-2">
+                    Provide the link to your Github profile:
+                  </h4>
+                  <Input
+                    // className="h-[6vh] w-5/6 fomt-bold font-head bg-black font-head font-semibold pl-6 mb-6 text-white border-2 border-teal-200 border-outline rounded-2xl"
+                    type="text"
+                    placeholder="Github Handle"
+                    setState={setgit}
+                    // onChange={(event) =>
+                    //   handleongit(event.target.value)}
+                  />
+                </div>
+                {!isValidgit && (
+                  <p ref={errorRef} className="text-red-500 pl-6 mt-2">
+                    Please enter a valid URL
+                  </p>
+                )}
                 <br></br>
-                <ul className="flex-col pl-6">
-                  {roles.map((name, index) => {
-                    return check[index] ? (
-                      <li key={index}>
-                        <div className="flex text-white font-head mt-2">
-                          <div className="pr-3">
-                            <label
-                              htmlFor={`custom-checkbox-${index}`}
-                              className="text-white"
-                            >
-                              {name}
-                            </label>
-                          </div>
-                          <div key={index}>
-                            <input
-                              type="range"
-                              min={1}
-                              max={total}
-                              step={1}
-                              value={rangeof[index]}
-                              onChange={(event) =>
-                                handleSliderChange(index, event.target.value)
-                              }
-                              list={`values-${index}`}
-                              className="slider custom-slider"
-                            />
-                            <datalist id={`values-${index}`}>
-                              <option value="1" label="1"></option>
-                              <option value="2" label="2"></option>
-                              <option value="3" label="3"></option>
-                              <option value="4" label="4"></option>
-                            </datalist>
-                          </div>
-                        </div>
-                      </li>
-                    ) : null;
-                  })}
-                </ul>
               </div>
             )}
-            {!isValidrank && (
-              <p className="text-red-500 pl-6 mb-6">
-                Please rank your domains distinctively
-              </p>
+            {check[3] && (
+              <div>
+                <div className="flex w-6/6 h-[25vh] bg-black flex-col justify-center items-center border-teal-200 border-2 border-outline rounded-xl">
+                  <h4 className="text-teal-200 mt-4 mb-2">
+                    Provide the drive link to your artworks:
+                  </h4>
+                  <Input
+                    type="text"
+                    placeholder="Drive Link"
+                    setState={setDrive}
+                  />
+                </div>
+                {!isValiddrive && (
+                  <p ref={errorRef} className="text-red-500 pl-6 mt-2">
+                    Please enter a valid URL
+                  </p>
+                )}
+                <br></br>
+              </div>
+            )}
+            {total > 1 && (
+              <div>
+                <div className="flex w-6/6 h-[48vh] bg-black flex-col justify-center border-teal-200 border-2 border-outline rounded-xl ">
+                  <h4 className="text-teal-200 mt-3">
+                    Rank these domains <strong>distinctively</strong>, according
+                    to your priority :
+                  </h4>
+                  <ul className="flex-col pl-6">
+                    {roles.map((name, index) => {
+                      return check[index] ? (
+                        <li key={index}>
+                          <div className="flex text-white font-head mt-2">
+                            <div className="pr-3">
+                              <label
+                                htmlFor={`custom-checkbox-${index}`}
+                                className="text-white"
+                              >
+                                {name}
+                              </label>
+                            </div>
+                            <div key={index}>
+                              <input
+                                type="range"
+                                min={1}
+                                max={total}
+                                step={1}
+                                value={rangeof[index]}
+                                onChange={(event) =>
+                                  handleSliderChange(index, event.target.value)
+                                }
+                                list={`values-${index}`}
+                                className="slider custom-slider"
+                              />
+                              <datalist id={`values-${index}`}>
+                                {values.slice(0, total).map((value, i) => (
+                                  <option key={i} value={value} label={value} />
+                                ))}
+                              </datalist>
+                            </div>
+                          </div>
+                        </li>
+                      ) : null;
+                    })}
+                  </ul>
+                  <br></br>
+                </div>
+                {!isValidrank && (
+                  <p ref={errorRef} className="text-red-500 pl-6 mb-6">
+                    Please rank your domains distinctively
+                  </p>
+                )}
+              </div>
             )}
             <br></br>
             <div className="w-full pb-12">
