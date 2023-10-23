@@ -5,7 +5,6 @@ import { auth } from '../../db/firebase';
 import ArrowRight from '../Icons/ArrowRight';
 import ArrowLeft from '../Icons/ArrowLeft';
 import Input from '../SignUp/Input';
-import GoogleIcon from '../Icons/GoogleIcon';
 import Navbar from '../Navbar/Navbar';
 import { useAuth } from '../../Hooks/useAuth';
 import Alert from '../Alert/Alert';
@@ -43,18 +42,6 @@ const Login = () => {
        
     }
 
-    const googleProvider = new GoogleAuthProvider();
-
-    const signInWithGoogle = () => {
-        signInWithPopup(auth,googleProvider)
-        .then((res) => {
-            navigate("/");
-        })
-        .catch((error) => {
-            console.log(error.message);
-        });
-    };
-
 
     useEffect(() => {
         const keyDownHandler = event => {
@@ -73,9 +60,9 @@ const Login = () => {
     <div>
         <Navbar />
         <div className='flex justify-center w-full h-[90vh] items-center'>
-            <div className='flex w-3/12 flex-col justify-center border-2 border-outline rounded-xl'>
-                <div className='flex text-white justify-center items-center text-4xl font-bold mb-12 font-head mt-20'>
-                    <ArrowRight />
+            <div className='flex lg:w-3/12 lg:min-w-[500px] mx-3 min-h-[500px] flex-col justify-center border-2 border-outline rounded-xl'>
+                <div className='flex text-onSurface2 justify-center items-center text-2xl lg:text-4xl font-bold mb-12 font-head mt-20'>
+                    <ArrowRight/>
                     Admin Login /
                     <ArrowLeft />
                 </div>
@@ -87,14 +74,6 @@ const Login = () => {
                             Login
                         </button>
                     </div>
-                    {/* <div className='w-10/12 mx-auto'>
-                        <button className='w-full flex items-center justify-center bg-primary h-[6vh] text-onPrimary font-head font-semibold pt-3 pb-3 mb-12' > 
-                            <GoogleIcon />
-                            <div className='pl-3' onClick={signInWithGoogle}>
-                                Login with Google
-                            </div>
-                        </button>
-                    </div> */}
                 </div>
             </div>
         </div>

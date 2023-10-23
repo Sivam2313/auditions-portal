@@ -2,7 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CandidateCard from "./CandidateCard";
-import { onValue, ref, query, orderByChild, equalTo } from "firebase/database";
+import {
+  onValue,
+  ref,
+  query,
+  orderByChild,
+  equalTo,
+  startAt,
+  endAt,
+  once,
+} from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 
@@ -53,10 +62,12 @@ const CandidateList = () => {
   const handleSearch = () => {
     if (searchQuery === "") return;
     const candidatesRef = ref(realTimeDB, "candidates");
+    console.log();
     const queryName = query(
       candidatesRef,
       orderByChild("name"),
-      equalTo(searchQuery)
+      startAt(searchQuery),
+      endAt(searchQuery+"\uf8ff"),
     );
     let queryFound = false;
     onValue(queryName, (snapshot) => {

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#23272F",
+        background: "#0F0913",
         primary: "#E6C449",
         onPrimary: "#3B2F00",
         onSecondary: "#B2CBD2",
@@ -16,6 +16,7 @@ module.exports = {
         surfaceOutline: "#3f484b",
         error: "#8C1D18",
         onError: "#F9DEDC",
+        onSurface2: "#9E857F",
       },
     },
     screens: {
