@@ -1,8 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import RoundUpdate from './RoundUpdate';
 
-const DomainCard = ({candidate,index}) => {
+const DomainCard = ({candidate,index,selected}) => {
     const navigate = useNavigate();
+    let isAdmin = true;
   return (
     <div className='w-3/4 bg-surface p-6 mb-6 flex font-head items-center text-onSurface text-xl font-semibold rounded-xl'>
         <div className='pl-3'>
@@ -28,6 +30,7 @@ const DomainCard = ({candidate,index}) => {
                     Details
                 </button>
             </div>
+            {isAdmin && <RoundUpdate candidate={candidate} index={index} domainSelected={selected} />}
         </div>
     </div>
   )

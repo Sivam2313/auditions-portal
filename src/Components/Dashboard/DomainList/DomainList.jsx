@@ -128,7 +128,7 @@ const DomainList = ({ domains, selected }) => {
       <div className="w-full mt-16">
         {candidates.map((candidate, index) => {
           return (
-            <DomainCard candidate={candidate} index={index + 1} key={index} />
+            <DomainCard candidate={candidate} index={index + 1} key={index} selected={selected}/>
           );
         })}
       </div>

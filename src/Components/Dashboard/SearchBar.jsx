@@ -19,7 +19,7 @@ const SearchBar = ({query,setSearchQuery,handleSearch }) => {
       <div className=" mb-4 flex w-full flex-wrap items-stretch w-4/5">
         <input
           type="search"
-          className="block w-4/5 rounded-l-md border-0 outline-none bg-transparent py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-onSurface focus:ring-2 focus:ring-inset focus:text-onSurface sm:text-sm sm:leading-6"
+          className="block w-4/5 rounded-l-md border-0 outline-none bg-transparent py-1.5 pl-7 pr-20 text-onSurface ring-1 ring-inset ring-gray-300 placeholder:text-onSurface focus:ring-2 focus:ring-inset focus:text-onSurface sm:text-sm sm:leading-6"
           placeholder="Search" value={query} onChange={searchQuery}
         />
 
