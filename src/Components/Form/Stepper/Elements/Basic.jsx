@@ -13,13 +13,13 @@ const Basic = ({name,setName,branch,setBranch,roll,setRoll}) => {
             <div className='font-head pb-3 text-2xl text-left text-white'>
                 Name
             </div>
-            <Input setState={setName} type='text' />
+            <Input setState={setName} value={name} type='text' />
         </div>
         <div className='pt-12 pl-3'>
             <div className='font-head pb-3 text-2xl text-left text-white'>
                 Roll Number
             </div>
-            <Input setState={setRoll} type='text' />
+            <Input setState={setRoll} value={roll} type='text' />
         </div>
         <div className='pt-16 pl-3'>
             <Select value={branch} setState={setBranch}>

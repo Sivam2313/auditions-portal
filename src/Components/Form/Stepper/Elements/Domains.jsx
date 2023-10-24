@@ -22,6 +22,7 @@ const Domains = ({roles,setAppliedFor,appliedFor}) => {
         console.log(arr);
         setAppliedFor(arr)
     }
+    
 
   return (
     <motion.div layout className='w-full min-w-[800px]'>
@@ -37,7 +38,9 @@ const Domains = ({roles,setAppliedFor,appliedFor}) => {
                     roles.map((role,idx)=>{
                         return(
                             <div key={idx} className='flex'>
-                                <input type="checkbox" value={role} className="w-6 h-12 text-blue-600 bg-gray-100 border-gray-300 rounded" onChange={(e)=>{handelChange(e)}}/>
+                                <input type="checkbox" value={role} className="w-6 h-12 text-blue-600 bg-gray-100 border-gray-300 rounded" onChange={(e)=>{handelChange(e)}}
+                                checked = {(appliedFor.indexOf(role)>=0)? true:false}
+                                />
                                 <div className="ml-3 text-white font-head text-lg flex items-center">{role}</div>
                             </div>
                         )

@@ -11,35 +11,35 @@ import DomainInfo from './Stepper/Elements/DomainInfo'
 
 const Form = () => {
 
-  const [active, setActive] = useState(4)
-  const [name, setName] = useState()
-  const [roll, setRoll] = useState()
-  const [branch, setBranch] = useState()
+  const [active, setActive] = useState(0)
+  const [name, setName] = useState("")
+  const [roll, setRoll] = useState("")
+  const [branch, setBranch] = useState("")
   const [pmail, setPmail] = useState("");
   const [imail, setImail] = useState("");
   const [phone, setPhone] = useState("");
   const [cc, setCC] = useState("");
   const [cf, setCF] = useState("");
   const [appliedFor, setAppliedFor ] = useState([])
-  const [git, setGit] = useState()
-  const [drive, setDrive] = useState()
+  const [git, setGit] = useState("")
+  const [drive, setDrive] = useState("")
 
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
   const steps = [{
         label:"Basic Info",
-        component:<Basic setName={setName} setRoll={setRoll} setBranch={setBranch}/>
+        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch}/>
     },{
         label:"Contacts",
-        component:<Contacts setImail={setImail} setPmail={setPmail} setPhone={setPhone}/>
+        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone}/>
     },{
         label:"Links",
-        component:<Links setCC={setCC} setCF={setCF} />
+        component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf}/>
     },{
         label:"Domain",
         component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor}/>
     },{
         label:"Domain Info",
-        component:<DomainInfo setGit={setGit} setDrive={setDrive} appliedFor={appliedFor}/>
+        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
     },]
   return (
     <div className='w-screen flex flex-col items-center'>
