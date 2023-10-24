@@ -17,6 +17,7 @@ module.exports = {
         error: "#8C1D18",
         onError: "#F9DEDC",
         onSurface2: "#9E857F",
+        inputBackground: "#191C1D",
       },
     },
     screens: {

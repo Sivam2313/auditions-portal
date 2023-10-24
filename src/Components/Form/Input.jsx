@@ -1,13 +1,15 @@
 import React from "react";
+import {motion} from 'framer-motion'
 
-const Input = ({ setState, placeholder, type }) => {
+const Input = ({ setState, type }) => {
   return (
-    <input
-      className="h-[6vh] w-5/6 fomt-bold font-head bg-black font-head font-semibold pl-6 mb-6 text-white border-2 border-teal-200 border-outline rounded-2xl"
-      type={type}
-      placeholder={placeholder}
-      onChange={(e) => setState(e.target.value)}
-    />
+    <motion.div layout className="flex w-full justify-start">
+      <input
+        className="h-[6vh] w-11/12 fomt-bold font-head bg-black font-head text-xl pl-6 text-white bg-inputBackground border-b-2 border-outline focus:outline-none focus:border-primary"
+        type={type}
+        onChange={(e) => setState(e.target.value)}
+      />
+    </motion.div>
   );
 };
 
