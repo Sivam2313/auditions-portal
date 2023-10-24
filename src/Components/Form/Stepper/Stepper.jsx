@@ -23,7 +23,7 @@ const Stepper = ({steps,active}) => {
         {
             steps.map((step,idx)=>{
                 return(
-                    <div className='flex w-full pb-6 items-center justify-between'>
+                    <div key={idx} className='flex w-full pb-6 items-center justify-between'>
                         <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-50'
                         layout
                         transition={{delay:0.4}}
