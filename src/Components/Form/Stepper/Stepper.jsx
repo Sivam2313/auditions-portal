@@ -9,7 +9,7 @@ const Stepper = ({steps,active}) => {
     };
     
   return (
-    <div className='flex flex-col w-1/5 min-w-[250px]'>
+    <div className='hidden lg:flex flex-col w-1/5 min-w-[250px]'>
         <div className='w-[4px] h-[250px] bg-onSurface2 absolute ml-[13px] z-10'>
 
         </div>

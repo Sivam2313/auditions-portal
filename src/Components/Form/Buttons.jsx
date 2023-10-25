@@ -16,7 +16,7 @@ const Buttons = ({active,setActive,size}) => {
   }
 
   return (
-    <motion.div layout className='w-11/12 flex justify-between pl-3 font-head text-xl mt-16'>
+    <motion.div layout className='w-11/12 flex justify-between lg:pl-3 pl-6 font-head text-xl mt-16'>
         <button className='bg-surface p-2 rounded-full w-32 text-onSurface' onClick={backHandler}
         style={{
           visibility: (active==0)? 'hidden':'visible'

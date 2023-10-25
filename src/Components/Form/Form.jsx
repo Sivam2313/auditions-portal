@@ -42,9 +42,9 @@ const Form = () => {
         component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
     },]
   return (
-    <div className='w-screen flex flex-col items-center'>
+    <div className='w-screen flex flex-col items-center pb-12'>
       <Navbar />
-      <div className='pt-[20vh] w-8/12 min-w-[1000px] h-fit min-h-screen flex justify-start'>
+      <div className='pt-[20vh] w-full lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start'>
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full'>
             {steps[active].component}
