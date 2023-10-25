@@ -3,7 +3,7 @@ import Input from '../../Input'
 import Message from './Message'
 import  Textarea from '../../Textarea'
 
-const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp}) => {
+const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setStack}) => {
   return (
     <div className='w-full lg:min-w-[800px] min-h-[450px]'>
         <div className='font-head pl-3 mx-3 lg:mx-0 text-4xl lg:text-5xl text-left text-white font-semibold pb-3 lg:pb-6 border-b-2 border-outline '>
@@ -25,7 +25,7 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp}) => {
             <div className='font-head pb-3 text-2xl text-left text-white'>
                 What is your go-to tech stack:
             </div>
-            <Input setState={setGit} value={git} type='text' />
+            <Input setState={setStack} value={stack} type='text' />
             <br></br>
             <div className='font-head pb-3 text-2xl text-left text-white'>
                 Explain in brief about your best contribution to any project:
