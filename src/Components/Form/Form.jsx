@@ -22,6 +22,7 @@ const Form = () => {
   const [cf, setCF] = useState("");
   const [appliedFor, setAppliedFor ] = useState([])
   const [git, setGit] = useState("")
+  const [exp, setExp] = useState("")
   const [drive, setDrive] = useState("")
 
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
@@ -39,7 +40,7 @@ const Form = () => {
         component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor}/>
     },{
         label:"Domain Info",
-        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
+        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor} exp={exp} setExp={setExp}/>
     },]
   return (
     <div className='w-screen flex flex-col items-center pb-12'>

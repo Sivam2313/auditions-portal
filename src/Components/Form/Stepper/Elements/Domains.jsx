@@ -1,5 +1,4 @@
 import React from 'react'
-import Input from '../../Input'
 import {motion} from 'framer-motion'
 const Domains = ({roles,setAppliedFor,appliedFor}) => {
 
@@ -8,7 +7,7 @@ const Domains = ({roles,setAppliedFor,appliedFor}) => {
         hidden:{opacity:0,height:'0px'}
     }
 
-    function handelChange(e){
+    function handleChange(e){
         var arr = [...appliedFor]
         if(e.target.checked){
             arr.push(e.target.value)
@@ -37,10 +36,12 @@ const Domains = ({roles,setAppliedFor,appliedFor}) => {
                 {
                     roles.map((role,idx)=>{
                         return(
-                            <div key={idx} className='flex'>
-                                <input type="checkbox" value={role} className="w-6 h-12 text-blue-600 bg-gray-100 border-gray-300 rounded" onChange={(e)=>{handelChange(e)}}
-                                checked = {(appliedFor.indexOf(role)>=0)? true:false}
+                            <div key={idx} className='flex items-center'>
+                                <input type="checkbox" value={role} className="appearance-none -webkit-appearance-none -moz-appearance-none w-4 h-4 border-onSurface2 border-2 rounded-sm cursor-pointer checked:border-primary z-10" onChange={(e)=>{handleChange(e)}}
+                                    checked = {(appliedFor.indexOf(role)>=0)? true:false}
                                 />
+                                {(appliedFor.indexOf(role)>=0) &&
+                                    <label className="text-white text-xs font-bold relative right-1 -ml-2 text-primary cursor-pointer">✓</label>}
                                 <div className="ml-3 text-white font-head lg:text-lg flex items-center">{role}</div>
                             </div>
                         )

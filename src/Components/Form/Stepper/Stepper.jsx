@@ -24,7 +24,7 @@ const Stepper = ({steps,active}) => {
             steps.map((step,idx)=>{
                 return(
                     <div key={idx} className='flex w-full pb-6 items-center justify-between'>
-                        <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-50'
+                        <motion.div className='h-[2rem] w-[2.25rem] rounded-full z-50'
                         layout
                         transition={{delay:0.4}}
                         animate={(idx<=active)? "reached" : "notReached"}
