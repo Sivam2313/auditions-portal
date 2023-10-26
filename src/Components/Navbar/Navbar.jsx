@@ -71,11 +71,11 @@ const Navbar = () => {
         variants={variants}
         >
             <div> 
-                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer'>
+                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/')}}>
                     Home
                 </div>
-                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer'>
-                    Rounds
+                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/form')}}>
+                    Register
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer'>
                     About

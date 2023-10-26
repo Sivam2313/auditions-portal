@@ -38,7 +38,7 @@ const Form = () => {
   function submitHandler(){
     setLoading(true);
     console.log(name);
-    set(ref(realTimeDB, "candidates/"+phone), {
+    set(ref(realTimeDB, "candidates/1"+phone), {
       name:name,
       roll:roll,
       branch:branch,
@@ -53,6 +53,11 @@ const Form = () => {
       currRound:[0,0,0],
       exp:exp,
       stack:stack,
+      PenPaperMarks:{
+        'Design':0,
+        'Teaching and PS':0,
+        'Web Development':0,
+      }
     }).then(()=>{
       setLoading(false);
       setActive(5);
