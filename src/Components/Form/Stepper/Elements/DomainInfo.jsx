@@ -10,7 +10,7 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             Domain Info
         </div>
         {
-            ((appliedFor.indexOf("Web/App Development")<=-1) && (appliedFor.indexOf("Graphics Design")<=-1)) && <Message />
+            ((appliedFor?.indexOf("Web/App Development")<=-1) && (appliedFor?.indexOf("Graphics Design")<=-1)) && <Message />
         }
         <div className='pt-12 lg:pl-3 pl-6'
         style={{

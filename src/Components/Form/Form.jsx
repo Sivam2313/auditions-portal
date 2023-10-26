@@ -17,7 +17,7 @@ import ShowQr from './Stepper/Elements/ShowQr'
 
 const Form = () => {
 
-  const [active, setActive] = useState(5)
+  const [active, setActive] = useState(0)
   const [name, setName] = useState("")
   const [roll, setRoll] = useState("")
   const [branch, setBranch] = useState("")
@@ -51,8 +51,11 @@ const Form = () => {
       github:git,
       drive:drive,
       currRound:[0,0,0],
+      exp:exp,
+      stack:stack,
     }).then(()=>{
       setLoading(false);
+      setActive(5);
       console.log("Candidate Added");
     }).catch((error)=>{
       console.log(error);
@@ -74,7 +77,7 @@ const Form = () => {
         component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor} slidervalue={slidervalue} setSlidervalue={setSlidervalue} />
     },{
         label:"Domain Info",
-        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
+        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor} stack={stack} setStack={setStack} exp={exp} setExp={setExp}/>
     },{
         label:"Done",
         component:<ShowQr />

@@ -19,10 +19,10 @@ const Buttons = ({active,setActive,size,submitHandler}) => {
   }, []);
 
   const nextHandler = ()=>{
-    if(active<size-1){
+    if(active<size-2){
       setActive(active+1)
     }
-    else if(active==size-1){
+    else if(active==size-2){
       submitHandler();
     }
   }
@@ -43,7 +43,7 @@ const Buttons = ({active,setActive,size,submitHandler}) => {
             Back
         </button>
         <button ref={nextBtn} className='bg-primary p-3 rounded-full w-32 text-onPrimary' onClick={nextHandler}>
-            {(active==size-1)? "Submit" : "Next"}
+            {(active==size-2)? "Submit" : "Next"}
         </button>
     </motion.div>
   )
