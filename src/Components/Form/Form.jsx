@@ -27,7 +27,10 @@ const Form = () => {
   const [cc, setCC] = useState("");
   const [cf, setCF] = useState("");
   const [appliedFor, setAppliedFor ] = useState([])
+  const [slidervalue,setSlidervalue] = useState([1,1,1,1])
   const [git, setGit] = useState("")
+  const [exp, setExp] = useState("")
+  const [stack, setStack] = useState("")
   const [drive, setDrive] = useState("")
   const [isValid, setIsValid] = useState(true)
   const [loading, setLoading] = useState(false)
@@ -68,7 +71,7 @@ const Form = () => {
         component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf}/>
     },{
         label:"Domain",
-        component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor}/>
+        component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor} slidervalue={slidervalue} setSlidervalue={setSlidervalue} />
     },{
         label:"Domain Info",
         component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
