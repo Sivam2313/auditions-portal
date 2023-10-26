@@ -1,0 +1,35 @@
+.custom-slider {
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 5px; 
+  border-radius: 5px;
+  outline: none;
+}
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  margin-bottom:17px;
+  width: 15px; 
+  height: 15px; 
+  background-color: #E6C409; 
+  border:1px solid black;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.custom-track-fill {
+  height: 5px;
+  position: relative;
+  top: -10px;
+  background-color: #E6C449;
+  border-radius: 5px;
+}
+
+datalist {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color:white;
+}

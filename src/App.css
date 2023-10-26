@@ -74,32 +74,3 @@
   left: 3px;
 }
 
-.custom-slider {
-  appearance: none; 
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-  height: 5px; 
-  background-color: #80bcb4; 
-  border-radius: 5px;
-  outline: none;
-}
-
-.custom-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  -moz-appearance: none;
-  margin-bottom:15px;
-  width: 12px; 
-  height: 12px; 
-  background-color: #40edf9; 
-  border:1px solid #007bff;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-datalist {
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
-}
