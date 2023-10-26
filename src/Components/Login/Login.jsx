@@ -61,7 +61,7 @@ const Login = () => {
         <Navbar />
         <div className='flex justify-center w-full h-[90vh] items-center'>
             <div className='flex lg:w-3/12 lg:min-w-[500px] mx-3 min-h-[500px] flex-col justify-center border-2 border-outline rounded-xl'>
-                <div className='flex text-onSurface2 justify-center items-center text-2xl lg:text-4xl font-bold mb-12 font-head mt-20'>
+                <div className='flex text-white justify-center items-center text-2xl lg:text-4xl font-bold mb-12 font-head mt-20'>
                     <ArrowRight/>
                     Admin Login /
                     <ArrowLeft />

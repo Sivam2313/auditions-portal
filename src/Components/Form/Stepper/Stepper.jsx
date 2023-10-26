@@ -10,12 +10,12 @@ const Stepper = ({steps,active}) => {
     
   return (
     <div className='hidden lg:flex flex-col w-1/5 min-w-[250px]'>
-        <div className='w-[4px] h-[250px] bg-onSurface2 absolute ml-[13px] z-10'>
+        <div className='w-[4px] h-[310px] bg-onSurface2 absolute ml-[13px] z-10'>
 
         </div>
         <motion.div layout className='w-[4px] h-[255px] bg-primary absolute ml-[13px] z-20'
         style={{
-            height: active*63.75 + "px",           
+            height: active*60.75 + "px",           
         }}
         >
 
@@ -24,7 +24,7 @@ const Stepper = ({steps,active}) => {
             steps.map((step,idx)=>{
                 return(
                     <div key={idx} className='flex w-full pb-6 items-center justify-between'>
-                        <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-50'
+                        <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-40'
                         layout
                         transition={{delay:0.4}}
                         animate={(idx<=active)? "reached" : "notReached"}

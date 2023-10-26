@@ -6,12 +6,18 @@ import Basic from './Stepper/Elements/Basic'
 import Contacts from './Stepper/Elements/Contacts'
 import Links from './Stepper/Elements/Links'
 import Domains from './Stepper/Elements/Domains'
+
 import {motion} from 'framer-motion'
 import DomainInfo from './Stepper/Elements/DomainInfo'
+import background from '../../Assets/homepage_gif.gif'
+import { ref, set } from 'firebase/database'
+import { realTimeDB } from '../../db/firebase'
+import Loader from '../Load/Loader'
+import ShowQr from './Stepper/Elements/ShowQr'
 
 const Form = () => {
 
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(5)
   const [name, setName] = useState("")
   const [roll, setRoll] = useState("")
   const [branch, setBranch] = useState("")
@@ -23,6 +29,32 @@ const Form = () => {
   const [appliedFor, setAppliedFor ] = useState([])
   const [git, setGit] = useState("")
   const [drive, setDrive] = useState("")
+  const [isValid, setIsValid] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+  function submitHandler(){
+    setLoading(true);
+    console.log(name);
+    set(ref(realTimeDB, "candidates/"+phone), {
+      name:name,
+      roll:roll,
+      branch:branch,
+      pmail:pmail,
+      imail:imail,
+      phone:phone,
+      cc:cc,
+      cf:cf,
+      appliedFor:appliedFor,
+      github:git,
+      drive:drive,
+      currRound:[0,0,0],
+    }).then(()=>{
+      setLoading(false);
+      console.log("Candidate Added");
+    }).catch((error)=>{
+      console.log(error);
+    });
+  }
 
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
   const steps = [{
@@ -40,15 +72,18 @@ const Form = () => {
     },{
         label:"Domain Info",
         component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor}/>
-    },]
-  return (
+    },{
+        label:"Done",
+        component:<ShowQr />
+    }]
+  return (loading)? <Loader /> : (
     <div className='w-screen flex flex-col items-center pb-12'>
       <Navbar />
       <div className='pt-[20vh] w-full lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start'>
           <Stepper steps={steps} active={active}/>
-          <motion.div layout className='w-full'>
+          <motion.div layout className='w-full backdrop-blur'>
             {steps[active].component}
-            <Buttons active={active} setActive={setActive} size={steps.length}/>
+            {(active!=steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler}/>}
           </motion.div>
       </div>
     </div>

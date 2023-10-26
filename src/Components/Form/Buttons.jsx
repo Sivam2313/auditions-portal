@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 
-const Buttons = ({active,setActive,size}) => {
+const Buttons = ({active,setActive,size,submitHandler}) => {
+
+  const nextBtn = useRef(null)
+
+  useEffect(() => {
+      const keyDownHandler = event => {
+          if(event.key === 'Enter' && !event.shiftKey){
+            event.preventDefault();
+            nextBtn.current.click();
+          }
+      };
+      document.addEventListener('keydown', keyDownHandler);
+      return () => {
+        document.removeEventListener('keydown', keyDownHandler);
+      };
+  }, []);
 
   const nextHandler = ()=>{
     if(active<size-1){
       setActive(active+1)
+    }
+    else if(active==size-1){
+      submitHandler();
     }
   }
 
@@ -24,7 +42,7 @@ const Buttons = ({active,setActive,size}) => {
         >
             Back
         </button>
-        <button className='bg-primary p-3 rounded-full w-32 text-onPrimary' onClick={nextHandler}>
+        <button ref={nextBtn} className='bg-primary p-3 rounded-full w-32 text-onPrimary' onClick={nextHandler}>
             {(active==size-1)? "Submit" : "Next"}
         </button>
     </motion.div>
