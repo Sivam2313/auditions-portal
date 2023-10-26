@@ -79,7 +79,7 @@ const Form = () => {
         label:"Domain Info",
         component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor} stack={stack} setStack={setStack} exp={exp} setExp={setExp}/>
     },{
-        label:"Done",
+        label:"Final Steps",
         component:<ShowQr />
     }]
   return (loading)? <Loader /> : (
