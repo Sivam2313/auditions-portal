@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Input = ({ setState, type, value }) => {
-  const wordLimit = 5;
+  const wordLimit = 100;
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     const words = inputValue.trim().split(" ");

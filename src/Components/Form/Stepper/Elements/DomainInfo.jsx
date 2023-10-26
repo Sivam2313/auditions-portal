@@ -17,6 +17,9 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             display: (appliedFor.indexOf("Web/App Development")<=-1)?"none":"block",
         }}
         >
+            <div className='font-head mx-3 lg:mx-0 lg:text-2xl text-left text-white font-semibold lg:pb-6 border-b-2 mt-1 border-outline mb-5'>
+            ➤ WebD/AppD :
+            </div>
             <div className='font-head pb-3 lg:text-2xl text-xl text-left text-white'>
                 Link to your Github profile:
             </div>
@@ -37,6 +40,9 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             display: (appliedFor.indexOf("Graphics Design")<=-1)?"none":"block",
         }}
         >
+            <div className='font-head mx-3 lg:mx-0 lg:text-2xl text-left text-white font-semibold lg:pb-6 border-b-2 mt-1 border-outline mb-5'>
+            ➤ GFX :
+            </div>
             <div className='font-head pb-3 lg:text-2xl text-xl text-left text-white'>
                 Link to your Artworks:
             </div>
