@@ -6,7 +6,7 @@ import DomainList from './DomainList/DomainList';
 
 const Dashboard = () => {
     const [selected, setSelected] = useState(0);
-    const domains=[ "","Web Developement","Design","Teaching and PS"];
+    const domains=[ "","Web/App Development","Graphics Design","Teaching and Problem Setting"];
     const links = [
     {
         name:'Candidate List',

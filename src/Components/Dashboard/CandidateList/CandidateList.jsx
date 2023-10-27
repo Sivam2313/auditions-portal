@@ -14,10 +14,15 @@ import {
 } from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
+import { useRound } from "../../../Hooks/useRound";
 
 const CandidateList = () => {
+  const [totalcandidates, setTotalcandidates] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeCandidate, setActiveCandidate] = useState("All");
+  const {round} = useRound();
+  
 
   const showSearchMessage = (found) => {
     if (found) {
@@ -37,6 +42,20 @@ const CandidateList = () => {
     }
   };
 
+  const filterCandidates=(candidates)=>{
+    const domains=[ "","Web Development","Graphics Design","Teaching and Problem Setting"];
+    var list = new Set();
+    for(let idx=1;idx<=3;idx++){
+      const filteredCandidates=candidates.filter(candidate=>candidate.rounds[domains[idx]].currRound>=round[3-idx]);
+      console.log(filteredCandidates);
+      filteredCandidates.forEach(candidate => list.add(candidate));
+    }
+    const res = Array.from(list);
+    console.log(res);
+    return res;
+
+  }
+
   useEffect(() => {
     if (searchQuery === "") {
       const query = ref(realTimeDB, "candidates");
@@ -49,11 +68,27 @@ const CandidateList = () => {
             list.push(project);
           });
           console.log(list);
-          setCandidates(list);
+          setTotalcandidates(list);
         }
       });
     }
   }, [searchQuery]);
+
+  const handleFilter=()=>{
+    if(activeCandidate==="Active"){
+      console.log("Active section");
+      setCandidates(filterCandidates(totalcandidates));
+    }
+    else if(activeCandidate==="All"){
+      console.log("All section");
+      console.log(totalcandidates);
+      setCandidates(totalcandidates);
+    }
+  }
+
+  useEffect(()=>{
+    handleFilter();
+  },[totalcandidates,activeCandidate])
 
   const isInteger = (str) => {
     return /^\d+$/.test(str);
@@ -67,7 +102,7 @@ const CandidateList = () => {
       candidatesRef,
       orderByChild("name"),
       startAt(searchQuery),
-      endAt(searchQuery+"\uf8ff"),
+      endAt(searchQuery + "\uf8ff")
     );
     let queryFound = false;
     onValue(queryName, (snapshot) => {
@@ -140,6 +175,7 @@ const CandidateList = () => {
     }
   };
 
+ 
   return (
     <div className="w-full h-full pl-32">
       <div className="font-head font-semibold text-5xl text-onSurface flex justify-start">
@@ -150,6 +186,18 @@ const CandidateList = () => {
         setSearchQuery={setSearchQuery}
         handleSearch={handleSearch}
       />
+
+        <div className="flex w-full md:w-1/2 justify-between md:justify-end mt-4 md:mt-0">
+        <select
+          onChange={(e) => setActiveCandidate(e.target.value)}
+          className="h-9 w-2/6 me-2 border-outline rounded-lg ps-3 pe-2"
+        >
+          <option>All</option>
+          <option>Active</option>
+        </select>
+      </div>
+
+    
       <div className="w-full mt-16">
         {candidates.map((candidate, index) => {
           return (

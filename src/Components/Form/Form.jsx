@@ -63,7 +63,12 @@ const Form = () => {
       appliedFor:appliedFor,
       github:git,
       drive:drive,
-      currRound:[0,0,0],
+      // currRound:[0,0,0],
+      rounds:{
+        'Web Development':{currRound:0,promotedBy:""},
+        'Teaching and Problem Setting':{currRound:0,promotedBy:""},
+        'Graphics Design':{currRound:0,promotedBy:""}
+      },
       exp:exp,
       stack:stack,
       PenPaperMarks:{

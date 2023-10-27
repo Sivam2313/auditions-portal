@@ -13,7 +13,7 @@ const PenPaperUpdate = ({candidate,index}) => {
 
     const showUpdateMessage = (status) => {
       if(status){
-          toast.success(`Marks updated for ${candidate.rollNumber}`, {
+          toast.success(`Marks updated for ${candidate.roll}`, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 1000,
             theme: "colored",
@@ -36,7 +36,7 @@ const PenPaperUpdate = ({candidate,index}) => {
             'Web Development':Number(webdMarks)
         };
 
-        const candidateRef = ref(realTimeDB, "candidates/cantidate" + index);
+        const candidateRef = ref(realTimeDB, "candidates/1" + candidate.phone);
         update(candidateRef, { PenPaperMarks: updatedMarks })
         .then(() => {
             console.log('PenPaperMarks updated successfully');
@@ -81,7 +81,7 @@ const PenPaperUpdate = ({candidate,index}) => {
                         <label className="block text-black text-sm font-bold mb-1 w-3/5">
                         Roll No : 
                         </label> 
-                        <h3 className="text-lg text-gray-900 font=semibold pl-4">{candidate.rollNumber}</h3>
+                        <h3 className="text-lg text-gray-900 font=semibold pl-4">{candidate.roll}</h3>
                     </div>
                 </div>
                 </div>

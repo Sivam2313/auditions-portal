@@ -30,7 +30,7 @@ const DomainCard = ({candidate,index,selected}) => {
                     Details
                 </button>
             </div>
-            {isAdmin && <RoundUpdate candidate={candidate} index={index} domainSelected={selected} />}
+            {isAdmin && <RoundUpdate candidate={candidate} index={index} domainSelected={selected}/>}
         </div>
     </div>
   )
