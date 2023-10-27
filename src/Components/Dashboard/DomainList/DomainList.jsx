@@ -151,10 +151,10 @@ const DomainList = ({ domains, selected }) => {
       </div>
       <SearchBar setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
 
-      <div className="flex w-full md:w-1/2 justify-between md:justify-end mt-4 md:mt-0">
+      <div className="flex w-full md:w-3/4 justify-between md:justify-end mt-4 md:mt-0 ">
         <select
           onChange={(e) => setActiveCandidate(e.target.value)}
-          className="h-9 w-2/6 me-2 border-outline rounded-lg ps-3 pe-2"
+          className="h-9 w-2/6 rounded-lg ps-3 pe-2 bg-primary text-onPrimary font-semibold outline-none"
         >
           <option>All</option>
           <option>Active</option>
