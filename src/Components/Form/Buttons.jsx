@@ -43,13 +43,10 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, isVal
         setIsValidbranch(true);
         setActive(active+1);
       }
-      // if(isValidname && isValidroll && isValidbranch){
-      //   setActive(active+1);
-      // }
     }
-    // if(active<size-2){
-    //   setActive(active+1)
-    // }
+    else if(active<size-2){
+      setActive(active+1)
+    }
     else if(parseInt(active)===size-2){
       submitHandler();
     }
