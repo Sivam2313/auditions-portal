@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 import validator from 'validator'
 
-const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone }) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf}) => {
 
   const nextBtn = useRef(null)
 
@@ -70,6 +70,24 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       }
       else{
         setIsValidphone(true);
+        setActive(active+1);
+      }
+    }
+    else if(active===2){
+      if(cc.trim()==="" || !validator.isURL(cc))
+      {
+        setIsValidcc(false);
+        return;
+      }
+      else{
+        setIsValidcc(true);
+      }
+      if(cf.trim()===""|| !validator.isURL(cf)){
+        setIsValidcf(false);
+        return;
+      }
+      else{
+        setIsValidcf(true);
         setActive(active+1);
       }
     }
