@@ -38,9 +38,9 @@ const Form = () => {
   const [isValidname, setIsValidname] = useState(true);
   const [isValidroll, setIsValidroll] = useState(true);
   const [isValidbranch, setIsValidbranch] = useState(true);
-  // const [isValidpmail, setIsValidpmail] = useState(true);
-  // const [isValidimail, setIsValidimail] = useState(true);
-  // const [isValidphone, setIsValidphone] = useState(true);
+  const [isValidpmail, setIsValidpmail] = useState(true);
+  const [isValidimail, setIsValidimail] = useState(true);
+  const [isValidphone, setIsValidphone] = useState(true);
   // const [isValidcc, setIsValidcc] = useState(true);
   // const [isValidcf, setIsValidcf] = useState(true);
   // const [isValidgit, setIsValidgit] = useState(true);
@@ -83,10 +83,10 @@ const Form = () => {
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
   const steps = [{
         label:"Basic Info",
-        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch} isValidname={isValidname} setIsValidname={setIsValidname} isValidroll={isValidroll} setIsValidroll={setIsValidroll} isValidbranch={isValidbranch} setIsValidbranch={setIsValidbranch}/>
+        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch} isValidname={isValidname} isValidroll={isValidroll} isValidbranch={isValidbranch} />
     },{
         label:"Contacts",
-        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone} />
+        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone} isValidpmail={isValidpmail} isValidimail={isValidimail} isValidphone={isValidphone}/>
     },{
         label:"Links",
         component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf}/>
@@ -107,7 +107,7 @@ const Form = () => {
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full backdrop-blur'>
             {steps[active].component}
-            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} isValidname={isValidname} setIsValidname={setIsValidname} isValidroll={isValidroll} setIsValidroll={setIsValidroll} isValidbranch={isValidbranch} setIsValidbranch={setIsValidbranch}/>}
+            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone}/>}
           </motion.div>
       </div>
     </div>

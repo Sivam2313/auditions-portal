@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
+import validator from 'validator'
 
-const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, isValidname, setIsValidname, isValidroll, setIsValidroll, isValidbranch, setIsValidbranch }) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone }) => {
 
   const nextBtn = useRef(null)
 
@@ -41,6 +42,34 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, isVal
       }
       else{
         setIsValidbranch(true);
+        setActive(active+1);
+      }
+    }
+    else if(active===1){
+      if(pmail.trim()==="" || !validator.isEmail(pmail.trim()))
+      {
+        setIsValidpmail(false);
+        return;
+      }
+      else{
+        setIsValidpmail(true);
+      }
+      const [, domain] = imail.split("@");
+      const isValidDomain = domain === "btech.nitdgp.ac.in";
+      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain)
+      {
+        setIsValidimail(false);
+        return;
+      }
+      else{
+        setIsValidimail(true);
+      }
+      if(phone.trim()==="" || !validator.isMobilePhone(phone.trim())){
+        setIsValidphone(false);
+        return;
+      }
+      else{
+        setIsValidphone(true);
         setActive(active+1);
       }
     }

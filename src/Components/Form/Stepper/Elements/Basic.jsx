@@ -3,7 +3,7 @@ import Input from '../../Input'
 import Select from '../../Select'
 import Option from '../../Option'
 
-const Basic = ({name,setName,branch,setBranch,roll,setRoll, isValidname, setIsValidname, isValidroll, setIsValidroll, isValidbranch, setIsValidbranch}) => {
+const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidroll,isValidbranch}) => {
   return (
     <div className='w-full lg:min-w-[800px]'>
         <div className='font-head pl-3 mx-3 lg:mx-0 text-4xl lg:text-5xl text-left text-white font-semibold pb-3 lg:pb-6 border-b-2 border-outline '>
