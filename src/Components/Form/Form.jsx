@@ -9,7 +9,7 @@ import Domains from './Stepper/Elements/Domains'
 
 import {motion} from 'framer-motion'
 import DomainInfo from './Stepper/Elements/DomainInfo'
-import background from '../../Assets/homepage_gif.gif'
+// import background from '../../Assets/homepage_gif.gif'
 import { ref, set } from 'firebase/database'
 import { realTimeDB } from '../../db/firebase'
 import Loader from '../Load/Loader'
@@ -32,8 +32,21 @@ const Form = () => {
   const [exp, setExp] = useState("")
   const [stack, setStack] = useState("")
   const [drive, setDrive] = useState("")
-  const [isValid, setIsValid] = useState(true)
+  // const [isValid, setIsValid] = useState(true)
   const [loading, setLoading] = useState(false)
+
+  const [isValidname, setIsValidname] = useState(true);
+  const [isValidroll, setIsValidroll] = useState(true);
+  const [isValidbranch, setIsValidbranch] = useState(true);
+  // const [isValidpmail, setIsValidpmail] = useState(true);
+  // const [isValidimail, setIsValidimail] = useState(true);
+  // const [isValidphone, setIsValidphone] = useState(true);
+  // const [isValidcc, setIsValidcc] = useState(true);
+  // const [isValidcf, setIsValidcf] = useState(true);
+  // const [isValidgit, setIsValidgit] = useState(true);
+  // const [isValidcheck, setIsValidcheck] = useState(true);
+  // const [isValidrank, setIsValidrank] = useState(true);
+  // const [isValiddrive, setIsValiddrive] = useState(true);
 
   function submitHandler(){
     setLoading(true);
@@ -70,10 +83,10 @@ const Form = () => {
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
   const steps = [{
         label:"Basic Info",
-        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch}/>
+        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch} isValidname={isValidname} setIsValidname={setIsValidname} isValidroll={isValidroll} setIsValidroll={setIsValidroll} isValidbranch={isValidbranch} setIsValidbranch={setIsValidbranch}/>
     },{
         label:"Contacts",
-        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone}/>
+        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone} />
     },{
         label:"Links",
         component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf}/>
@@ -94,7 +107,7 @@ const Form = () => {
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full backdrop-blur'>
             {steps[active].component}
-            {(active!=steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler}/>}
+            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} isValidname={isValidname} setIsValidname={setIsValidname} isValidroll={isValidroll} setIsValidroll={setIsValidroll} isValidbranch={isValidbranch} setIsValidbranch={setIsValidbranch}/>}
           </motion.div>
       </div>
     </div>

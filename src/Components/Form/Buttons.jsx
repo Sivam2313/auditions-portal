@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 
-const Buttons = ({active,setActive,size,submitHandler}) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, isValidname, setIsValidname, isValidroll, setIsValidroll, isValidbranch, setIsValidbranch }) => {
 
   const nextBtn = useRef(null)
 
@@ -19,10 +19,38 @@ const Buttons = ({active,setActive,size,submitHandler}) => {
   }, []);
 
   const nextHandler = ()=>{
-    if(active<size-2){
-      setActive(active+1)
+    if(active===0){
+      if(name.trim()==="")
+      {
+        setIsValidname(false);
+        return;
+      }
+      else{
+        setIsValidname(true);
+      }
+      if(roll.trim()===""){
+        setIsValidroll(false);
+        return;
+      }
+      else{
+        setIsValidroll(true);
+      }
+      if(branch===""){
+        setIsValidbranch(false);
+        return;
+      }
+      else{
+        setIsValidbranch(true);
+        setActive(active+1);
+      }
+      // if(isValidname && isValidroll && isValidbranch){
+      //   setActive(active+1);
+      // }
     }
-    else if(active==size-2){
+    // if(active<size-2){
+    //   setActive(active+1)
+    // }
+    else if(parseInt(active)===size-2){
       submitHandler();
     }
   }
@@ -37,13 +65,13 @@ const Buttons = ({active,setActive,size,submitHandler}) => {
     <motion.div layout className='w-11/12 flex justify-between lg:pl-3 pl-6 font-head text-xl mt-16'>
         <button className='bg-surface p-2 rounded-full w-32 text-onSurface' onClick={backHandler}
         style={{
-          visibility: (active==0)? 'hidden':'visible'
+          visibility: (parseInt(active)===0)? 'hidden':'visible'
         }}
         >
             Back
         </button>
         <button ref={nextBtn} className='bg-primary p-3 rounded-full w-32 text-onPrimary' onClick={nextHandler}>
-            {(active==size-2)? "Submit" : "Next"}
+            {(parseInt(active)===size-2)? "Submit" : "Next"}
         </button>
     </motion.div>
   )
