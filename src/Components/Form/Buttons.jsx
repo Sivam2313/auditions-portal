@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 import validator from 'validator'
 
-const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, appliedFor, slidervalue, roles, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf, setIsValidcheck, setIsValidrank}) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, appliedFor, slidervalue, roles, git, stack, exp, drive, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf, setIsValidcheck, setIsValidrank, setIsValidgit, setIsValidstack, setIsValidcontri, setIsValiddrive}) => {
 
   const nextBtn = useRef(null)
 
@@ -120,11 +120,43 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
         }
       }
     }
-    else if(active<size-2){
-      setActive(active+1)
-    }
-    else if(parseInt(active)===size-2){
-      submitHandler();
+    else if(active===4){
+      if(appliedFor.indexOf("Web/App Development")>=0){
+        if(git.trim()==="" || !validator.isURL(git.trim())){
+          setIsValidgit(false);
+          return;
+        }
+        else{
+          setIsValidgit(true);
+        }
+        if(stack.trim()===""){
+          setIsValidstack(false);
+          return;
+        }
+        else{
+          setIsValidstack(true);
+        }
+        if(exp.trim()===""){
+          setIsValidcontri(false);
+          return;
+        }
+        else{
+          setIsValidcontri(true);
+        }
+      }
+      if(appliedFor.indexOf("Graphics Design")>=0){
+        if(drive.trim()==="" || !validator.isURL(drive.trim())){
+          setIsValiddrive(false);
+          return;
+        }
+        else{
+          setIsValiddrive(true);
+          submitHandler();
+        }
+      }
+      else{
+        submitHandler();
+      }
     }
   }
 
