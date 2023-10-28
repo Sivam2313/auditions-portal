@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 import validator from 'validator'
 
-const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf}) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, appliedFor, slidervalue, roles, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf, setIsValidcheck, setIsValidrank}) => {
 
   const nextBtn = useRef(null)
 
@@ -74,7 +74,7 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       }
     }
     else if(active===2){
-      if(cc.trim()==="" || !validator.isURL(cc))
+      if(cc.trim()==="" || !validator.isURL(cc.trim()))
       {
         setIsValidcc(false);
         return;
@@ -82,13 +82,42 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       else{
         setIsValidcc(true);
       }
-      if(cf.trim()===""|| !validator.isURL(cf)){
+      if(cf.trim()===""|| !validator.isURL(cf.trim())){
         setIsValidcf(false);
         return;
       }
       else{
         setIsValidcf(true);
         setActive(active+1);
+      }
+    }
+    else if(active===3){
+      if(appliedFor.length===0){
+        setIsValidcheck(false);
+        return;
+      }
+      else{
+        setIsValidcheck(true);
+        if(appliedFor.length>=2){
+          var temp=[];
+          for(var i=0;i<4;i++){
+            if(appliedFor.indexOf(roles[i]) >= 0)
+              temp.push(slidervalue[i]);
+          }
+          var uniqueValues = [...new Set(temp)];
+          if (uniqueValues.length !== appliedFor.length) {
+              setIsValidrank(false);
+          }
+          else{
+            setIsValidrank(true);
+            uniqueValues=null;
+            setActive(active+1);
+          }
+        }
+        else{
+          setIsValidrank(true);
+          setActive(active+1);
+        }
       }
     }
     else if(active<size-2){
