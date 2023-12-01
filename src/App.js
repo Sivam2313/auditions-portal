@@ -8,6 +8,7 @@ import RequireAuth from './Components/RequireAuth';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Candidate from './Components/CandidateDetails/Candidate';
 import Form from './Components/Form/Form';
+import About from './Components/About/About';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         {/* publc route */}
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/form" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
