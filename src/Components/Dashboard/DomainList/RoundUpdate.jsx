@@ -3,22 +3,24 @@ import { useAuth } from "../../../Hooks/useAuth";
 import { ref, update } from "firebase/database";
 import { realTimeDB } from "../../../db/firebase";
 
-const RoundUpdate = ({ candidate, index, domainSelected }) => {
+const RoundUpdate = ({ candidate, index, domainSelected}) => {
   const [showModal, setShowModal] = useState(false);
   const { email } = useAuth();
-  const domains = ["", "Web Development", "Design", "Teaching and PS"];
+  const domains = ["", "Web Development", "Graphics Design", "Teaching and Problem Setting"];
   const [round, setRound] = useState(
     candidate.rounds[domains[domainSelected]].currRound
   );
 
   const handleUpdateRound = () => {
+    console.log("Updating round of candidate ",candidate.candidateId);
     const candidateRef = ref(
       realTimeDB,
-      "candidates/cantidate" + candidate.candidateId + "/rounds/" + domains[domainSelected]
+      "candidates/1" + candidate.phone + "/rounds/" + domains[domainSelected]
     );
     update(candidateRef, { currRound: Number(round), promotedBy: email })
       .then(() => {
         console.log("Round updated successfully");
+
       })
       .catch((error) => {
         console.error("Error updating round:", error);
@@ -59,7 +61,7 @@ const RoundUpdate = ({ candidate, index, domainSelected }) => {
                         Roll No :
                       </label>
                       <h3 className="text-lg text-gray-900 font=semibold pl-4">
-                        {candidate.rollNumber}
+                        {candidate.roll}
                       </h3>
                     </div>
                   </div>
@@ -97,28 +99,15 @@ const RoundUpdate = ({ candidate, index, domainSelected }) => {
                         Promote to :
                       </label>
                       <input
-                      //type="number"
+                      type="number"
                         className="shadow appearance-none border rounded py-2 px-1 text-black w-2/5"
                         onChange={(e) => {
                           setRound(e.target.value);
                         }}
-                        value={round}
+                        
                       />
                     </div>
 
-                    {/* <div className='flex justify-center items-center my-2'>
-                    <label className="block text-onSurface text-lg font-bold mb-1 w-3/5">
-                      Web Development
-                    </label>
-                       <input className="shadow appearance-none border rounded py-2 px-1 text-black w-2/5" onChange={(e)=>{setWebdMarks(e.target.value)}} value={webdMarks}/>
-                    </div>
-
-                    <div className='flex justify-center items-center my-2'>
-                    <label className="block text-onSurface text-lg font-bold mb-1 w-3/5">
-                      Graphic Design
-                    </label>
-                    <input className="shadow appearance-none border rounded py-2 px-1 text-black w-2/5" onChange={(e)=>{setDesignMarks(e.target.value)}} value={designMarks}/>
-                    </div> */}
                   </div>
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

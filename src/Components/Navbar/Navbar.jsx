@@ -50,11 +50,11 @@ const Navbar = () => {
                 <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer'>
                     Updates
                 </div>
-                <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer'>
+                <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/about')}}>
                     About
                 </div>
                 <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/form')}}>
-                    Register
+                    Join
                 </div>
             </div>
             <div className='hidden lg:flex'>
@@ -75,9 +75,9 @@ const Navbar = () => {
                     Home
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/form')}}>
-                    Register
+                    Join
                 </div>
-                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer'>
+                <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/about')}}>
                     About
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] border-outline text-left py-5 font-head font-bold text-xl cursor-pointer'>

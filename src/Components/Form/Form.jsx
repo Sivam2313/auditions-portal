@@ -9,7 +9,7 @@ import Domains from './Stepper/Elements/Domains'
 
 import {motion} from 'framer-motion'
 import DomainInfo from './Stepper/Elements/DomainInfo'
-import background from '../../Assets/homepage_gif.gif'
+// import background from '../../Assets/homepage_gif.gif'
 import { ref, set } from 'firebase/database'
 import { realTimeDB } from '../../db/firebase'
 import Loader from '../Load/Loader'
@@ -32,8 +32,23 @@ const Form = () => {
   const [exp, setExp] = useState("")
   const [stack, setStack] = useState("")
   const [drive, setDrive] = useState("")
-  const [isValid, setIsValid] = useState(true)
+  // const [isValid, setIsValid] = useState(true)
   const [loading, setLoading] = useState(false)
+
+  const [isValidname, setIsValidname] = useState(true);
+  const [isValidroll, setIsValidroll] = useState(true);
+  const [isValidbranch, setIsValidbranch] = useState(true);
+  const [isValidpmail, setIsValidpmail] = useState(true);
+  const [isValidimail, setIsValidimail] = useState(true);
+  const [isValidphone, setIsValidphone] = useState(true);
+  const [isValidcc, setIsValidcc] = useState(true);
+  const [isValidcf, setIsValidcf] = useState(true);
+  const [isValidcheck, setIsValidcheck] = useState(true);
+  const [isValidrank, setIsValidrank] = useState(true);
+  const [isValidgit, setIsValidgit] = useState(true);
+  const [isValidstack, setIsValidstack] = useState(true);
+  const [isValidcontri, setIsValidcontri] = useState(true);
+  const [isValiddrive, setIsValiddrive] = useState(true);
 
   function submitHandler(){
     setLoading(true);
@@ -50,7 +65,12 @@ const Form = () => {
       appliedFor:appliedFor,
       github:git,
       drive:drive,
-      currRound:[0,0,0],
+      // currRound:[0,0,0],
+      rounds:{
+        'Web Development':{currRound:0,promotedBy:""},
+        'Teaching and Problem Setting':{currRound:0,promotedBy:""},
+        'Graphics Design':{currRound:0,promotedBy:""}
+      },
       exp:exp,
       stack:stack,
       PenPaperMarks:{
@@ -70,19 +90,19 @@ const Form = () => {
   const roles = ['Teaching','Problem Setting','Web/App Development','Graphics Design']
   const steps = [{
         label:"Basic Info",
-        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch}/>
+        component:<Basic setName={setName} name={name} setRoll={setRoll} roll={roll} setBranch={setBranch} branch={branch} isValidname={isValidname} isValidroll={isValidroll} isValidbranch={isValidbranch} />
     },{
         label:"Contacts",
-        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone}/>
+        component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone} isValidpmail={isValidpmail} isValidimail={isValidimail} isValidphone={isValidphone}/>
     },{
         label:"Links",
-        component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf}/>
+        component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf} isValidcc={isValidcc} isValidcf={isValidcf}/>
     },{
         label:"Domain",
-        component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor} slidervalue={slidervalue} setSlidervalue={setSlidervalue} />
+        component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor} slidervalue={slidervalue} setSlidervalue={setSlidervalue} isValidcheck={isValidcheck} isValidrank={isValidrank} />
     },{
         label:"Domain Info",
-        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor} stack={stack} setStack={setStack} exp={exp} setExp={setExp}/>
+        component:<DomainInfo setGit={setGit} git={git} drive={drive} setDrive={setDrive} appliedFor={appliedFor} stack={stack} setStack={setStack} exp={exp} setExp={setExp} isValidgit={isValidgit} isValidstack={isValidstack} isValidcontri={isValidcontri} isValiddrive={isValiddrive}/>
     },{
         label:"Final Steps",
         component:<ShowQr />
@@ -94,7 +114,7 @@ const Form = () => {
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full backdrop-blur'>
             {steps[active].component}
-            {(active!=steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler}/>}
+            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} cc={cc} cf={cf} appliedFor={appliedFor} slidervalue={slidervalue} roles={roles} git={git} stack={stack} exp={exp} drive={drive} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone} setIsValidcc={setIsValidcc} setIsValidcf={setIsValidcf} setIsValidcheck={setIsValidcheck} setIsValidrank={setIsValidrank} setIsValidgit={setIsValidgit} setIsValidstack={setIsValidstack} setIsValidcontri={setIsValidcontri} setIsValiddrive={setIsValiddrive} />}
           </motion.div>
       </div>
     </div>

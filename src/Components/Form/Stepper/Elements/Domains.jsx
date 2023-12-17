@@ -7,7 +7,9 @@ const Domains = ({
   setAppliedFor,
   appliedFor,
   slidervalue,
-  setSlidervalue
+  setSlidervalue,
+  isValidcheck,
+  isValidrank
 }) => {
   const variants = {
     shown: { opacity: 1, height: "fit-content" },
@@ -16,9 +18,12 @@ const Domains = ({
 
   const value = [1, 2, 3, 4];
   const handleSliderChange = (index, value) => {
-    const newSliderValues = [...slidervalue];
+    let newSliderValues = [...slidervalue];
     newSliderValues[index] = parseInt(value);
     setSlidervalue(newSliderValues);
+    console.log(slidervalue);
+    console.log(value);
+    console.log(index);
     console.log(value);
     console.log((appliedFor.length-1)*100);
     console.log((((value - 1) * 100) / (appliedFor.length - 1)));
@@ -72,6 +77,10 @@ const Domains = ({
               </div>
             );
           })}
+          { !isValidcheck &&
+            <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
+                Please select atleast one domain
+            </div>}
         </div>
       </div>
       <motion.div
@@ -122,6 +131,10 @@ const Domains = ({
               )
             );
           })}
+          { !isValidrank &&
+            <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
+                Domains should be ranked distinctively
+            </div>}
         </div>
       </motion.div>
       <br></br>
