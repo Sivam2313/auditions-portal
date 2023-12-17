@@ -3,10 +3,18 @@ import Navbar from "../Navbar/Navbar";
 import homepageGif from "../../Assets/homepage_gif.gif";
 import team from "../../Assets/team.jpeg";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { animationOne, transition } from "../../Animations";
 
 const Home = () => {
   return (
-    <div>
+    <motion.div 
+      initial='out'
+      animate='in'
+      exit='out'
+      variants={animationOne}
+      transition={transition}
+    >
       <Navbar />
 
       <div className="w-screen h-screen relative">
@@ -34,7 +42,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
