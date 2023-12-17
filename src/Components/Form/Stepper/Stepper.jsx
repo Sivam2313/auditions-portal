@@ -10,9 +10,9 @@ const Stepper = ({steps,active}) => {
     
   return (
     <div className='hidden lg:flex flex-col w-1/5 min-w-[250px]'>
-        <div className='w-[4px] h-[310px] bg-onSurface2 absolute ml-[13px] z-10'>
+        <motion.div initial={{height:'0px'}} animate={{height:'310px'}} className='w-[4px] h-[310px] bg-onSurface2 absolute ml-[13px] z-10'>
 
-        </div>
+        </motion.div>
         <motion.div layout className='w-[4px] h-[255px] bg-primary absolute ml-[13px] z-20'
         style={{
             height: active*60.75 + "px",           
@@ -31,9 +31,9 @@ const Stepper = ({steps,active}) => {
                         variants={variants}
                         >
                         </motion.div>
-                        <div className='w-full text-left font-head text-lg text-onSurface2 font-semibold flex items-center pl-6 h-[2rem]'>
+                        <motion.div initial={{x:50, opacity:0}} animate={{x:0, opacity:1}} transition={{delay:1}} className='w-full text-left font-head text-lg text-onSurface2 font-semibold flex items-center pl-6 h-[2rem]'>
                             {step.label}
-                        </div>
+                        </motion.div>
                     </div>
                 )
             })

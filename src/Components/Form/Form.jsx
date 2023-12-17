@@ -14,6 +14,7 @@ import { ref, set } from 'firebase/database'
 import { realTimeDB } from '../../db/firebase'
 import Loader from '../Load/Loader'
 import ShowQr from './Stepper/Elements/ShowQr'
+import { animationOne, animationTwo, transition } from '../../Animations'
 
 const Form = () => {
 
@@ -108,16 +109,28 @@ const Form = () => {
         component:<ShowQr />
     }]
   return (loading)? <Loader /> : (
-    <div className='w-screen flex flex-col items-center pb-12'>
+    <motion.div
+      // initial='out'
+      // animate='in'
+      // exit='out'
+      // variants={animationOne}
+      // transition={transition}
+      className='w-screen flex flex-col items-center pb-12'>
       <Navbar />
-      <div className='pt-[20vh] w-full lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start'>
+      <motion.div
+        initial='out'
+        animate='in'
+        exit='out'
+        variants={animationTwo}
+        transition={transition}
+        className='pt-[20vh] w-full lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start'>
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full backdrop-blur'>
             {steps[active].component}
             {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} cc={cc} cf={cf} appliedFor={appliedFor} slidervalue={slidervalue} roles={roles} git={git} stack={stack} exp={exp} drive={drive} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone} setIsValidcc={setIsValidcc} setIsValidcf={setIsValidcf} setIsValidcheck={setIsValidcheck} setIsValidrank={setIsValidrank} setIsValidgit={setIsValidgit} setIsValidstack={setIsValidstack} setIsValidcontri={setIsValidcontri} setIsValiddrive={setIsValiddrive} />}
           </motion.div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   ) 
 }
 

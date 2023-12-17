@@ -2,10 +2,11 @@ import React from 'react'
 import Input from '../../Input'
 import Select from '../../Select'
 import Option from '../../Option'
+import { motion } from 'framer-motion';
 
 const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidroll,isValidbranch}) => {
   return (
-    <div className='w-full lg:min-w-[800px]'>
+    <motion.div initial={{x:50, opacity:0}} animate={{x:0, opacity:1}} transition={{delay:0.5}} className='w-full lg:min-w-[800px]'>
         <div className='font-head pl-3 mx-3 lg:mx-0 text-4xl lg:text-5xl text-left text-white font-semibold pb-3 lg:pb-6 border-b-2 border-outline '>
             Basic Info
         </div>
@@ -53,7 +54,7 @@ const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidro
                 Select your branch
             </div>}
         </div>
-    </div>
+    </motion.div>
   )
 }
 
