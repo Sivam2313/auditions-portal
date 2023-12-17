@@ -40,8 +40,10 @@ const Navbar = () => {
     }
 
   return (
-    <motion.div layout className='w-screen fixed bg-background flex flex-col justify-center z-50'>
-        <div className='w-full border-b-2 lg:border-none border-outline px-3 h-[10vh] flex justify-between lg:justify-center items-center pt-12 X py-10'>
+    <motion.div layout 
+        style={{backgroundColor: (showMenu)? "#0F0913" : "transparent"}}
+        className='w-screen fixed bg-transparent flex flex-col justify-center z-50 start-0'>
+        <div className='w-full lg:border-none border-outline px-3 h-[10vh] flex justify-between lg:justify-center items-center pt-12 X py-10 z-20'>
             <div className='text-onSurface2 flex items-center font-head font-bold text-xl lg:text-xl cursor-pointer' onClick={(e)=>{navigate('/')}}>
                 <img src={logo} alt="logo" className='h-6 lg:h-12 mr-2 inline-block' />
                 RECursion

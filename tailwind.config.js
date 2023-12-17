@@ -29,6 +29,10 @@ module.exports = {
     },
     fontFamily: {
       head: ["Montserrat", "sans-serif"],
+      title: ["JetBrains Mono", "monospace"],
+    },
+    dropShadow: {
+      glow: ["0 0px 7px #C9AC57", "0 0px 5px #C9AC57"],
     },
   },
   fontFamily: {
