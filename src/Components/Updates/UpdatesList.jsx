@@ -17,7 +17,10 @@ const UpdatesList = () => {
             setUpdatesList(querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id})) )
         }
         fetchData()
-        setLoading(false)
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
+        
 
     }, [])
     
@@ -32,7 +35,7 @@ const UpdatesList = () => {
         className='pt-[8vh]'
         >
             <div>
-                <div className='font-title lg:text-6xl text-2xl text-primary pt-6'>
+                <div className='font-title lg:text-6xl text-5xl text-primary pt-6'>
                     Updates
                 </div>
             </div>
@@ -43,7 +46,7 @@ const UpdatesList = () => {
                         {
                             updatesList.map((update, index) => {
                                 return(
-                                    <UpdateCards message={update.message} idx={index+1}/>
+                                    <UpdateCards update={update} idx={index+1}/>
                                 )
                             })
                         }
