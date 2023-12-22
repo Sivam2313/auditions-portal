@@ -9,6 +9,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Candidate from './Components/CandidateDetails/Candidate';
 import Form from './Components/Form/Form';
 import About from './Components/About/About';
+import UpdatesList from './Components/Updates/UpdatesList';
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
         <Route path="/form" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/updates" element={<UpdatesList />} />
         {/* private route */}
         <Route element={<RequireAuth />}>
           <Route path="/protected" element={<Protected />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/candidate/:candidateId" element={<Candidate />}/>
+          <Route path="/candidate/:candidateId" element={<Candidate />} />
         </Route>
       </Routes>
     </>

@@ -49,7 +49,7 @@ const Navbar = () => {
                 RECursion
             </div>
             <div className='w-1/2 px-28 flex justify-evenly items-center hidden lg:flex'>
-                <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer'>
+                <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/updates')}}>
                     Updates
                 </div>
                 <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/about')}}>

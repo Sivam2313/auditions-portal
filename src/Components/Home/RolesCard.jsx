@@ -26,7 +26,7 @@ const RolesCard = ({label,timeout}) => {
   },[inView])
 
   return (
-    <div className='flip-card min-h-[400px] mb-6' ref={flipCard}>
+    <div className='flip-card w-full min-h-[400px] mb-6' ref={flipCard}>
       <motion.div 
         initial={false}
         animate={{ rotateY: isFlipped ? 180 : 360 }}
