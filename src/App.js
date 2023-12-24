@@ -10,6 +10,7 @@ import Candidate from './Components/CandidateDetails/Candidate';
 import Form from './Components/Form/Form';
 import About from './Components/About/About';
 import UpdatesList from './Components/Updates/UpdatesList';
+import Results from './Components/Results/Results';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/updates" element={<UpdatesList />} />
+        <Route path="/results" element={<Results />} />
         {/* private route */}
         <Route element={<RequireAuth />}>
           <Route path="/protected" element={<Protected />} />

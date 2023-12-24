@@ -14,7 +14,8 @@ import { ref, set } from 'firebase/database'
 import { realTimeDB } from '../../db/firebase'
 import Loader from '../Load/Loader'
 import ShowQr from './Stepper/Elements/ShowQr'
-import { animationOne, animationTwo, transition } from '../../Animations'
+import { animationTwo, transition } from '../../Animations'
+import Alert from '../Alert/Alert'
 
 const Form = () => {
 
@@ -50,6 +51,7 @@ const Form = () => {
   const [isValidstack, setIsValidstack] = useState(true);
   const [isValidcontri, setIsValidcontri] = useState(true);
   const [isValiddrive, setIsValiddrive] = useState(true);
+  const [showAlert, setShowAlert] = useState(false)
 
   function submitHandler(){
     setLoading(true);
@@ -111,6 +113,7 @@ const Form = () => {
   return (loading)? <Loader /> : (
     <motion.div className='w-screen flex flex-col items-center pb-12 overflow-x-hidden'>
       <Navbar />
+      {showAlert && <Alert setShowAlert = {setShowAlert} message={"Error While Submitting The From"} />}
       <motion.div
         initial='out'
         animate='in'
