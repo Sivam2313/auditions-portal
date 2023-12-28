@@ -48,7 +48,7 @@ const TimeLine = () => {
                       
                            <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-onSurface p-4 rounded border border-slate-200 shadow">
                            <div className="flex items-center justify-between space-x-2 mb-1 font-title">
-                               <div className="font-bold text-slate-900">{round.title}</div>
+                               <div className="w-full font-bold text-slate-900">{round.title}</div>
                            </div>
                            <div className="text-black font-head">
                               {round.description}
