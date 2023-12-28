@@ -18,7 +18,7 @@ const Contacts = ({setPmail,setImail,setPhone,imail,pmail,phone,isValidpmail,isV
             <Input setState={setPmail} value={pmail} type='text' />
             { !isValidpmail &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please enter a valid email id
             </div>}
         </div>
         <div className='pt-12 lg:pl-3 pl-6'>
@@ -38,7 +38,7 @@ const Contacts = ({setPmail,setImail,setPhone,imail,pmail,phone,isValidpmail,isV
             <Input setState={setPhone} value={phone} type='text' />
             { !isValidphone &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please enter a valid phone number
             </div>}
         </div>
     </motion.div>

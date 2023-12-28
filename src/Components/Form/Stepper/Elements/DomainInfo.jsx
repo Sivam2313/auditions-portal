@@ -38,7 +38,7 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             <Input setState={setStack} value={stack} type='text' />
             { !isValidstack &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please mention your go-to tech stack
             </div>}
             <br></br>
             <div className='font-head pb-3 text-2xl text-left text-white'>
@@ -47,7 +47,7 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             <Textarea setState={setExp} value={exp} rows={4}/>
             { !isValidcontri &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please mention your contribution to any project
             </div>}
         </div>
         <div className='pt-12 lg:pl-3 pl-6'

@@ -17,7 +17,7 @@ const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidro
             <Input setState={setName} value={name} type='text' />
             { !isValidname &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please enter your name
             </div>}
         </div>
         <div className='pt-12 lg:pl-3 pl-6'>
@@ -27,7 +27,7 @@ const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidro
             <Input setState={setRoll} value={roll} type='text' />
             { !isValidroll &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
-                Field cannot be empty
+                Please enter your roll number
             </div>}
         </div>
         <div className='pt-16 lg:pl-3 pl-6'>
