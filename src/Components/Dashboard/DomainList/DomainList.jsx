@@ -53,7 +53,7 @@ const DomainList = ({ domains, selected }) => {
   }
 
   useEffect(() => {
-    console.log("All is well");
+    // console.log("All is well");
     fetchCandidates();
   }, [selected]);
 

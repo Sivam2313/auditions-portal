@@ -1,9 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { db } from "../db/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const RoundContext = createContext();
 
 export const RoundProvider = ({ children }) => {
-  const [round, setRound] = useState([2,2,2]);
+  const [round, setRound] = useState([0,0,0]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const docRef = doc(db, "Round", "RoundInfo");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setRound(docSnap.data().details);
+      }
+    }
+    fetchData();
+
+  }, []);
 
   const contextData = {
     round: round,

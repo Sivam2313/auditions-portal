@@ -80,8 +80,8 @@ const CandidateList = () => {
       setCandidates(filterCandidates(totalcandidates));
     }
     else if(activeCandidate==="All"){
-      console.log("All section");
-      console.log(totalcandidates);
+      // console.log("All section");
+      // console.log(totalcandidates);
       setCandidates(totalcandidates);
     }
   }
@@ -96,82 +96,35 @@ const CandidateList = () => {
 
   const handleSearch = () => {
     if (searchQuery === "") return;
-    const candidatesRef = ref(realTimeDB, "candidates");
-    console.log();
-    const queryName = query(
-      candidatesRef,
-      orderByChild("name"),
-      startAt(searchQuery),
-      endAt(searchQuery + "\uf8ff")
-    );
+    let candidateArray = candidates;
+    const query = searchQuery.toLowerCase();
     let queryFound = false;
-    onValue(queryName, (snapshot) => {
-      const data = snapshot.val();
-      if (snapshot.exists()) {
+    setCandidates(candidateArray);
+    candidateArray = candidateArray.filter((candidate) => {
+      // console.log('candidate: ',candidate.name);
+      if(candidate.name.toLowerCase().includes(query)){
+        // console.log("found");
         queryFound = true;
-        showSearchMessage(snapshot.exists());
-        // setSearchQuery("");
-        var list = [];
-        Object.values(data).map((project, idx) => {
-          project.id = Object.keys(data)[idx];
-          list.push(project);
-        });
-        console.log(list);
-        setCandidates(list);
+        return true;
+      }
+      else if(candidate.roll.toLowerCase()==query){
+        queryFound = true;
+        return true;
+      }
+      else{
+        return false;
       }
     });
-
-    if (!queryFound) {
-      const queryRoll = query(
-        candidatesRef,
-        orderByChild("rollNumber"),
-        equalTo(searchQuery.toUpperCase())
-      );
-      onValue(queryRoll, (snapshot) => {
-        const data = snapshot.val();
-        if (snapshot.exists()) {
-          queryFound = true;
-          showSearchMessage(snapshot.exists());
-          // setSearchQuery("");
-          var list = [];
-          Object.values(data).map((project, idx) => {
-            project.id = Object.keys(data)[idx];
-            list.push(project);
-          });
-          console.log(list);
-          setCandidates(list);
-        }
-      });
-    }
-
-    if (!queryFound && isInteger(searchQuery)) {
-      const queryPhone = query(
-        candidatesRef,
-        orderByChild("phoneNumber"),
-        equalTo(Number(searchQuery))
-      );
-      console.log(typeof searchQuery);
-      onValue(queryPhone, (snapshot) => {
-        const data = snapshot.val();
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          queryFound = true;
-          showSearchMessage(snapshot.exists());
-          // setSearchQuery("");
-          var list = [];
-          Object.values(data).map((project, idx) => {
-            project.id = Object.keys(data)[idx];
-            list.push(project);
-          });
-          console.log(list);
-          setCandidates(list);
-        }
-      });
-    }
+    console.log(candidateArray);
     if (!queryFound) {
       setCandidates([]);
       showSearchMessage(queryFound);
       // setSearchQuery("");
+    }
+    else{
+      // console.log(query);
+      setCandidates(candidateArray);
+      showSearchMessage(queryFound);
     }
   };
 
