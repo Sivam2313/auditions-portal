@@ -16,6 +16,7 @@ import Loader from '../Load/Loader'
 import ShowQr from './Stepper/Elements/ShowQr'
 import { animationTwo, transition } from '../../Animations'
 import Alert from '../Alert/Alert'
+import backgroungImg from '../../Assets/pageBackground.png'
 
 const Form = () => {
 
@@ -111,7 +112,8 @@ const Form = () => {
         component:<ShowQr />
     }]
   return (loading)? <Loader /> : (
-    <motion.div className='w-screen flex flex-col items-center pb-12 overflow-x-hidden'>
+    <motion.div className='w-screen flex h-screen w-screen flex-col items-center pb-12 overflow-x-hidden'>
+      <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
       <Navbar />
       {showAlert && <Alert setShowAlert = {setShowAlert} message={"Error While Submitting The From"} />}
       <motion.div
@@ -120,9 +122,9 @@ const Form = () => {
         exit='out'
         variants={animationTwo}
         transition={transition}
-        className='pt-[20vh] w-11/12 lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start overflow-hidden'>
+        className='pt-[20vh] w-11/12 lg:w-8/12 lg:min-w-[1000px] h-fit min-h-screen flex justify-center lg:justify-start overflow-hidden z-10'>
           <Stepper steps={steps} active={active}/>
-          <motion.div layout className='w-full backdrop-blur overflow-x-hidden'>
+          <motion.div layout className='w-full overflow-x-hidden'>
             {steps[active].component}
             {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} cc={cc} cf={cf} appliedFor={appliedFor} slidervalue={slidervalue} roles={roles} git={git} stack={stack} exp={exp} drive={drive} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone} setIsValidcc={setIsValidcc} setIsValidcf={setIsValidcf} setIsValidcheck={setIsValidcheck} setIsValidrank={setIsValidrank} setIsValidgit={setIsValidgit} setIsValidstack={setIsValidstack} setIsValidcontri={setIsValidcontri} setIsValiddrive={setIsValiddrive} />}
           </motion.div>
