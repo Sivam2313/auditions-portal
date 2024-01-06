@@ -83,7 +83,7 @@ const Navbar = () => {
                     About
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] border-outline text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/updates')}}>
-                    Update
+                    Updates
                 </div>
             </div>
             <button onClick={handleLogout} className='w-11/12 text-xl mb-12 border-2 mx-auto p-3 rounded-lg border-outline font-head text-onSurface2 font-semibold'>
