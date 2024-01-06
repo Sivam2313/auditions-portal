@@ -11,6 +11,7 @@ import {
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 import { useRound } from "../../../Hooks/useRound";
+import { toast } from "react-toastify";
 
 const DomainList = ({ domains, selected }) => {
   const [totalcandidates, setTotalcandidates] = useState([]);
@@ -62,74 +63,58 @@ const DomainList = ({ domains, selected }) => {
     return !isNaN(num) && Number.isInteger(num);
   };
 
-  function handleSearch(){
-    
-    const candidatesRef = ref(realTimeDB, "candidates");
-    const queryName = query(
-      candidatesRef,
-      orderByChild("name"),
-      equalTo(searchQuery)
-    );
+  
+  const showSearchMessage = (found) => {
+    // if (found) {
+    //   toast.success("candidate found !", {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //     autoClose: 1000,
+    //     theme: "colored",
+    //     // className: 'search-success'
+    //   });
+    // } else {
+    //   toast.error("No candidate found !", {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //     autoClose: 1000,
+    //     theme: "colored",
+    //     // className: 'search-failure'
+    //   });
+    // }
+  };
+
+  const handleSearch = () => {
+    if (searchQuery === "") return;
+    console.log(searchQuery);
+    let candidateArray = candidates;
+    const query = searchQuery.toLowerCase();
     let queryFound = false;
-    onValue(queryName, (snapshot) => {
-      const data = snapshot.val();
-      if (snapshot.exists()) {
+    setCandidates(candidateArray);
+    candidateArray = candidateArray.filter((candidate) => {
+      // console.log('candidate: ',candidate.name);
+      if(candidate.name.toLowerCase().includes(query)){
+        // console.log("found");
         queryFound = true;
-        var list = [];
-        Object.values(data).map((project, idx) => {
-          project.id = Object.keys(data)[idx];
-          list.push(project);
-        });
-        console.log(list);
-        setCandidates(list);
+        return true;
+      }
+      else if(candidate.roll.toLowerCase()==query){
+        queryFound = true;
+        return true;
+      }
+      else{
+        return false;
       }
     });
-
+    console.log(candidateArray);
     if (!queryFound) {
-      const queryRoll = query(
-        candidatesRef,
-        orderByChild("rollNumber"),
-        equalTo(searchQuery)
-      );
-      onValue(queryRoll, (snapshot) => {
-        const data = snapshot.val();
-        if (snapshot.exists()) {
-          queryFound = true;
-          var list = [];
-          Object.values(data).map((project, idx) => {
-            project.id = Object.keys(data)[idx];
-            list.push(project);
-          });
-          console.log(list);
-          setCandidates(list);
-        }
-      });
+      setCandidates([]);
+      showSearchMessage(queryFound);
+      // setSearchQuery("");
     }
-
-    if (!queryFound && isInteger(searchQuery)) {
-      const queryPhone = query(
-        candidatesRef,
-        orderByChild("phoneNumber"),
-        equalTo(Number(searchQuery))
-      );
-      console.log(typeof searchQuery);
-      onValue(queryPhone, (snapshot) => {
-        const data = snapshot.val();
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          queryFound = true;
-          var list = [];
-          Object.values(data).map((project, idx) => {
-            project.id = Object.keys(data)[idx];
-            list.push(project);
-          });
-          console.log(list);
-          setCandidates(list);
-        }
-      });
+    else{
+      // console.log(query);
+      setCandidates(candidateArray);
+      showSearchMessage(queryFound);
     }
-
-    if (!queryFound) setCandidates([]);
   };
 
   const handleFilter=()=>{

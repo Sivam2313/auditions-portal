@@ -29,7 +29,7 @@ const Results = () => {
             });
             list = list.filter((item)=>{
               let flag = false
-              if(item.rounds['Graphics Design'].currRound>=currentRound[0] || item.rounds['Web Development'].currRound>=currentRound[1] || item.rounds['Teaching and Problem Setting'].currRound>=currentRound[2]){
+              if(item.rounds['Graphics Design'].currRound>=currentRound[1] || item.rounds['Web Development'].currRound>=currentRound[2] || item.rounds['Teaching and Problem Setting'].currRound>=currentRound[0]){
                 flag = true;
               }
               return flag;

@@ -8,7 +8,7 @@ const PenPaperUpdate = ({candidate,index}) => {
 
     const [webdMarks, setWebdMarks] = useState(candidate.PenPaperMarks["Web Development"]);
     const [designMarks, setDesignMarks] = useState(candidate.PenPaperMarks["Design"]);
-    const [teachingMarks, setTeachingMarks] = useState(candidate.PenPaperMarks["Teaching and PS"]);
+    const [teachingMarks, setTeachingMarks] = useState(candidate.PenPaperMarks["Teaching and Problem Setting"]);
 
 
     const showUpdateMessage = (status) => {

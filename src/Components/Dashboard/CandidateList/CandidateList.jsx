@@ -5,6 +5,7 @@ import CandidateCard from "./CandidateCard";
 import {
   onValue,
   ref,
+  set,
   query,
   orderByChild,
   equalTo,
@@ -12,9 +13,10 @@ import {
   endAt,
   once,
 } from "firebase/database";
-import { realTimeDB } from "../../../db/firebase";
+import { db, realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 import { useRound } from "../../../Hooks/useRound";
+import { doc, getDoc } from "firebase/firestore";
 
 const CandidateList = () => {
   const [totalcandidates, setTotalcandidates] = useState([]);
@@ -43,16 +45,19 @@ const CandidateList = () => {
   };
 
   const filterCandidates=(candidates)=>{
-    const domains=[ "","Web Development","Graphics Design","Teaching and Problem Setting"];
+    console.log('round',round);
+    const domains=[ "Web Development","Graphics Design","Teaching and Problem Setting"];
     var list = new Set();
-    for(let idx=1;idx<=3;idx++){
-      const filteredCandidates=candidates.filter(candidate=>candidate.rounds[domains[idx]].currRound>=round[3-idx]);
-      console.log(filteredCandidates);
-      filteredCandidates.forEach(candidate => list.add(candidate));
-    }
-    const res = Array.from(list);
-    console.log(res);
-    return res;
+    const filterCandidates = candidates.filter(candidate=>{
+      if(candidate.rounds[domains[0]].currRound>=round[2] || candidate.rounds[domains[1]].currRound>=round[1] || candidate.rounds[domains[2]].currRound>=round[0]){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+    console.log(filterCandidates);
+    return filterCandidates;
 
   }
 
@@ -128,31 +133,73 @@ const CandidateList = () => {
     }
   };
 
+  async function handleCutoff () {
+    if(candidates.length===0){
+      console.log('no candidates');
+      return;
+    }
+    const docRef = doc(db, "Round", "cutoff");
+    const docSnap = await getDoc(docRef);
+    let cutoff;
+    if (docSnap.exists()) {
+      cutoff = docSnap.data().details;
+      let candidateArray = [...candidates];
+      let data = {};
+      // cutoff = [0,0,0];
+      console.log(cutoff);
+      console.log("candidate array",candidateArray);
+      candidateArray.forEach((candidate) => {
+        if(candidate.PenPaperMarks["Design"]>=cutoff[1]){
+          candidate.rounds["Graphics Design"].currRound=1;
+        } 
+        if (candidate.PenPaperMarks["Web Development"]>=cutoff[2]){
+          candidate.rounds["Web Development"].currRound=1;
+        }
+        if (candidate.PenPaperMarks["Teaching and Problem Setting"]>=cutoff[0]){
+          candidate.rounds["Teaching and Problem Setting"].currRound=1;
+        }
+        data["1"+candidate.phone.toString()]={
+          ...candidate
+        }
+      });
+      console.log("data",data);
+      set(ref(realTimeDB, "candidates"),{
+        ...data
+      })
+    }
+
+  };
+
  
   return (
     <div className="w-full h-full pl-32">
       <div className="font-head font-semibold text-5xl text-onSurface flex justify-start">
         Candidate List
       </div>
-      <SearchBar
-        query={searchQuery}
-        setSearchQuery={setSearchQuery}
-        handleSearch={handleSearch}
-      />
+        <SearchBar
+          query={searchQuery}
+          setSearchQuery={setSearchQuery}
+          handleSearch={handleSearch}
+        />
 
         <div className="flex w-full md:w-3/4 justify-between md:justify-end mt-4 md:mt-0 ">
-        <select
-          onChange={(e) => setActiveCandidate(e.target.value)}
-          className="h-9 w-2/6 rounded-lg ps-3 pe-2 bg-primary text-onPrimary font-semibold outline-none"
-        >
-          <option>All</option>
-          <option>Active</option>
-        </select>
+          <div className="mr-6">
+            <button className="bg-primary rounded-lg w-full pl-3 pr-3 h-9 text-onPrimary font-semibold outline-none" onClick={(e)=>handleCutoff()}>
+              Finalize
+            </button>
+          </div>
+          <select
+            onChange={(e) => setActiveCandidate(e.target.value)}
+            className="h-9 w-2/6 rounded-lg ps-3 pe-2 bg-primary text-onPrimary font-semibold outline-none"
+          >
+            <option>All</option>
+            <option>Active</option>
+          </select>
       </div>
 
     
       <div className="w-full mt-16">
-        {candidates.map((candidate, index) => {
+        {candidates?.map((candidate, index) => {
           return (
             <CandidateCard
               candidate={candidate}
