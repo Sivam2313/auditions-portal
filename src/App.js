@@ -19,6 +19,7 @@ function App() {
         {/* publc route */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/updates" element={<UpdatesList />} />
         <Route path="/form" element={<Form />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

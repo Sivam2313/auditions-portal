@@ -4,7 +4,7 @@ import { inView, motion, useInView } from 'framer-motion';
 import { useState } from 'react';
 import "./Styles/RolesCard.css"
 
-const RolesCard = ({label,timeout}) => {
+const RolesCard = ({label, timeout, background, image}) => {
   const [isAnimating, setIsAnimating] = useState(false)
   const [isFlipped, setIsFlipped] = useState(false)
   const flipCard = useRef(null)
@@ -37,10 +37,13 @@ const RolesCard = ({label,timeout}) => {
           <div className='w-full h-full bg-transparent rounded-2xl border-[#E6C449] border-2 flex flex-col items-center justify-center flip-card-front'>
             <div className='w-[2px] h-full  bg-primary'></div>
             <div className='rounded-full border-[#E6C449] border-2 w-[150px] h-[150px] absolute mt-3 bg-black flex justify-center items-center'>
-                <img src={logo} className='w-10/12' />
+                <img src={logo} alt='' className='w-10/12' />
             </div>
           </div>
-          <div className='w-full h-full bg-black rounded-2xl border-[#E6C449] border-2 flex flex-col items-center justify-center flip-card-back'>
+          <div className='w-full h-full rounded-2xl border-[#E6C449] border-2 flex flex-col flip-card-back items-center justify-center' style={{ backgroundImage:`url(${background})`, objectFit:'cover'}} >
+            <div>
+                <img src={image} alt='' className='w-8/12 absolute top-0 left-0' />
+            </div>
             <div className='font-title text-xl text-onSecondary'>
               {label}
             </div>
