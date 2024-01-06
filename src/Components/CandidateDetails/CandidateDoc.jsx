@@ -16,6 +16,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
     const {round} = useRound();
     const [show, setShow] = useState(false)
     const {userId} = useAuth();
+    const [pastReviews, setPastReviews] = useState([])
 
 
     function handelDelete(id){
@@ -28,6 +29,31 @@ const CandidateDoc = ({candidate, candidateId}) => {
             console.log("error");
         })
     }
+
+    useEffect(() => {
+        function fetchReview(roundNo){
+            const query = ref(realTimeDB, "Reviews/"+active+"/"+roundNo+"/"+candidateId);
+            return onValue(query, (snapshot) => {
+                const data = snapshot.val();
+                if (snapshot.exists()) {
+                    var list = []
+                    Object.entries(data).map((project,idx) => {
+                        var val = project[1];
+                        val.id = project[0];
+                        list.push(val)
+                    });
+                    console.log(list);
+                    let data = [...list]
+
+                }
+                else{
+                    setReviews([])
+                }
+            });
+        }
+        
+    }, [round,active])
+    
 
 
     useEffect(() => {

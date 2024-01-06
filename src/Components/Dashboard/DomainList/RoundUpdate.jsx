@@ -37,7 +37,7 @@ const RoundUpdate = ({ candidate, index, domainSelected}) => {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Update Round
+        Current Round: {candidate.rounds[domains[domainSelected]].currRound}
       </button>
       {showModal ? (
         <>

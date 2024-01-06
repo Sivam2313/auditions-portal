@@ -11,12 +11,12 @@ import {
 import { realTimeDB } from "../../../db/firebase";
 import SearchBar from "../SearchBar";
 import { useRound } from "../../../Hooks/useRound";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const DomainList = ({ domains, selected }) => {
   const [totalcandidates, setTotalcandidates] = useState([]);
   const [candidates, setCandidates] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeCandidate, setActiveCandidate] = useState("All");
   const {round} = useRound();
 
@@ -56,7 +56,7 @@ const DomainList = ({ domains, selected }) => {
   useEffect(() => {
     // console.log("All is well");
     fetchCandidates();
-  }, [selected]);
+  }, [selected,searchQuery]);
 
   const isInteger = (str) => {
     const num = parseInt(str);
@@ -65,21 +65,21 @@ const DomainList = ({ domains, selected }) => {
 
   
   const showSearchMessage = (found) => {
-    // if (found) {
-    //   toast.success("candidate found !", {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //     autoClose: 1000,
-    //     theme: "colored",
-    //     // className: 'search-success'
-    //   });
-    // } else {
-    //   toast.error("No candidate found !", {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //     autoClose: 1000,
-    //     theme: "colored",
-    //     // className: 'search-failure'
-    //   });
-    // }
+    if (found) {
+      toast.success("candidate found !", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        theme: "colored",
+        // className: 'search-success'
+      });
+    } else {
+      toast.error("No candidate found !", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 1000,
+        theme: "colored",
+        // className: 'search-failure'
+      });
+    }
   };
 
   const handleSearch = () => {
@@ -108,10 +108,8 @@ const DomainList = ({ domains, selected }) => {
     if (!queryFound) {
       setCandidates([]);
       showSearchMessage(queryFound);
-      // setSearchQuery("");
     }
     else{
-      // console.log(query);
       setCandidates(candidateArray);
       showSearchMessage(queryFound);
     }
@@ -153,6 +151,7 @@ const DomainList = ({ domains, selected }) => {
           );
         })}
       </div>
+      <ToastContainer/>
     </div>
   );
 };
