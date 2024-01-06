@@ -8,6 +8,7 @@ import Input from '../SignUp/Input';
 import Navbar from '../Navbar/Navbar';
 import { useAuth } from '../../Hooks/useAuth';
 import Alert from '../Alert/Alert';
+import {motion} from 'framer-motion';
 
 const Login = () => {
 
@@ -57,7 +58,11 @@ const Login = () => {
     }, []);
 
   return (
-    <div>
+    <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{delay:0.5, duration:2}}
+    >
         <Navbar />
         <div className='flex justify-center w-full h-[90vh] items-center'>
             <div className='flex lg:w-3/12 lg:min-w-[500px] mx-3 min-h-[500px] flex-col justify-center border-2 border-outline rounded-xl'>
@@ -78,7 +83,7 @@ const Login = () => {
             </div>
         </div>
         {showAlert && <Alert message={message} setShowAlert={setShowAlert}/>}
-    </div>
+    </motion.div>
   )
 }
 
