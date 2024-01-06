@@ -20,24 +20,26 @@ const Stepper = ({steps,active}) => {
         >
 
         </motion.div>
-        {
-            steps.map((step,idx)=>{
-                return(
-                    <div key={idx} className='flex w-full pb-6 items-center justify-between'>
-                        <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-40'
-                        layout
-                        transition={{delay:0.4}}
-                        animate={(idx<=active)? "reached" : "notReached"}
-                        variants={variants}
-                        >
-                        </motion.div>
-                        <motion.div initial={{x:50, opacity:0}} animate={{x:0, opacity:1}} transition={{delay:1}} className='w-full text-left font-head text-lg text-onSurface2 font-semibold flex items-center pl-6 h-[2rem]'>
-                            {step.label}
-                        </motion.div>
-                    </div>
-                )
-            })
-        }
+        <div className='absolute'>
+            {
+                steps.map((step,idx)=>{
+                    return(
+                        <div key={idx} className='flex w-full pb-6 items-center justify-between'>
+                            <motion.div className='h-[2rem] w-[2.125rem] rounded-full z-40'
+                            layout
+                            transition={{delay:0.4}}
+                            animate={(idx<=active)? "reached" : "notReached"}
+                            variants={variants}
+                            >
+                            </motion.div>
+                            <motion.div initial={{x:50, opacity:0}} animate={{x:0, opacity:1}} transition={{delay:1}} className='w-full text-left font-head text-lg text-onSurface2 font-semibold flex items-center pl-6 h-[2rem]'>
+                                {step.label}
+                            </motion.div>
+                        </div>
+                    )
+                })
+            }
+        </div>
     </div>
   )
 }
