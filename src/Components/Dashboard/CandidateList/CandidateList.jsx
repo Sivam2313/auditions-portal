@@ -22,7 +22,7 @@ const CandidateList = () => {
   const [totalcandidates, setTotalcandidates] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCandidate, setActiveCandidate] = useState("All");
+  const [activeCandidate, setActiveCandidate] = useState("Active");
   const {round} = useRound();
   
 
@@ -192,8 +192,8 @@ const CandidateList = () => {
             onChange={(e) => setActiveCandidate(e.target.value)}
             className="h-9 w-2/6 rounded-lg ps-3 pe-2 bg-primary text-onPrimary font-semibold outline-none"
           >
-            <option>All</option>
             <option>Active</option>
+            <option>All</option>
           </select>
       </div>
 
