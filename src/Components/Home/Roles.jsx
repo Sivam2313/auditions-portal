@@ -43,7 +43,7 @@ const Roles = () => {
           ROLES
         </div>
         {/* <div className='w-11/12 h-[5px] bg-primary'></div> */}
-        <div className='flex h-fit  lg:h-fit lg:flex-row flex-col mt-6 lg:mt-32 justify-evenly items-center w-full'>
+        <div className='flex h-fit  lg:h-fit lg:flex-row flex-col mt-6 lg:mt-12 justify-evenly items-center w-full'>
             {
                 roles.map((role,idx)=>{
                     return (

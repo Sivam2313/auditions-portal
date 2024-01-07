@@ -13,7 +13,7 @@ const About = () => {
     }
 
     return (
-        <motion.div layout className='w-screen h-fit flex flex-col justify-center z-50'>
+        <motion.div layout className='w-full h-full '>
             <div className='hidden sm:flex'>
                 <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
             </div>
@@ -22,11 +22,9 @@ const About = () => {
             variants={variants}
             >
                 <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
-                <div>
-                    <Navbar/>
-                    <TimeLine/>
-                </div>
             </motion.div>
+                    <Navbar navbarBg={'#235789'}/>
+                    <TimeLine/>
         </motion.div>
     );
 };

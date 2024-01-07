@@ -9,28 +9,24 @@ import ArrowLeft from "../Icons/ArrowLeft";
 import Roles from "./Roles";
 import { set } from "lodash";
 import LandingPage from "./LandingPage";
-
+import bgr from "../../Assets/gg.gif";
 
 const Home = () => {
 
-  
-
-
-
-
   return (
-    <motion.div 
-      initial='out'
-      animate='in'
-      exit='out'
+    <motion.div
+      initial="out"
+      animate="in"
+      exit="out"
       variants={animationOne}
       transition={transition}
       className="snap-mandatory snap-y overflow-y-scroll overflow-x-hidden snap-strict h-screen w-screen fixed flex flex-col"
     >
-      <div 
-        style={{ backgroundImage: `url(${homepageGif})` }}
-        className="bg-cover bg-center h-screen w-screen flex flex-col snap-center z-10">
-        <Navbar />
+      <div
+        style={{ backgroundImage: `url(${bgr})` }}
+        className="bg-cover bg-center h-screen w-screen flex flex-col snap-center z-10"
+      >
+        <Navbar navbarBg={'black'}/>
         <LandingPage />
       </div>
       <div className="snap-start h-fit">

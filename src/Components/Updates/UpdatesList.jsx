@@ -40,6 +40,7 @@ const UpdatesList = () => {
         </div>
         <motion.div className='flex sm:hidden w-full h-full '>
             <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
+        </motion.div>
         <Navbar />
         <motion.div
         initial={{opacity:0}}
@@ -66,7 +67,6 @@ const UpdatesList = () => {
                     </ul>
                 </div>
             }
-        </motion.div>
         </motion.div>
     </motion.div>
   )
