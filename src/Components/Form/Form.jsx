@@ -6,7 +6,6 @@ import Basic from './Stepper/Elements/Basic'
 import Contacts from './Stepper/Elements/Contacts'
 import Links from './Stepper/Elements/Links'
 import Domains from './Stepper/Elements/Domains'
-
 import {motion} from 'framer-motion'
 import DomainInfo from './Stepper/Elements/DomainInfo'
 // import background from '../../Assets/homepage_gif.gif'
@@ -17,6 +16,7 @@ import ShowQr from './Stepper/Elements/ShowQr'
 import { animationTwo, transition } from '../../Animations'
 import Alert from '../Alert/Alert'
 import backgroungImg from '../../Assets/pageBackground.png'
+import mobilepng from '../../Assets/mobile bg.png'
 
 const Form = () => {
 
@@ -111,9 +111,24 @@ const Form = () => {
         label:"Final Steps",
         component:<ShowQr />
     }]
+
+    const [mobview, setMobview] = useState(false)
+    const variants = {
+        closed: { height: "0px", overflow: "hidden", display:'flex !important' },
+        open: {  display:'flex !important'},
+    }
+
   return (loading)? <Loader /> : (
-    <motion.div className='w-screen flex h-screen w-screen flex-col items-center pb-12 overflow-x-hidden'>
-      <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
+    <motion.div className='w-screen flex h-screen flex-col items-center pb-12 overflow-x-hidden'>
+      <div className='hidden sm:flex'>
+      <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
+      </div>
+      <motion.div className='flex sm:hidden w-full h-screen flex-col items-center pb-12 overflow-x-hidden'
+      animate={(!mobview)? "open" : "closed"}
+      variants={variants}
+      >
+        <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
+      </motion.div>
       <Navbar />
       {showAlert && <Alert setShowAlert = {setShowAlert} message={"Error While Submitting The From"} />}
       <motion.div

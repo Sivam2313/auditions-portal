@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {motion} from 'framer-motion';
-import logo from '../../Assets/logo.png';
+import logo from '../../Assets/logoInverted.png';
 import { auth } from '../../db/firebase';
 import { signOut } from 'firebase/auth';
 import { useAuth } from '../../Hooks/useAuth';

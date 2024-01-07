@@ -6,6 +6,7 @@ import UpdateCards from './UpdateCards'
 import {motion} from 'framer-motion'
 import Loader from '../Load/Loader'
 import backgroungImg from '../../Assets/pageBackground.png'
+import mobilepng from '../../Assets/mobile bg.png'
 
 const UpdatesList = () => {
     const [updatesList, setUpdatesList] = useState([])
@@ -24,11 +25,21 @@ const UpdatesList = () => {
         
 
     }, [])
+
+    const [mobview, setMobview] = useState(false)
+    const variants = {
+        closed: { height: "0px", overflow: "hidden", display:'flex !important' },
+        open: {  display:'flex !important'},
+    }
     
   return (
     loading ? <Loader /> :
-    <div className='w-full h-full'>
-        <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
+    <motion.div layout className='w-full h-full'>
+        <div className='hidden sm:flex'>
+            <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
+        </div>
+        <motion.div className='flex sm:hidden w-full h-full '>
+            <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
         <Navbar />
         <motion.div
         initial={{opacity:0}}
@@ -56,7 +67,8 @@ const UpdatesList = () => {
                 </div>
             }
         </motion.div>
-    </div>
+        </motion.div>
+    </motion.div>
   )
 }
 
