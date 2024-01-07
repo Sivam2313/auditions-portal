@@ -29,11 +29,11 @@ const LandingPage = () => {
             initial={{opacity:0}}
             animate={{opacity:1}}
             transition={{delay:0.5, duration:2}}
-            className="font-title text-onSecondary text-5xl lg:text-9xl pb-6 lg:pb-12"
+            className="font-title text-onSecondary text-3xl lg:text-5xl pb-6 lg:pb-12"
         >
             WELCOME TO THE
         </motion.div>
-        <div className="font-title text-primary text-5xl lg:text-9xl">
+        <div className="font-title text-primary text-3xl lg:text-5xl">
             <span ref={textAnimation}></span>
             <motion.div className="inline" initial={{opacity:0}} animate={{opacity:1}} transition={{ repeat: "repeat", repeatDelay:0.2, duration: 0.2 }}>_</motion.div>
         </div>

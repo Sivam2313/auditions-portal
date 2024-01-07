@@ -40,11 +40,12 @@ const RolesCard = ({label, timeout, background, image}) => {
                 <img src={logo} alt='' className='w-10/12' />
             </div>
           </div>
-          <div className='w-full h-full rounded-2xl border-[#E6C449] border-2 flex flex-col flip-card-back items-center justify-center' style={{ backgroundImage:`url(${background})`, objectFit:'cover'}} >
+          <div className='w-full h-full rounded-2xl border-[#E6C449] border-2 flex flex-col flip-card-back items-center justify-center' >
+            <img src={background} alt='' className='w-full h-full rounded-lg absolute top-0 left-0 object-cover' />
             <div>
                 <img src={image} alt='' className='w-8/12 absolute top-0 left-0' />
             </div>
-            <div className='font-title text-xl text-onSecondary'>
+            <div className='font-title text-xl text-onSecondary z-10 mt-20'>
               {label}
             </div>
           </div>
