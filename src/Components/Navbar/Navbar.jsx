@@ -56,7 +56,7 @@ const Navbar = ({navbarBg}) => {
                     About
                 </div>
                 <div className='mx-3 text-onSurface2 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/form')}}>
-                    Join
+                    Register
                 </div>
             </div>
             <div className='hidden lg:flex'>
@@ -64,6 +64,16 @@ const Navbar = ({navbarBg}) => {
                     {userId? "Logout" : "Admin Login"}
                 </button>
             </div>
+
+            {
+                userId &&
+                <div className='hidden lg:flex'>
+                    <button className='p-1 m-2 lg:p-3 border-outline rounded-full px-3 lg:px-8 text-onSurface2 border-2 font-head font-bold lg:text-xl' onClick={(e)=>navigate('/dashboard')}>
+                        Dashboard
+                    </button>
+                </div>
+            }
+
             <button className='lg:hidden' onClick={(e)=>{toggle()}}>
                 <Hamburger />
             </button>
@@ -77,7 +87,7 @@ const Navbar = ({navbarBg}) => {
                     Home
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/form')}}>
-                    Join
+                    Register
                 </div>
                 <div className='mx-3 text-onSurface2 border-b-[1px] text-left py-5 font-head font-bold text-xl cursor-pointer' onClick={(e)=>{navigate('/about')}}>
                     About
@@ -87,8 +97,11 @@ const Navbar = ({navbarBg}) => {
                 </div>
             </div>
             <button onClick={handleLogout} className='w-11/12 text-xl mb-12 border-2 mx-auto p-3 rounded-lg border-outline font-head text-onSurface2 font-semibold'>
-                Admin Login
+                {userId?"Logout" : "Admin Login"}
             </button>
+            {userId && <button onClick={(e)=>navigate('/dashboard')} className='w-11/12 text-xl mb-12 border-2 mx-auto p-3 rounded-lg border-outline font-head text-onSurface2 font-semibold'>
+                Dashboard
+            </button>}
         </motion.div>
     </motion.div>
   )

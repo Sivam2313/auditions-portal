@@ -1,18 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Navbar from "../Navbar/Navbar";
-import homepageGif from "../../Assets/giphy.gif";
-import team from "../../Assets/team.jpeg";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animationOne, transition } from "../../Animations";
-import ArrowLeft from "../Icons/ArrowLeft";
 import Roles from "./Roles";
-import { set } from "lodash";
 import LandingPage from "./LandingPage";
 import bgr from "../../Assets/gg.gif";
+import backgroundImg from '../../Assets/pageBackground.png';
 
 const Home = () => {
-
   return (
     <motion.div
       initial="out"
@@ -23,24 +18,39 @@ const Home = () => {
       className="snap-mandatory snap-y overflow-y-scroll overflow-x-hidden snap-strict h-screen w-screen fixed flex flex-col"
     >
       <div
-        style={{ backgroundImage: `url(${bgr})` }}
-        className="bg-cover bg-center h-screen w-screen flex flex-col snap-center z-10"
+        style={{ 
+          position: 'relative',
+          backgroundImage: `url(${backgroundImg})`, 
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "100vh",
+          width: "100vw",
+
+        }}
+        className="flex flex-col snap-center"
       >
-        <Navbar navbarBg={'black'}/>
+        <Navbar navbarBg={'#0f172a'}/>
         <LandingPage />
+        
+        {/* Overlay GIF */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${bgr})`,
+            backgroundSize: "cover",
+            opacity: 0.5,
+            zIndex:1,
+          }}
+        ></div>
       </div>
-      <div className="snap-start h-fit">
+      <div className="snap-start h-fit" style={{background:"#0f0913"}}>
         <Roles />
       </div>
     </motion.div>
-  );
-};
-
-const Card = ({ title }) => {
-  return (
-    <div className="flex-1 max-w-xs bg-white-900 p-4 m-2 text-center rounded-md backdrop-filter backdrop-blur-md border">
-      <div className="text-white font-semibold text-lg">{title}</div>
-    </div>
   );
 };
 

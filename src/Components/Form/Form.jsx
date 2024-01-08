@@ -129,7 +129,7 @@ const Form = () => {
       >
         <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
       </motion.div>
-      <Navbar />
+      <Navbar navbarBg={'#151632'}/>
       {showAlert && <Alert setShowAlert = {setShowAlert} message={"Error While Submitting The From"} />}
       <motion.div
         initial='out'

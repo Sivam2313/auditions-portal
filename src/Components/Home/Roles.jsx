@@ -8,7 +8,6 @@ import appweb from '../../Assets/appweb.svg';
 import ps from '../../Assets/ps.svg';
 import teaching from '../../Assets/teaching.svg';
 import gd from '../../Assets/gd.svg';
-import pgbg from '../../Assets/pageBackground.png';
 
 const Roles = () => {
     const roles = [{
@@ -38,12 +37,12 @@ const Roles = () => {
     },
   ]
   return (
-    <div className="lg:h-[150vh] pb-12 w-screen flex flex-col bg-black items-center">
+    <div className="lg:h-[150vh] pb-12 w-screen flex flex-col bg-slate-900 items-center">
         <div className="text-primary font-title text-5xl lg:text-7xl pt-32 lg:mb-12 mb-6">
           ROLES
         </div>
         {/* <div className='w-11/12 h-[5px] bg-primary'></div> */}
-        <div className='flex h-fit  lg:h-fit lg:flex-row flex-col mt-6 lg:mt-12 justify-evenly items-center w-full'>
+        <div className='flex lg:h-fit lg:flex-row flex-col mt-6 lg:mt-12 justify-evenly items-center w-full'>
             {
                 roles.map((role,idx)=>{
                     return (

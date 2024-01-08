@@ -41,12 +41,12 @@ const UpdatesList = () => {
         <motion.div className='flex sm:hidden w-full h-full '>
             <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
         </motion.div>
-        <Navbar />
+        <Navbar navbarBg={'#151632'} />
         <motion.div
         initial={{opacity:0}}
         animate={{opacity:1}}
         transition={{duration:0.5}}
-        className='pt-[8vh] z-10 absolute'
+        className='pt-[15vh] z-10 absolute'
         >
             <div>
                 <div className='font-title lg:text-6xl text-5xl text-primary pt-6 '>

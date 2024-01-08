@@ -15,16 +15,18 @@ const LandingPage = () => {
     textAnimation.current.innerHTML = "";
     function typeWriter() {
       if (i <= txt.length) {
-        textAnimation.current.innerHTML = txt.substring(0,i);
-        i++;
-        setTimeout(typeWriter, speed);
+        if(textAnimation.current && txt){
+          textAnimation.current.innerHTML = txt.substring(0,i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
       }
     }
     setTimeout(typeWriter, 1000);
   
   }, []);
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center">
+    <div className="w-screen h-screen flex flex-col justify-center items-center z-20">
         <motion.div 
             initial={{opacity:0}}
             animate={{opacity:1}}

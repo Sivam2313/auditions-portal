@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {motion} from 'framer-motion';
 import Navbar from "../Navbar/Navbar";
 import TimeLine from "./TimeLine";
 import backgroungImg from '../../Assets/pageBackground.png'
 import mobilepng from '../../Assets/mobile bg.png'
+import Loader from "../Load/Loader";
 
 const About = () => {
     const [mobview, setMobview] = useState(false)
+    const [loading,setLoading] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     const variants = {
         closed: { height: "0px", overflow: "hidden", display:'flex !important' },
         open: {  display:'flex !important'},
     }
 
     return (
+        loading ? <Loader/> : 
         <motion.div layout className='w-full h-full '>
             <div className='hidden sm:flex'>
                 <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
@@ -23,7 +35,7 @@ const About = () => {
             >
                 <img src={mobilepng} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0" />
             </motion.div>
-                    <Navbar navbarBg={'#235789'}/>
+                    <Navbar navbarBg={'#151632'}/>
                     <TimeLine/>
         </motion.div>
     );
