@@ -19,7 +19,7 @@ const UpdateCards = ({ update, idx }) => {
         {
             update.link && update.link_text &&
             <div className='pl-6 pt-3 sm:text-lg text-sm'>
-                <Link to={update.message}>{update.message}</Link>
+                Link: <Link className='underline' to={update.link}>{update.link_text}</Link>
             </div>
         }
     </div>

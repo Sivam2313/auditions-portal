@@ -134,40 +134,7 @@ const CandidateList = () => {
   };
 
   async function handleCutoff () {
-    if(candidates.length===0){
-      console.log('no candidates');
-      return;
-    }
-    const docRef = doc(db, "Round", "cutoff");
-    const docSnap = await getDoc(docRef);
-    let cutoff;
-    if (docSnap.exists()) {
-      cutoff = docSnap.data().details;
-      let candidateArray = [...candidates];
-      let data = {};
-      // cutoff = [0,0,0];
-      console.log(cutoff);
-      console.log("candidate array",candidateArray);
-      candidateArray.forEach((candidate) => {
-        if(candidate.PenPaperMarks["Design"]>=cutoff[1]){
-          candidate.rounds["Graphics Design"].currRound=1;
-        } 
-        if (candidate.PenPaperMarks["Web Development"]>=cutoff[2]){
-          candidate.rounds["Web Development"].currRound=1;
-        }
-        if (candidate.PenPaperMarks["Teaching and Problem Setting"]>=cutoff[0]){
-          candidate.rounds["Teaching and Problem Setting"].currRound=1;
-        }
-        data["1"+candidate.phone.toString()]={
-          ...candidate
-        }
-      });
-      console.log("data",data);
-      set(ref(realTimeDB, "candidates"),{
-        ...data
-      })
-    }
-
+    
   };
 
  
@@ -184,9 +151,9 @@ const CandidateList = () => {
 
         <div className="flex w-full md:w-3/4 justify-between md:justify-end mt-4 md:mt-0 ">
           <div className="mr-6">
-            <button className="bg-primary rounded-lg w-full pl-3 pr-3 h-9 text-onPrimary font-semibold outline-none" onClick={(e)=>handleCutoff()}>
+            {/* <button className="bg-primary rounded-lg w-full pl-3 pr-3 h-9 text-onPrimary font-semibold outline-none" onClick={(e)=>handleCutoff()}>
               Finalize
-            </button>
+            </button> */}
           </div>
           <select
             onChange={(e) => setActiveCandidate(e.target.value)}
