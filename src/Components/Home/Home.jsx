@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { animationOne, transition } from "../../Animations";
 import Roles from "./Roles";
 import LandingPage from "./LandingPage";
-import bgr from "../../Assets/gg.gif";
-import backgroundImg from '../../Assets/pageBackground.png';
+import bgr from "../../Assets/gg.webp";
+import backgroundImg from '../../Assets/pageBackground.webp';
 import Footer from "./Footer";
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import logo from '../../Assets/logoInverted.png'
+import logo from '../../Assets/logoInverted.webp'
 import { inView, motion, useInView } from 'framer-motion';
 import { useState } from 'react';
 import "./Styles/RolesCard.css"

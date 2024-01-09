@@ -5,8 +5,8 @@ import { db } from '../../db/firebase'
 import UpdateCards from './UpdateCards'
 import {motion} from 'framer-motion'
 import Loader from '../Load/Loader'
-import backgroungImg from '../../Assets/pageBackground.png'
-import mobilepng from '../../Assets/mobile bg.png'
+import backgroungImg from '../../Assets/pageBackground.webp'
+import mobilepng from '../../Assets/mobile bg.webp'
 import Footer from '../Home/Footer'
 
 const UpdatesList = () => {
@@ -35,7 +35,7 @@ const UpdatesList = () => {
     
   return (
     loading ? <Loader /> :
-    <motion.div layout className='w-full h-full'>
+    <motion.div layout className='w-full min-h-screen h-full'>
         <div className='hidden sm:flex'>
             <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
         </div>

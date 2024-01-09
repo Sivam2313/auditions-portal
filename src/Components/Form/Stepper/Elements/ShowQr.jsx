@@ -1,5 +1,5 @@
 import React from 'react'
-import qrCode from '../../../../Assets/qr.png'
+import qrCode from '../../../../Assets/qr.webp'
 const ShowQr = () => {
   return (
     <div className='w-full lg:min-w-[800px] pt-12'>

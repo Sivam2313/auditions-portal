@@ -6,8 +6,8 @@ import { db,realTimeDB } from '../../db/firebase'
 import FAQCard from './FAQCard'
 import {motion} from 'framer-motion'
 import Loader from '../Load/Loader'
-import backgroungImg from '../../Assets/pageBackground.png'
-import mobilepng from '../../Assets/mobile bg.png'
+import backgroungImg from '../../Assets/pageBackground.webp'
+import mobilepng from '../../Assets/mobile bg.webp'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from '../Home/Footer'

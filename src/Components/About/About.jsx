@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import {motion} from 'framer-motion';
 import Navbar from "../Navbar/Navbar";
 import TimeLine from "./TimeLine";
-import backgroungImg from '../../Assets/pageBackground.png'
-import mobilepng from '../../Assets/mobile bg.png'
+import backgroungImg from '../../Assets/pageBackground.webp'
+import mobilepng from '../../Assets/mobile bg.webp'
 import Loader from "../Load/Loader";
 import Footer from "../Home/Footer";
 

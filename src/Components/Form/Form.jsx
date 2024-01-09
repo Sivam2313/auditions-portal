@@ -8,15 +8,14 @@ import Links from './Stepper/Elements/Links'
 import Domains from './Stepper/Elements/Domains'
 import {motion} from 'framer-motion'
 import DomainInfo from './Stepper/Elements/DomainInfo'
-// import background from '../../Assets/homepage_gif.gif'
 import { ref, set } from 'firebase/database'
 import { realTimeDB } from '../../db/firebase'
 import Loader from '../Load/Loader'
 import ShowQr from './Stepper/Elements/ShowQr'
 import { animationTwo, transition } from '../../Animations'
 import Alert from '../Alert/Alert'
-import backgroungImg from '../../Assets/pageBackground.png'
-import mobilepng from '../../Assets/mobile bg.png'
+import backgroungImg from '../../Assets/pageBackground.webp'
+import mobilepng from '../../Assets/mobile bg.webp'
 
 const Form = () => {
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./loader.css"
-import logo from "../../Assets/logoInverted.png";
+import logo from "../../Assets/logoInverted.webp";
 
 const Loader = () => {
   return (
