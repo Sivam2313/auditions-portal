@@ -35,7 +35,7 @@ const Links = ({setCC,setCF,cf,cc, setLinks, links, isValidcf, isValidcc}) => {
         </div>
         <div className='pt-12 lg:pl-3 pl-6'>
             <div className='font-head text-xl lg:text-2xl text-left text-white'>
-                Profile links on any other coding platforms:
+                Profile links on any other coding platforms (optional) :
             </div>
             <Input setState={setLinks} value={links} type='text' />
         </div>

@@ -5,7 +5,7 @@ const Input = ({ setState, type, value }) => {
   const wordLimit = 100;
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
-    const words = inputValue.trim().split(" ");
+    const words = inputValue.trim().split(/\s+/);
     if (words.length <= wordLimit) {
       setState(inputValue);
     }
@@ -20,8 +20,8 @@ const Input = ({ setState, type, value }) => {
         rows={4}
       />
       <br></br>
-      <p className="p-1 ml-auto mr-20 w-3/12 border-onSurface2 rounded-full px-2 text-white border-2 font-head text-s">
-        Word count: {value.trim().split(" ").length}/{wordLimit}
+      <p className="p-1 ml-auto mr-20 w-3/12 border-onSurface2 md:rounded-full rounded-lg px-2 text-white border-2 font-head text-s">
+        Word count : {value.trim().match(/\S+/g)?.length || 0} / {wordLimit}
       </p>
     </motion.div>
   );
