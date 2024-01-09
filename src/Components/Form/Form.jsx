@@ -37,6 +37,7 @@ const Form = () => {
   const [drive, setDrive] = useState("")
   // const [isValid, setIsValid] = useState(true)
   const [loading, setLoading] = useState(false)
+  const [links, setLinks] = useState("")
 
   const [isValidname, setIsValidname] = useState(true);
   const [isValidroll, setIsValidroll] = useState(true);
@@ -66,6 +67,7 @@ const Form = () => {
       phone:phone,
       cc:cc,
       cf:cf,
+      links:links,
       appliedFor:appliedFor,
       github:git,
       drive:drive,
@@ -100,7 +102,7 @@ const Form = () => {
         component:<Contacts setImail={setImail} imail={imail} setPmail={setPmail} pmail={pmail} setPhone={setPhone} phone={phone} isValidpmail={isValidpmail} isValidimail={isValidimail} isValidphone={isValidphone}/>
     },{
         label:"Links",
-        component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf} isValidcc={isValidcc} isValidcf={isValidcf}/>
+        component:<Links setCC={setCC} setCF={setCF} cc={cc} cf={cf} setLinks={setLinks} links={links} isValidcc={isValidcc} isValidcf={isValidcf}/>
     },{
         label:"Domain",
         component:<Domains roles={roles} setAppliedFor={setAppliedFor} appliedFor={appliedFor} slidervalue={slidervalue} setSlidervalue={setSlidervalue} isValidcheck={isValidcheck} isValidrank={isValidrank} />
@@ -141,7 +143,7 @@ const Form = () => {
           <Stepper steps={steps} active={active}/>
           <motion.div layout className='w-full overflow-x-hidden'>
             {steps[active].component}
-            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} cc={cc} cf={cf} appliedFor={appliedFor} slidervalue={slidervalue} roles={roles} git={git} stack={stack} exp={exp} drive={drive} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone} setIsValidcc={setIsValidcc} setIsValidcf={setIsValidcf} setIsValidcheck={setIsValidcheck} setIsValidrank={setIsValidrank} setIsValidgit={setIsValidgit} setIsValidstack={setIsValidstack} setIsValidcontri={setIsValidcontri} setIsValiddrive={setIsValiddrive} />}
+            {(active!==steps.length-1) && <Buttons active={active} setActive={setActive} size={steps.length} submitHandler={submitHandler} name={name} roll={roll} branch={branch} pmail={pmail} imail={imail} phone={phone} cc={cc} cf={cf} links={links} appliedFor={appliedFor} slidervalue={slidervalue} roles={roles} git={git} stack={stack} exp={exp} drive={drive} setIsValidname={setIsValidname} setIsValidroll={setIsValidroll} setIsValidbranch={setIsValidbranch} setIsValidpmail={setIsValidpmail} setIsValidimail={setIsValidimail} setIsValidphone={setIsValidphone} setIsValidcc={setIsValidcc} setIsValidcf={setIsValidcf} setIsValidcheck={setIsValidcheck} setIsValidrank={setIsValidrank} setIsValidgit={setIsValidgit} setIsValidstack={setIsValidstack} setIsValidcontri={setIsValidcontri} setIsValiddrive={setIsValiddrive} />}
           </motion.div>
       </motion.div>
     </motion.div>

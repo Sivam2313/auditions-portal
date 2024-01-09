@@ -61,6 +61,9 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             <div className='font-head pb-3 lg:text-2xl text-xl text-left text-white'>
                 Link to your Artworks:
             </div>
+            <div className='font-head w-11/12 text-xs lg:text-sm text-left text-onSurface2 pl-1 pb-2'>
+                Upload your artworks on Google Drive and share the link here
+            </div>
             <Input setState={setDrive} value={drive} type='text' />
             { !isValiddrive &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>

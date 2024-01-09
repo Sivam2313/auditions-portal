@@ -26,7 +26,7 @@ const About = () => {
 
     return (
         loading ? <Loader/> : 
-        <motion.div layout className='w-full h-full '>
+        <motion.div layout className='w-full h-min-[100vh] h-full '>
             <div className='hidden sm:flex'>
                 <img src={backgroungImg} alt="background" className="fixed top-0 left-0 w-screen h-screen object-cover z-0 hidden sm:flex" />
             </div>

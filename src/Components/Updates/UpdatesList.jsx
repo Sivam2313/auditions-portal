@@ -68,7 +68,8 @@ const UpdatesList = () => {
                     </ul>
                 </div>
             }
-            <div className="snap-start h-fit" >
+            <div className='mb-40'></div>
+            <div className="snap-start" >
                 <Footer />
             </div> 
         </motion.div>
