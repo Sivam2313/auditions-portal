@@ -155,6 +155,11 @@ const Footer = () => {
                     Web Team 24-25
                   </span>
                 </strong>
+                <a href="https://www.recursionnitd.in/" style={{ textDecoration: "none" }}>
+                  <strong className="flex justify-center">
+                    <span className="flex">Visit Our Page</span>
+                  </strong>
+                </a>
                 <p className="rights">
                   <span>© </span>
                   <span className="copyright-year">
