@@ -8,18 +8,18 @@ const rounds=[
     },
     {
         no : 2,
-        title : "Teaching + Tech Round I",
-        description : "Candidates will have to explain a given topic on the board for the teaching round.For Tech round I easy DSA questions will be asked."
+        title : "Tech Round I",
+        description : "First round of technical interview."
     },
     {
         no : 3,
         title : "Domain Round (I & II) + Tech Round II",
-        description : "Those who opted for WebD/GD shall appear for their respective domain rounds + Problem setting round will test their ability to set questions."
+        description : "Those who opted for WebD/AppD/GD shall appear for their respective domain rounds + second round of technical interview."
     },
     {
         no : 4,
         title : "Personal Interview Round",
-        description : "Behavioural questions will be asked to the candidates after which the final list of inductees will be determined."
+        description : "Final Round of Interview."
     },
 ]
 

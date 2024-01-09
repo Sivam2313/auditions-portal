@@ -5,6 +5,7 @@ import TimeLine from "./TimeLine";
 import backgroungImg from '../../Assets/pageBackground.png'
 import mobilepng from '../../Assets/mobile bg.png'
 import Loader from "../Load/Loader";
+import Footer from "../Home/Footer";
 
 const About = () => {
     const [mobview, setMobview] = useState(false)
@@ -37,6 +38,9 @@ const About = () => {
             </motion.div>
                     <Navbar navbarBg={'#151632'}/>
                     <TimeLine/>
+                    <div className="snap-start h-fit" >
+                        <Footer />
+                    </div> 
         </motion.div>
     );
 };

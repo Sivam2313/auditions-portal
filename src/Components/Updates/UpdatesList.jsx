@@ -7,6 +7,7 @@ import {motion} from 'framer-motion'
 import Loader from '../Load/Loader'
 import backgroungImg from '../../Assets/pageBackground.png'
 import mobilepng from '../../Assets/mobile bg.png'
+import Footer from '../Home/Footer'
 
 const UpdatesList = () => {
     const [updatesList, setUpdatesList] = useState([])
@@ -67,6 +68,9 @@ const UpdatesList = () => {
                     </ul>
                 </div>
             }
+            <div className="snap-start h-fit" >
+                <Footer />
+            </div> 
         </motion.div>
     </motion.div>
   )

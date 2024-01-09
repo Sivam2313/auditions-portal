@@ -66,7 +66,7 @@ const LandingPage = () => {
           transition={{delay:2.5, duration:2}}
           className='flex w-full justify-center mt-12'
         >
-          <button className="text-onPrimary bg-gradient-to-r from-[#ba9606] via-primary to-[#ba9606] lg:text-xl rounded-full lg:w-1/6 lg:text-2xl font-title p-3 hover:drop-shadow-glow transition-all" onClick={(e)=>{navigate('/form')}}>
+          <button className="text-onPrimary bg-gradient-to-r from-[#ba9606] via-primary to-[#ba9606] lg:text-lg rounded-full lg:w-1/6 font-title p-3 hover:drop-shadow-glow transition-all" onClick={(e)=>{navigate('/form')}}>
             Join Now
           </button>
         </motion.div>

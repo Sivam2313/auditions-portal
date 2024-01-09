@@ -6,6 +6,7 @@ import Roles from "./Roles";
 import LandingPage from "./LandingPage";
 import bgr from "../../Assets/gg.gif";
 import backgroundImg from '../../Assets/pageBackground.png';
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -50,6 +51,9 @@ const Home = () => {
       <div className="snap-start h-fit" style={{background:"#0f0913"}}>
         <Roles />
       </div>
+      <div className="snap-start h-fit" >
+        <Footer />
+      </div>      
     </motion.div>
   );
 };

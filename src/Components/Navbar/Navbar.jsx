@@ -6,6 +6,7 @@ import { signOut } from 'firebase/auth';
 import { useAuth } from '../../Hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import Hamburger from '../Icons/Hamburger';
+// import "./navbar.css";
 const Navbar = ({navbarBg}) => {
 
     const {userId,setuserId} = useAuth();
@@ -38,6 +39,19 @@ const Navbar = ({navbarBg}) => {
         var value = showMenu;
         setShowMenu(!value)
     }
+
+    // const [color, setColor] = useState(false);
+    // const changeNav = () => {
+    //     if(window.scrollY >= 50){
+    //         setColor(true)
+    //     }
+    //     else{
+    //         setColor(false)
+    //     }
+    // }
+    // useEffect(() => {
+    //     window.addEventListener('scroll', changeNav)
+    // }, [])
 
   return (
     <motion.div layout 

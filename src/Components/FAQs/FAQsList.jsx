@@ -10,6 +10,7 @@ import backgroungImg from '../../Assets/pageBackground.png'
 import mobilepng from '../../Assets/mobile bg.png'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from '../Home/Footer'
 
 const FAQsList = () => {
     const [FAQsList, setFAQsList] = useState([])
@@ -141,6 +142,9 @@ const FAQsList = () => {
                     </ul>
                 </div>
             }
+            <div className="snap-start h-fit" >
+                <Footer />
+            </div> 
         </motion.div>
         <ToastContainer />
     </motion.div>

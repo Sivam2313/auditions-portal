@@ -1,0 +1,8 @@
+.bg-custom-color {
+    background-color: #0F0913;
+  }
+
+.bg-custom-col{
+    transition: 3s ease-in;
+    background-color: black;
+}
