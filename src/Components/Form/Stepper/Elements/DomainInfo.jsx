@@ -3,7 +3,7 @@ import Input from '../../Input'
 import Message from './Message'
 import  Textarea from '../../Textarea'
 
-const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setStack, isValidgit, isValidstack, isValidcontri, isValiddrive}) => {
+const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp, setExp,stack,setStack, soft, setSoft, isValidgit, isValidstack, isValidcontri, isValiddrive}) => {
   return (
     <div className='w-full lg:min-w-[800px] min-h-[450px]'>
         <div className='font-head pl-3 mx-3 lg:mx-0 text-4xl lg:text-5xl text-left text-white font-semibold pb-3 lg:pb-6 border-b-2 border-outline '>
@@ -69,6 +69,11 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp,setExp,stack,setSt
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
                 Please enter your drive link
             </div>}
+            <br></br>
+            <div className='font-head pb-3 text-2xl text-left text-white'>
+                Have you worked with any designing software before? If yes, then which one?
+            </div>
+            <Input setSoft={setSoft} value={soft} type='text' />
         </div>
     </div>
   )

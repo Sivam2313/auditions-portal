@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import {motion} from 'framer-motion'
 import validator from 'validator'
 
-const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, links, appliedFor, slidervalue, roles, git, stack, exp, drive, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf, setIsValidcheck, setIsValidrank, setIsValidgit, setIsValidstack, setIsValidcontri, setIsValiddrive}) => {
+const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail, imail, phone, cc, cf, appliedFor, slidervalue, roles, git, stack, exp, drive, setIsValidname, setIsValidroll, setIsValidbranch, setIsValidpmail, setIsValidimail, setIsValidphone, setIsValidcc, setIsValidcf, setIsValidcheck, setIsValidrank, setIsValidgit, setIsValidstack, setIsValidcontri, setIsValiddrive}) => {
 
   const nextBtn = useRef(null)
 
