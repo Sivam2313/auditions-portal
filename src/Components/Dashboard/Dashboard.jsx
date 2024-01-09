@@ -27,7 +27,7 @@ const Dashboard = () => {
   return (
     <div className='flex'>
         <Sidebar links={links} selected={selected} setSelected={setSelected}/>
-        <div className='w-5/6 ml-[16.66%] h-full min-h-screen'>
+        <div className='w-screen md:w-5/6 ml-0 md:ml-[16.66%] h-full min-h-screen'>
             <Logout />
             <div className='mt-20'>
                 {links[selected].component}

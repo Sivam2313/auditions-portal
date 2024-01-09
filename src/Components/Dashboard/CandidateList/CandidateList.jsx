@@ -139,8 +139,8 @@ const CandidateList = () => {
 
  
   return (
-    <div className="w-full h-full pl-32">
-      <div className="font-head font-semibold text-5xl text-onSurface flex justify-start">
+    <div className="w-full h-full md:pl-32">
+      <div className="font-head font-semibold text-4xl md:text-5xl text-onSurface flex justify-center md:justify-start">
         Candidate List
       </div>
         <SearchBar
@@ -149,7 +149,7 @@ const CandidateList = () => {
           handleSearch={handleSearch}
         />
 
-        <div className="flex w-full md:w-3/4 justify-between md:justify-end mt-4 md:mt-0 ">
+        <div className="flex w-full md:w-3/4 justify-around md:justify-end mt-4 md:mt-0 ">
           <div className="mr-6">
             {/* <button className="bg-primary rounded-lg w-full pl-3 pr-3 h-9 text-onPrimary font-semibold outline-none" onClick={(e)=>handleCutoff()}>
               Finalize
@@ -165,7 +165,7 @@ const CandidateList = () => {
       </div>
 
     
-      <div className="w-full mt-16">
+      <div className="w-full mt-16 pl-2 pr-2">
         {candidates?.map((candidate, index) => {
           return (
             <CandidateCard
