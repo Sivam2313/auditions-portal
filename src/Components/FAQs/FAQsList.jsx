@@ -17,54 +17,46 @@ const FAQsList = () => {
     const [question, setQuestion] = useState('');
     const [loading, setLoading] = useState(true);
 
-    const handlePostQuestion = async () =>{
+    const handlePostQuestion = async () => {
         try {
-            if (!question.trim()) {
-                setIsValidQuestion(false);
-                return;
-            }
-            const newQuestionRef = await push(ref(realTimeDB, 'FAQs'));
-            const newQuestionKey = newQuestionRef.key;
-            
-            if (newQuestionKey) {
-                await set(ref(realTimeDB, `FAQs/${newQuestionKey}`), {
-                    questionAsked: question,
-                    answer: ''
-                });
-                setQuestion('');
-                setIsValidQuestion(true);
-                toast.success("Your question has been successfully posted, will be answered soon!", {
-                    position: toast.POSITION.TOP_RIGHT,
-                    autoClose: 2000,
-                    theme: "colored",
-                    className: "FAQ-toast"
-                });
-            }
+          if (!question.trim()) {
+            setIsValidQuestion(false);
+            return;
+          }
+    
+          const docRef = await addDoc(collection(db, 'FAQs'), {
+            questionAsked: question,
+            answer: ''
+          });
+    
+          setQuestion('');
+          setIsValidQuestion(true);
+          toast.success('Your question has been successfully posted, will be answered soon!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            theme: 'colored',
+            className: 'FAQ-toast'
+          });
         } catch (error) {
-            toast.error("Error posting Question!", {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 2000,
-                theme: "colored",
-                className: "FAQ-toast"
-              });
+          console.error('Error posting question:', error);
+          toast.error('Error posting Question!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            theme: 'colored',
+            className: 'FAQ-toast'
+          });
         }
-
-    }
+      };
 
     useEffect(() => {
 
         async function fetchData() {
-            const query = ref(realTimeDB, "FAQs");
-            return onValue(query, (snapshot) => {
-                const data = snapshot.val();
-                if (snapshot.exists()) {
-                    const filteredList = Object.entries(data)
-                        .filter(([key, value]) => value.answer !== '') 
-                        .map(([key, value]) => ({ ...value, id: key }));
-        
-                    setFAQsList(filteredList);
-                }
-            });
+            const querySnapshot = await getDocs(collection(db, 'FAQs'));
+            const list = querySnapshot.docs
+            .filter(doc => doc.data().answer !== '')
+            .map(doc => ({ ...doc.data(), id: doc.id }));
+
+            setFAQsList(list);
         }
 
         fetchData()
