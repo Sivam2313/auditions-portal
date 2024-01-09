@@ -14,7 +14,7 @@ const Basic = ({name,setName,branch,setBranch,roll,setRoll,isValidname,isValidro
             <div className='font-head pb-3 lg:text-2xl text-xl text-left text-white'>
                 Name
             </div>
-            <Input setState={setName} value={name} type='text' />
+            <fInput setState={setName} value={name} type='text' />
             { !isValidname &&
             <div className='font-head w-11/12 text-xs lg:text-sm text-left text-red-300 pl-1 pb-2 mt-2'>
                 Please enter your name
