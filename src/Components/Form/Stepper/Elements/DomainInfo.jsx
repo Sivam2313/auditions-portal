@@ -73,7 +73,7 @@ const DomainInfo = ({setGit,setDrive,appliedFor,drive,git,exp, setExp,stack,setS
             <div className='font-head pb-3 text-2xl text-left text-white'>
                 Have you worked with any designing software before? If yes, then which one?
             </div>
-            <Input setSoft={setSoft} value={soft} type='text' />
+            <Input setState={setSoft} value={soft} type='text' />
         </div>
     </div>
   )

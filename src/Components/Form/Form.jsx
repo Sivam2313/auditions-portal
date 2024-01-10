@@ -57,6 +57,8 @@ const Form = () => {
 
   function submitHandler(){
     setLoading(true);
+    console.log(appliedFor);
+    console.log(slidervalue);
     console.log(name);
     set(ref(realTimeDB, "candidates/1"+phone), {
       name:name,
@@ -69,6 +71,7 @@ const Form = () => {
       cf:cf,
       links:links,
       appliedFor:appliedFor,
+      slidervalue:slidervalue,
       github:git,
       drive:drive,
       // currRound:[0,0,0],
