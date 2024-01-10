@@ -128,13 +128,13 @@ const DomainList = ({ domains, selected }) => {
     handleFilter();
   },[totalcandidates,activeCandidate])
   return (
-    <div className="w-full h-full pl-32">
-      <div className="font-head font-semibold text-5xl text-onSurface flex justify-start">
+    <div className="w-full h-full md:pl-32">
+      <div className="font-head font-semibold text-4xl md:text-5xl text-onSurface flex justify-center md:justify-start">
         {domains[selected]}
       </div>
       <SearchBar setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
 
-      <div className="flex w-full md:w-3/4 justify-between md:justify-end mt-4 md:mt-0 ">
+      <div className="flex w-full md:w-3/4 justify-around md:justify-end mt-4 md:mt-0">
         <select
           onChange={(e) => setActiveCandidate(e.target.value)}
           className="h-9 w-2/6 rounded-lg ps-3 pe-2 bg-primary text-onPrimary font-semibold outline-none"
@@ -144,7 +144,7 @@ const DomainList = ({ domains, selected }) => {
         </select>
       </div>
 
-      <div className="w-full mt-16">
+      <div className="w-full mt-16 pl-2 pr-2">
         {candidates.map((candidate, index) => {
           return (
             <DomainCard candidate={candidate} index={index + 1} key={index} selected={selected}/>

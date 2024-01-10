@@ -42,7 +42,7 @@ const RoundUpdate = ({ candidate, index, domainSelected}) => {
       {showModal ? (
         <>
           <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="sm:w-[90%] relative w-auto my-6 mx-auto max-w-[35rem]">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-onSurface outline-none focus:outline-none">
                 <div className="flex flex-col items-start justify-between p-5 border-b border-solid border-gray-400 rounded-t ">
 

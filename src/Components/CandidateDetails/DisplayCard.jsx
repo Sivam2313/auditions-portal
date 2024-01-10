@@ -2,7 +2,7 @@ import React from 'react'
 
 const DisplayCard = ({candidate}) => {
   return (
-    <div className='rounded-lg w-7/12 mx-auto flex flex-col justify-start bg-surface p-6'>
+    <div className='rounded-lg w-[90%] md:w-7/12 mx-auto flex flex-col justify-start bg-surface p-6'>
         <div className='text-onBackground font-head text-2xl font-semibold text-left'>
             {candidate?.name}
         </div>

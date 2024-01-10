@@ -24,7 +24,7 @@ const Logout = () => {
         
     }
   return (
-    <div className='w-full h-[6vh] flex justify-end pr-12 mt-12'>
+    <div className='w-full h-[6vh] flex justify-end pr-12 mt-28 md:mt-12'>
         <button className='p-3 border-outline rounded-full px-8 text-onSecondary border-2 font-head font-bold text-xl' onClick={handleLogout}>
             Logout
         </button>

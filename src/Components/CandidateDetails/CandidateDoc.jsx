@@ -78,7 +78,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
     }, [active,userId])
 
   return (
-    <div className='w-7/12 mx-auto border-2 border-outline h-fit min-h-[600px] mt-6 rounded-xl'>
+    <div className='w-[90%] md:w-7/12 mx-auto border-2 border-outline h-fit min-h-[600px] mt-6 rounded-xl'>
         <Tab active={active} setActive={setActive}/>
         <div className='h-full'>
             <div className='flex justify-between items-center w-11/12 mx-auto h-1/6'>
