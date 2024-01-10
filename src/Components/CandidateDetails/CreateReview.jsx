@@ -18,7 +18,7 @@ const CreateReview = ({active,candidateId,setShow}) => {
     
 
     function handleSubmit() {
-        console.log(review);
+        // console.log(review);
         var data = review
         if(review===''){
             setShow(false)

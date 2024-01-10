@@ -32,7 +32,7 @@ const Login = () => {
             // Signed in
             const user = userCredential.user;
             navigate("/dashboard")
-            console.log(user);
+            // console.log(user);
         })
         .catch((error) => {
             const errorCode = error.code;

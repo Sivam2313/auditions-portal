@@ -10,7 +10,7 @@ const SearchBar = ({query,setSearchQuery,handleSearch }) => {
   
   const searchQuery = (e) => {
     setSearchQuery(e.target.value)
-    console.log("searching.......");
+    // console.log("searching.......");
     debouncedApiCall()
   }
 

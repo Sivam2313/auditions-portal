@@ -39,7 +39,7 @@ const PenPaperUpdate = ({candidate,index}) => {
         const candidateRef = ref(realTimeDB, "candidates/1" + candidate.phone);
         update(candidateRef, { PenPaperMarks: updatedMarks })
         .then(() => {
-            console.log('PenPaperMarks updated successfully');
+            // console.log('PenPaperMarks updated successfully');
             updated=true;
             showUpdateMessage(updated);
         })

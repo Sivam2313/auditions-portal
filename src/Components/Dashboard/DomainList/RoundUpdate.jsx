@@ -12,14 +12,14 @@ const RoundUpdate = ({ candidate, index, domainSelected}) => {
   );
 
   const handleUpdateRound = () => {
-    console.log("Updating round of candidate ",candidate.candidateId);
+    // console.log("Updating round of candidate ",candidate.candidateId);
     const candidateRef = ref(
       realTimeDB,
       "candidates/1" + candidate.phone + "/rounds/" + domains[domainSelected]
     );
     update(candidateRef, { currRound: Number(round), promotedBy: email })
       .then(() => {
-        console.log("Round updated successfully");
+        // console.log("Round updated successfully");
 
       })
       .catch((error) => {

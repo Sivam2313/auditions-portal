@@ -21,13 +21,13 @@ const Domains = ({
     let newSliderValues = [...slidervalue];
     newSliderValues[index] = parseInt(value);
     setSlidervalue(newSliderValues);
-    console.log(slidervalue);
-    console.log(value);
-    console.log(index);
-    console.log(value);
-    console.log((appliedFor.length-1)*100);
-    console.log((((value - 1) * 100) / (appliedFor.length - 1)));
-    console.log(Math.min((appliedFor.length-1)*100,(((value - 1) * 100) / (appliedFor.length - 1))));
+    // console.log(slidervalue);
+    // console.log(value);
+    // console.log(index);
+    // console.log(value);
+    // console.log((appliedFor.length-1)*100);
+    // console.log((((value - 1) * 100) / (appliedFor.length - 1)));
+    // console.log(Math.min((appliedFor.length-1)*100,(((value - 1) * 100) / (appliedFor.length - 1))));
   };
 
   function handleChange(e) {

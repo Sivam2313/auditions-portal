@@ -20,13 +20,13 @@ const CandidateDoc = ({candidate, candidateId}) => {
 
 
     function handelDelete(id){
-        console.log(id);
+        // console.log(id);
         const query = ref(realTimeDB, "Reviews/"+active+"/"+round[active]+"/"+candidateId+"/"+id);
         set(query,null).then(()=>{
-            console.log("deleted");
+            // console.log("deleted");
         })
         .catch(()=>{
-            console.log("error");
+            // console.log("error");
         })
     }
 
@@ -42,7 +42,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
                         val.id = project[0];
                         list.push(val)
                     });
-                    console.log(list);
+                    // console.log(list);
                     let data = [...list]
 
                 }
@@ -57,7 +57,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
 
 
     useEffect(() => {
-        console.log(active);
+        // console.log(active);
         const query = ref(realTimeDB, "Reviews/"+active+"/"+round[active]+"/"+candidateId);
         return onValue(query, (snapshot) => {
             const data = snapshot.val();
@@ -68,7 +68,7 @@ const CandidateDoc = ({candidate, candidateId}) => {
                     val.id = project[0];
                     list.push(val)
                 });
-                console.log(list);
+                // console.log(list);
                 setReviews(list);
             }
             else{

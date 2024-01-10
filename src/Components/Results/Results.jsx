@@ -17,7 +17,7 @@ const Results = () => {
   
       if (docSnap.exists()) {
         const currentRound = docSnap.data().details;
-        console.log(docSnap.data());
+        // console.log(docSnap.data());
         const query = ref(realTimeDB, "candidates");
         return onValue(query, (snapshot) => {
           const data = snapshot.val();
@@ -34,7 +34,7 @@ const Results = () => {
               }
               return flag;
             })
-            console.log(list);
+            // console.log(list);
             setCandidates(list);
           }
         });

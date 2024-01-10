@@ -45,7 +45,7 @@ const CandidateList = () => {
   };
 
   const filterCandidates=(candidates)=>{
-    console.log('round',round);
+    // console.log('round',round);
     const domains=[ "Web Development","Graphics Design","Teaching and Problem Setting"];
     var list = new Set();
     const filterCandidates = candidates.filter(candidate=>{
@@ -56,7 +56,7 @@ const CandidateList = () => {
         return false;
       }
     })
-    console.log(filterCandidates);
+    // console.log(filterCandidates);
     return filterCandidates;
 
   }
@@ -72,7 +72,7 @@ const CandidateList = () => {
             project.id = Object.keys(data)[idx];
             list.push(project);
           });
-          console.log(list);
+          // console.log(list);
           setTotalcandidates(list);
         }
       });
@@ -81,7 +81,7 @@ const CandidateList = () => {
 
   const handleFilter=()=>{
     if(activeCandidate==="Active"){
-      console.log("Active section");
+      // console.log("Active section");
       setCandidates(filterCandidates(totalcandidates));
     }
     else if(activeCandidate==="All"){
@@ -120,7 +120,7 @@ const CandidateList = () => {
         return false;
       }
     });
-    console.log(candidateArray);
+    // console.log(candidateArray);
     if (!queryFound) {
       setCandidates([]);
       showSearchMessage(queryFound);

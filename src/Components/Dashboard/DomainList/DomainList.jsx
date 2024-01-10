@@ -84,7 +84,7 @@ const DomainList = ({ domains, selected }) => {
 
   const handleSearch = () => {
     if (searchQuery === "") return;
-    console.log(searchQuery);
+    // console.log(searchQuery);
     let candidateArray = candidates;
     const query = searchQuery.toLowerCase();
     let queryFound = false;
@@ -104,7 +104,7 @@ const DomainList = ({ domains, selected }) => {
         return false;
       }
     });
-    console.log(candidateArray);
+    // console.log(candidateArray);
     if (!queryFound) {
       setCandidates([]);
       showSearchMessage(queryFound);

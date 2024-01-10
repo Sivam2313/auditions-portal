@@ -57,9 +57,9 @@ const Form = () => {
 
   function submitHandler(){
     setLoading(true);
-    console.log(appliedFor);
-    console.log(slidervalue);
-    console.log(name);
+    // console.log(appliedFor);
+    // console.log(slidervalue);
+    // console.log(name);
     set(ref(realTimeDB, "candidates/1"+phone), {
       name:name,
       roll:roll,
@@ -91,9 +91,9 @@ const Form = () => {
     }).then(()=>{
       setLoading(false);
       setActive(5);
-      console.log("Candidate Added");
+      // console.log("Candidate Added");
     }).catch((error)=>{
-      console.log(error);
+      // console.log(error);
     });
   }
 

@@ -17,10 +17,10 @@ const Header = () => {
       if(userId){
           signOut(auth).then(() => {
               setuserId(null);
-              console.log("Signed out successfully")
+              // console.log("Signed out successfully")
               navigate('/login')
           }).catch((error) => {
-              console.log(error);
+              // console.log(error);
           });
       }
       else{
