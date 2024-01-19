@@ -5,11 +5,13 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db, realTimeDB } from '../../db/firebase'
 import Alert from '../Alert/Alert'
 import { onValue, ref } from 'firebase/database'
+import Loader from '../Load/Loader'
 
 const Results = () => {
   const [canididates, setCandidates] = useState([])
   const [errorMessage, setErrorMessage] = useState()
   const [showAlert, setShowAlert] = useState(false)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     async function fetchCandidates() {
       const docRef = doc(db, "Round", "RoundInfo");
@@ -20,6 +22,7 @@ const Results = () => {
         // console.log(docSnap.data());
         const query = ref(realTimeDB, "candidates");
         return onValue(query, (snapshot) => {
+          setLoading(true)
           const data = snapshot.val();
           if (snapshot.exists()) {
             var list = [];
@@ -36,6 +39,7 @@ const Results = () => {
             })
             // console.log(list);
             setCandidates(list);
+            setLoading(false)
           }
         });
       } else {
@@ -49,15 +53,16 @@ const Results = () => {
   }, [])
   
   
-  return (
+  return ( 
+    loading? <Loader navbarBg = {"#0f0913"}/> :
     <div>
-      <Navbar/>
+      <Navbar />
       {showAlert && <Alert message={errorMessage} setShowAlert={setShowAlert}/>}
       <motion.div
         initial={{opacity:0}}
         animate={{opacity:1}}
         transition={{duration:0.5}}
-        className='pt-[9vh]'
+        className='pt-[9vh] pb-24'
         >
             <div>
                 <div className='font-title lg:text-6xl text-5xl text-primary pt-6 mb-24'>
@@ -65,25 +70,25 @@ const Results = () => {
                 </div>
             </div>
             <div className='flex flex-col justify-center items-center font-sub font-bold text-xl text-onSecondary mt-6'>
-              <div className='flex justify-between text-primary lg:w-1/4 w-10/12'>
+              <th className='flex justify-between text-primary lg:w-1/4 w-10/12 text-2xl'>
                 <div>
                   Name
                 </div>
                 <div>
                   Roll
                 </div>
-              </div>
+              </th>
               {
                 canididates.map((candidate, idx) => {
                   return(
-                    <div className='pt-2 flex justify-between lg:w-1/4 w-10/12'>
+                    <tr className='pt-2 flex justify-between lg:w-1/4 w-10/12'>
                       <div>
                         {candidate.name}
                       </div>
                       <div>
                         {candidate.roll}
                       </div>
-                    </div>
+                    </tr>
                   )
                 })
               }
