@@ -6,6 +6,7 @@ import { db, realTimeDB } from '../../db/firebase'
 import Alert from '../Alert/Alert'
 import { onValue, ref } from 'firebase/database'
 import Loader from '../Load/Loader'
+import backgroungImg from '../../Assets/pageBackground.webp'
 
 const Results = () => {
   const [canididates, setCandidates] = useState([])
@@ -56,19 +57,21 @@ const Results = () => {
   return ( 
     loading? <Loader navbarBg = {"#0f0913"}/> :
     <div>
-      <Navbar />
+      <Navbar navbarBg={'#151632'}/>
       {showAlert && <Alert message={errorMessage} setShowAlert={setShowAlert}/>}
       <motion.div
         initial={{opacity:0}}
         animate={{opacity:1}}
         transition={{duration:0.5}}
         className='pt-[9vh] pb-24'
+        style={{ backgroundImage: `url(${backgroungImg})`, backgroundSize: 'cover'}}
         >
             <div>
-                <div className='font-title lg:text-6xl text-5xl text-primary pt-6 mb-24'>
+                <div className='font-title lg:text-6xl text-5xl text-primary pt-6 mt-5 mb-20'>
                     Results
                 </div>
             </div>
+            
             <div className='flex flex-col justify-center items-center font-sub font-bold text-xl text-onSecondary mt-6'>
               <th className='flex justify-between text-primary lg:w-1/4 w-10/12 text-2xl'>
                 <div>
@@ -81,11 +84,11 @@ const Results = () => {
               {
                 canididates.map((candidate, idx) => {
                   return(
-                    <tr className='pt-2 flex justify-between lg:w-1/4 w-10/12'>
-                      <div>
+                    <tr className='py-2 flex justify-between lg:w-1/4 w-10/12 backdrop-blur-sm'>
+                      <div className='text-left'>
                         {candidate.name}
                       </div>
-                      <div>
+                      <div className='text-right'>
                         {candidate.roll}
                       </div>
                     </tr>
