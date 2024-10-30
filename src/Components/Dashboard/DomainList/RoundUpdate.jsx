@@ -33,7 +33,7 @@ const RoundUpdate = ({ candidate, index, domainSelected}) => {
     <>
       <button
         className="bg-blue-200 text-black active:bg-blue-500 
-      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+      font-bold px-2 py-3 w-1/4 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 text-sm"
         type="button"
         onClick={() => setShowModal(true)}
       >

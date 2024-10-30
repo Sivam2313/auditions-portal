@@ -169,14 +169,14 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
 
   return (
     <motion.div layout className='w-11/12 flex justify-between lg:pl-3 pl-6 font-head text-xl mt-16'>
-        <button className='bg-surface p-2 rounded-full w-32 text-onSurface' onClick={backHandler}
+        <button className='bg-surface p-2 rounded-full w-32 text-black' onClick={backHandler}
         style={{
           visibility: (parseInt(active)===0)? 'hidden':'visible'
         }}
         >
             Back
         </button>
-        <button ref={nextBtn} className='bg-primary p-3 rounded-full w-32 text-onPrimary' onClick={nextHandler}>
+        <button ref={nextBtn} className='bg-primary p-3 rounded-full w-32 text-black' onClick={nextHandler}>
             {(parseInt(active)===size-2)? "Submit" : "Next"}
         </button>
     </motion.div>

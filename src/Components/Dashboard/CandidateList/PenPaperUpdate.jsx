@@ -55,8 +55,8 @@ const PenPaperUpdate = ({candidate,index}) => {
   return (
     <>
       <button
-        className="bg-blue-200 text-black active:bg-blue-500 
-      font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        className="bg-blue-200 text-sm text-black active:bg-blue-500 
+      font-bold px-3 py-3 mt-1 ms-3 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
         onClick={() => setShowModal(true)}
       >
