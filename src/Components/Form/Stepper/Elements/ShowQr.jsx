@@ -1,5 +1,5 @@
 import React from 'react'
-import qrCode from '../../../../Assets/qr.webp'
+import qrCode from '../../../../Assets/QR2024.webp'
 const ShowQr = () => {
   const whatsappGroupLink='https://chat.whatsapp.com/E6DCYq92wUcErifGah43pW';
   return (
