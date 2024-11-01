@@ -1,7 +1,7 @@
 import React from 'react'
 import qrCode from '../../../../Assets/qr.webp'
 const ShowQr = () => {
-  const whatsappGroupLink='https://chat.whatsapp.com/GnuIGK9TdMILRIsQXOAGUl';
+  const whatsappGroupLink='https://chat.whatsapp.com/E6DCYq92wUcErifGah43pW';
   return (
     <div className='w-full lg:min-w-[800px] pt-12'>
         <div className='font-head text-center pl-3 mx-3 lg:mx-0 text-2xl lg:text-5xl text-left text-white font-semibold pb-3 lg:pb-6 border-b-2 border-outline '>

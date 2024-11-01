@@ -10,7 +10,4 @@ const firebaseConfig = {
 };
 
 
-console.log(firebaseConfig);
-
-
 export default firebaseConfig;
