@@ -30,7 +30,7 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       else{
         setIsValidname(true);
       }
-      if(roll==="" || roll.length!==8 || roll[0]!=='2' || roll[1]!=='2'){
+      if(roll==="" || roll.length!==8 || roll[0]!=='2' || roll[1]!=='3'){
         setIsValidroll(false);
         return;
       }
@@ -55,15 +55,16 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       else{
         setIsValidpmail(true);
       }
-      const [, domain] = imail.split("@");
+      var [registration, domain] = imail.split("@");
+      registration = registration.trim().toLowerCase();
       const isValidDomain = domain === "btech.nitdgp.ac.in";
-      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain)
+      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain || registration.length!==11 || registration[registration.length-6]!=='u' || registration[registration.length-7]!=='3' || registration[registration.length-8]!=='2')
       {
         setIsValidimail(false);
         return;
       }
-      else{
-        setIsValidimail(true);
+      else{  
+        setIsValidimail(true);  
       }
       if(phone.trim()==="" || !validator.isMobilePhone(phone.trim())){
         setIsValidphone(false);
