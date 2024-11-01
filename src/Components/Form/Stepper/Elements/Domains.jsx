@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "./slider.css";
 
@@ -15,19 +15,32 @@ const Domains = ({
     shown: { opacity: 1, height: "fit-content" },
     hidden: { opacity: 0, height: "0px" },
   };
+  const [maxSliderLength, setMaxSliderLength] = useState(0);
+
+  useEffect(() => {
+    setMaxSliderLength(appliedFor.length);
+  }, [appliedFor]);
+
+  useEffect(() => {
+    const newLength = appliedFor.length;
+    for (let i = 0; i < slidervalue.length; i++) {
+      slidervalue[i] = Math.min(newLength, slidervalue[i]);
+    }
+  }, [slidervalue, appliedFor]);
+
 
   const value = [1, 2, 3, 4];
   const handleSliderChange = (index, value) => {
     let newSliderValues = [...slidervalue];
-    newSliderValues[index] = parseInt(value);
+    newSliderValues[index] = Math.min(maxSliderLength,parseInt(value));
     setSlidervalue(newSliderValues);
     // console.log(slidervalue);
     // console.log(value);
     // console.log(index);
     // console.log(value);
-    // console.log((appliedFor.length-1)*100);
-    // console.log((((value - 1) * 100) / (appliedFor.length - 1)));
-    // console.log(Math.min((appliedFor.length-1)*100,(((value - 1) * 100) / (appliedFor.length - 1))));
+    // console.log((maxSliderLength-1)*100);
+    // console.log((((value - 1) * 100) / (maxSliderLength - 1)));
+    // console.log(Math.min((maxSliderLength-1)*100,(((value - 1) * 100) / (maxSliderLength - 1))));
   };
 
   function handleChange(e) {
@@ -85,7 +98,7 @@ const Domains = ({
       </div>
       <motion.div
         className="pt-8 border-t-2 border-outline mx-3 lg:mx-0"
-        animate={appliedFor.length <= 1 ? "hidden" : "shown"}
+        animate={maxSliderLength <= 1 ? "hidden" : "shown"}
         variants={variants}
       >
         <div className="font-head pb-3 text-lg lg:text-xl text-left pl-3 mx-3 lg:mx-0 text-white">
@@ -106,7 +119,7 @@ const Domains = ({
                     <input
                       type="range"
                       min={1}
-                      max={appliedFor.length}
+                      max={maxSliderLength}
                       step={1}
                       value={slidervalue[idx]}
                       onChange={(event) =>
@@ -118,11 +131,11 @@ const Domains = ({
                     <div
                       className="custom-track-fill"
                       style={{
-                        width: `${((slidervalue[idx] - 1) * 100) / (appliedFor.length - 1)}%`,
+                        width: `${((slidervalue[idx] - 1) * 100) / (maxSliderLength - 1)}%`,
                       }}  
                     ></div>
                     <datalist id={`values-${idx}`}>
-                      {value.slice(0, appliedFor.length).map((value, i) => (
+                      {value.slice(0, maxSliderLength).map((value, i) => (
                         <option key={i} value={value} label={value} />
                       ))}
                     </datalist>
