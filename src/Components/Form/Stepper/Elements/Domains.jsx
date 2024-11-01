@@ -24,9 +24,10 @@ const Domains = ({
   useEffect(() => {
     const newLength = appliedFor.length;
     for (let i = 0; i < slidervalue.length; i++) {
-      slidervalue[i] = Math.min(newLength, slidervalue[i]);
+      slidervalue[i] = 1;
     }
-  }, [slidervalue, appliedFor]);
+    setSlidervalue(slidervalue);
+  }, [appliedFor]);
 
 
   const value = [1, 2, 3, 4];
@@ -131,7 +132,7 @@ const Domains = ({
                     <div
                       className="custom-track-fill"
                       style={{
-                        width: `${((slidervalue[idx] - 1) * 100) / (maxSliderLength - 1)}%`,
+                        width: `${(((slidervalue[idx] - 1) * 100) / (maxSliderLength-1))}%`,
                       }}  
                     ></div>
                     <datalist id={`values-${idx}`}>
