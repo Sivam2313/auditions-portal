@@ -62,7 +62,7 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       // console.log();
       
       
-      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain || (registration.length!==11 && registration.length!==12 && registration.length!==10) || registration[registration.length-7]!=='3' || registration[registration.length-8]!=='2')
+      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain || registration[registration.length-7]!=='3' || registration[registration.length-8]!=='2')
       {
         setIsValidimail(false);
         return;
