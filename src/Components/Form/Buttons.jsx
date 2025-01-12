@@ -57,8 +57,8 @@ const Buttons = ({active,setActive,size,submitHandler, name, roll, branch, pmail
       }
       var [registration, domain] = imail.split("@");
       registration = registration.trim().toLowerCase();
-      const isValidDomain = domain === "btech.nitdgp.ac.in";
-      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain || (registration.length!==11 && registration.length!==12) || registration[registration.length-6]!=='u' || registration[registration.length-7]!=='3' || registration[registration.length-8]!=='2')
+      const isValidDomain = domain === "nitdgp.ac.in";
+      if(imail.trim()==="" || !validator.isEmail(imail.trim()) || !isValidDomain || (registration.length!==11 && registration.length!==12 && registration.length!==10) || registration[registration.length-8]!=='3' || registration[registration.length-9]!=='2')
       {
         setIsValidimail(false);
         return;
