@@ -23,7 +23,7 @@ function App() {
         <Route path="/updates" element={<UpdatesList />} />
         <Route path="/form" element={<Form />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
         <Route path="/updates" element={<UpdatesList />} />
         <Route path="/FAQs" element={<FAQsList />} />
         <Route path="/results" element={<Results />} />
